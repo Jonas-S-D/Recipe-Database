@@ -1,9 +1,7 @@
 #include "library/app-library.c"
 
-int main()
-{
-
-    printf("hello");
+int main() {
+    // Test Commit for GitHub.
 
     return 0;
 }
