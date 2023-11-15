@@ -1,7 +1,9 @@
 #include "library/app-library.c"
 
-int main() {
+int main()
+{
 
+    printf("hello");
 
     return 0;
 }
