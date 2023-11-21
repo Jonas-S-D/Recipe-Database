@@ -1,5 +1,5 @@
 // Created by Kristoffer Holm on 20/11/2023.
-#include "compare-library.h"
+#include "compare-library.c"
 #include <stdio.h>
 
 
