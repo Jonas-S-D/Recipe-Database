@@ -1,4 +1,5 @@
 #include "library/app-library.c"
+#include <stdio.h>
 
 int main() {
     // User input variables
