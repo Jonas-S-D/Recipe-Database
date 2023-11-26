@@ -24,14 +24,14 @@ char *stored_to_array() {
     unsigned int length = file_length(stored);
 
     // Allocates an array with the length of the csv file.
-    char **stored_arr = (char **) calloc((length + 1), sizeof(char *));
+    char **stored_arr = (char **) malloc((length + 1) * sizeof(char *));
     int i = 0;
     //printf("Ingredients: ");
     while (fgets(stored_buffer, FILE_BUFFER, stored)) {
         char *stored_string = strtok(stored_buffer, ", \n");
 
         while (stored_string != NULL) {
-            stored_arr[i] = (char *) calloc((strlen(stored_string) + 1), sizeof(char));
+            stored_arr[i] = (char *) malloc((strlen(stored_string) + 1) * sizeof(char));
             strcpy(stored_arr[i], stored_string);
 
             //printf("%s ", stored_arr[i]);
@@ -75,12 +75,12 @@ char ***recipe_to_array() {
 
 char ***Allocate_array(unsigned int rows, unsigned int cols) {
     // Allocate memory for the array of pointers to rows
-    char ***recipe_arr = (char ***) calloc(rows, sizeof(char **));
+    char ***recipe_arr = (char ***) malloc(rows * sizeof(char **));
 
     // Allocate memory for the data and initialize pointers
-    char *data = (char *) calloc(rows * cols, sizeof(char));
+    char *data = (char *) malloc((rows * cols) * sizeof(char));
     for (int i = 0; i < rows; ++i) {
-        recipe_arr[i] = (char **) calloc(cols, sizeof(char *));
+        recipe_arr[i] = (char **) malloc(cols * sizeof(char *));
         for (int j = 0; j < cols; ++j) {
             // Calculate the index into the 1D data array
             int index = i * cols + j;
@@ -111,7 +111,7 @@ char ***populate_array(FILE *file, char *recipe_buffer, char ***recipe_array) {
     while (fgets(recipe_buffer, FILE_BUFFER, file)) {
         char *recipe_string = strtok(recipe_buffer, ", \n");
         while (recipe_string != NULL) {
-            recipe_array[i][j] = (char *) calloc((strlen(recipe_string) + 1), sizeof(char));
+            recipe_array[i][j] = (char *) malloc((strlen(recipe_string) + 1) * sizeof(char));
             strcpy(recipe_array[i][j], recipe_string);
 
             // Print the hole array, with all the recipes.
@@ -147,7 +147,9 @@ void missing_ingredients(char **stored_array, char ***recipe_array) {
         for (int i = 1; i <= RECIPE_MAX_INGREDIENTS; ++i) {
             int j;
             for (j = 0; j < stored_length; ++j) {
-                if (strcmp(recipe_array[c][i], stored_array[j]) == 0) {
+                if (strncmp(recipe_array[c][i], "", 1) == 0) {
+                    break;
+                } else if (strcmp(recipe_array[c][i], stored_array[j]) == 0) {
                     common++;
                     break;
                 }
