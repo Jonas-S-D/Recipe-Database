@@ -147,9 +147,7 @@ void missing_ingredients(char **stored_array, char ***recipe_array) {
         for (int i = 1; i <= RECIPE_MAX_INGREDIENTS; ++i) {
             int j;
             for (j = 0; j < stored_length; ++j) {
-                if (strncmp(recipe_array[c][i], "", 1) == 0) {
-                    break;
-                } else if (strcmp(recipe_array[c][i], stored_array[j]) == 0) {
+                if (strcmp(recipe_array[c][i], stored_array[j]) == 0) {
                     common++;
                     break;
                 }
