@@ -54,7 +54,7 @@ char ***recipe_to_array() {
     // Count the number of rows and columns
     unsigned int num_rows = 0, num_cols = 0;
     count_row_col(recipe, recipe_buffer, &num_rows, &num_cols);
-    //printf("row %d \ncol %d\n\n", num_rows, num_cols);
+    printf("row %d \ncol %d\n\n", num_rows, num_cols);
 
     // Reset file pointer to the beginning of the file
     fseek(recipe, 0, SEEK_SET);
@@ -137,7 +137,6 @@ char ***populate_array(FILE *file, char *recipe_buffer, char ***recipe_array) {
 
 // Function for finding missing ingredients.
 void missing_ingredients(char **stored_array, char ***recipe_array) {
-    clock_t begin = clock();
     for (int c = 0; c < NUM_RECIPES; ++c) {
         int stored_length = 0, common = 0, missing = 0;
 
@@ -148,11 +147,14 @@ void missing_ingredients(char **stored_array, char ***recipe_array) {
         for (int i = 1; i <= RECIPE_MAX_INGREDIENTS; ++i) {
             int j;
             for (j = 0; j < stored_length; ++j) {
-                if (strcmp(recipe_array[c][i], stored_array[j]) == 0) {
+                if (strncmp(recipe_array[c][i], "", 1) == 0) {
+                    break;
+                } else if (strcmp(recipe_array[c][i], stored_array[j]) == 0) {
                     common++;
                     break;
                 }
             }
+
             if (j == stored_length) {
                 missing++;
             }
@@ -160,9 +162,6 @@ void missing_ingredients(char **stored_array, char ***recipe_array) {
 
         print_missing(recipe_array, c, common, missing);
     }
-    clock_t end = clock();
-    double time_spent = (double) (end - begin) / CLOCKS_PER_SEC;
-    printf("It took %lf seconds to find common and missing ingredients", time_spent);
 }
 
 void print_missing(char ***recipe_array, int c, int common, int missing) {
