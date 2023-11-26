@@ -1,4 +1,3 @@
-// Created by Kristoffer Holm on 20/11/2023.
 #include "compare-library.h"
 
 FILE *open_file(char *file, char *mode) {
@@ -19,7 +18,7 @@ unsigned int file_length(FILE *file) {
 char *stored_to_array() {
     char stored_buffer[FILE_BUFFER];
     // Opens the file and check if the file opens.
-    FILE *stored = open_file("src/stored.csv", "r");
+    FILE *stored = open_file("src/Compare/CSV/Stored.csv", "r");
 
     // Counts the number of characters in the file.
     unsigned int length = file_length(stored);
@@ -50,12 +49,12 @@ char ***recipe_to_array() {
     char recipe_buffer[FILE_BUFFER];
 
     // Opens the file and check if it opens
-    FILE *recipe = open_file("src/Recipe.csv", "r");
+    FILE *recipe = open_file("src/Compare/CSV/Recipe.csv", "r");
 
     // Count the number of rows and columns
     unsigned int num_rows = 0, num_cols = 0;
     count_row_col(recipe, recipe_buffer, &num_rows, &num_cols);
-    printf("row %d \ncol %d\n\n", num_rows, num_cols);
+    //printf("row %d \ncol %d\n\n", num_rows, num_cols);
 
     // Reset file pointer to the beginning of the file
     fseek(recipe, 0, SEEK_SET);
@@ -76,12 +75,12 @@ char ***recipe_to_array() {
 
 char ***Allocate_array(unsigned int rows, unsigned int cols) {
     // Allocate memory for the array of pointers to rows
-    char ***recipe_arr = (char ***)calloc(rows, sizeof(char **));
+    char ***recipe_arr = (char ***) calloc(rows, sizeof(char **));
 
     // Allocate memory for the data and initialize pointers
-    char *data = (char *)calloc(rows * cols, sizeof(char));
+    char *data = (char *) calloc(rows * cols, sizeof(char));
     for (int i = 0; i < rows; ++i) {
-        recipe_arr[i] = (char **)calloc(cols, sizeof(char *));
+        recipe_arr[i] = (char **) calloc(cols, sizeof(char *));
         for (int j = 0; j < cols; ++j) {
             // Calculate the index into the 1D data array
             int index = i * cols + j;
@@ -136,39 +135,37 @@ char ***populate_array(FILE *file, char *recipe_buffer, char ***recipe_array) {
 }
 
 
+// Function for finding missing ingredients.
+void missing_ingredients(char **stored_array, char ***recipe_array) {
+    clock_t begin = clock();
+    for (int c = 0; c < NUM_RECIPES; ++c) {
+        int stored_length = 0, common = 0, missing = 0;
 
-// Function for finding missing ingredients..
-void missing_ingredients(char **stored_array, char *** recipe_array) {
-    int common = 0, missing = 0, stored_length = 0;
+        while (stored_array[stored_length] != NULL) {
+            stored_length++;
+        }
 
-    while (stored_array[stored_length] != NULL) {
-        stored_length++;
-    }
-
-    for (int c = 0; c <= NUM_RECIPES; ++c) {
-        int i = 1;
-        for (; i <= RECIPE_MAX_INGREDIENTS; ++i) {
-            for (int j = 0; j < stored_length; ++j) {
-                // Sortere tomme array pladser fra.
-                if (strncmp(recipe_array[c][i], "", 1) == 0) {
-                    break;
-                    // Checks all recipe ingredients. and compare with stores ingredients to find common and missing ingredients.
-                } else if (strcmp(recipe_array[c][i], stored_array[j]) == 0) {
+        for (int i = 1; i <= RECIPE_MAX_INGREDIENTS; ++i) {
+            int j;
+            for (j = 0; j < stored_length; ++j) {
+                if (strcmp(recipe_array[c][i], stored_array[j]) == 0) {
                     common++;
                     break;
                 }
             }
-            if (i == RECIPE_MAX_INGREDIENTS) {
+            if (j == stored_length) {
                 missing++;
             }
         }
+
         print_missing(recipe_array, c, common, missing);
-        common = 0, missing = 0;
-
     }
-
+    clock_t end = clock();
+    double time_spent = (double) (end - begin) / CLOCKS_PER_SEC;
+    printf("It took %lf seconds to find common and missing ingredients", time_spent);
 }
 
-void print_missing(char *** recipe_array, int c, int common, int missing) {
-    printf("For %s:\nThere are %d common ingredients\nThere are %d missing ingredients\n\n", recipe_array[1][0], common, missing);
+void print_missing(char ***recipe_array, int c, int common, int missing) {
+    printf("For %s:\nThere are %d common ingredients\nThere are %d missing ingredients\n\n", recipe_array[c][0], common,
+           missing);
 }

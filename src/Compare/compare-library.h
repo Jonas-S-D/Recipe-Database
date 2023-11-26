@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <time.h>
 
 #define FILE_BUFFER 1024
 #define RECIPE_MAX_INGREDIENTS 13
@@ -25,7 +26,7 @@ char ***populate_array(FILE *file, char *recipe_buffer, char ***recipe_array);
 
 void missing_ingredients(char **stored_array, char ***recipe_array);
 
-void print_missing(char *** recipe_array, int c, int common, int missing);
+void print_missing(char *** recipe_array, int r, int common, int missing);
 
 
 
