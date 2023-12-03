@@ -1,4 +1,6 @@
 #include "library/app-library.c"
+#include "Compare ingredients/compare-library.c"
+#include <stdio.h>
 
 int main() {
     // User input variables
