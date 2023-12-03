@@ -1,5 +1,5 @@
 #include "library/app-library.c"
-#include "Compare ingredients/compare-library.c"
+#include "Compare/compare-library.c"
 #include <stdio.h>
 
 int main() {
@@ -10,6 +10,7 @@ int main() {
     int categoryCount = 0;
 
     // Step 1: Program Explanation
+    printProgramExplanation();
 
     // Step 2: Get user input
     getUserInput(&userIngredients, &userIngredientCount, &categories, &categoryCount);

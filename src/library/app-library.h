@@ -9,3 +9,4 @@ void getUserInput(char ***ingredients, int *ingredientCount, char ***categories,
 void getUserInputIngredients(char ***ingredients, int *ingredientCount);
 void getUserInputCategories(char ***categories, int *categoryCount);
 void freeMemory(char ***array, int count);
+void printProgramExplanation();
