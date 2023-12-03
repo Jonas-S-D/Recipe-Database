@@ -71,3 +71,13 @@ void freeMemory(char ***array, int count) {
     free(*array);
     *array = NULL;
 }
+
+void printProgramExplanation() {
+    printf("\nProgram explanation:\n"
+           "The purpose of this program is so reduce the amount food waste in the users household.\n"
+           "This is being done by comparing the users inventory of food and recommending the most relevant dishes.\n"
+           "Dishes with the least amount of ingredients missing will be prioritized higher.\n"
+           "The program works by requesting ingredients 'i' and a category 'c' of food.\n"
+           "When the user has prompted the desired information a list of dishes will be printed.\n"
+           "Now the user can choose a dish of their liking that will be printed together with the recipe.\n\n");
+}
