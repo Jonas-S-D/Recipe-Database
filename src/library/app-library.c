@@ -5,9 +5,8 @@ void getUserInput(struct Ingredient **ingredients, int *ingredientCount, char **
     printf("What would you like to do?\n");
 
     while (1) {
-        printf("Enter 'i' for ingredients or 'c' for categories: ");
+        printf("Enter 'i' for ingredients or 'c' for categories>");
         scanf("%s", option);
-        printf("%s", option);
 
         if (strcmp(option, "i") == 0) {
             getUserInputIngredients(ingredients, ingredientCount);
@@ -16,13 +15,13 @@ void getUserInput(struct Ingredient **ingredients, int *ingredientCount, char **
         } else if (strcmp(option, "d") == 0) {
             break;
         } else {
-            printf("Invalid input. Please enter 'i' or 'c': ");
+            printf("Invalid input!\n");
         }
     }
 }
 
 void getUserInputIngredients(struct Ingredient **ingredients, int *ingredientCount) {
-    printf("Enter the ingredients you have (enter 'done' when finished)\n");
+    printf("Enter the ingredients you have, enter 'done' when finished:\n");
 
     struct Ingredient ingredient;
     *ingredients = NULL;
@@ -48,7 +47,7 @@ void getUserInputIngredients(struct Ingredient **ingredients, int *ingredientCou
 
 void getUserInputCategories(char ***categories, int *categoryCount) {
     char category[MAX_NAME];
-    printf("Enter categories you are interested in (enter 'done' when finished)\n");
+    printf("Enter categories you are interested in, enter 'done' when finished\n");
     while (1) {
         printf(">");
         scanf("%s", category);
