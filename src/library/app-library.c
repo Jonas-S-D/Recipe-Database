@@ -1,6 +1,6 @@
 #include "app-library.h"
 
-void getUserInput(char ***ingredients, int *ingredientCount, char ***categories, int *categoryCount) {
+void getUserInput(struct Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount) {
     char *option = (char *)malloc(2 * sizeof(char));  // Allocate memory for option
     printf("What would you like to do?\n");
 
@@ -23,30 +23,33 @@ void getUserInput(char ***ingredients, int *ingredientCount, char ***categories,
     free(option);
 }
 
-void getUserInputIngredients(char ***ingredients, int *ingredientCount) {
+void getUserInputIngredients(struct Ingredient **ingredients, int *ingredientCount) {
     printf("Enter the ingredients you have (enter 'done' when finished)\n");
 
-    char ingredient[MAX_INGREDIENT_LENGTH];
+    struct Ingredient ingredient;
     *ingredients = NULL;
 
     while (1) {
         printf("Ingredient %d > ", *ingredientCount + 1);
-        scanf("%s", ingredient);
+        scanf("%s", ingredient.name);
 
-        if (strcmp(ingredient, "done") == 0) {
+        if (strcmp(ingredient.name, "done") == 0) {
             return;
         }
 
+        printf("Ingredient %d > Amount: ", *ingredientCount + 1);
+        scanf("%s", ingredient.amount);
+
         // Dynamically allocate memory for the new ingredient
-        *ingredients = realloc(*ingredients, (*ingredientCount + 1) * sizeof(char *));
-        (*ingredients)[*ingredientCount] = strdup(ingredient);
+        *ingredients = realloc(*ingredients, (*ingredientCount + 1) * sizeof(struct Ingredient));
+        (*ingredients)[*ingredientCount] = ingredient;
 
         (*ingredientCount)++;
     }
 }
 
 void getUserInputCategories(char ***categories, int *categoryCount) {
-    char category[MAX_NAME_LENGTH];
+    char category[MAX_NAME];
     printf("Enter categories you are interested in (enter 'done' when finished)\n");
     while (1) {
         printf(">");

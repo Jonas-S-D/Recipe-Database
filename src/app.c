@@ -4,8 +4,8 @@
 
 int main() {
     // User input variables
-    char **userIngredients = NULL;
-    int userIngredientCount = 0;
+    struct Ingredient *ingredients;
+    int ingredientCount = 0;
     char **categories = NULL;
     int categoryCount = 0;
 
@@ -13,7 +13,7 @@ int main() {
     printProgramExplanation();
 
     // Step 2: Get user input
-    getUserInput(&userIngredients, &userIngredientCount, &categories, &categoryCount);
+    getUserInput(&ingredients, &ingredientCount, &categories, &categoryCount);
 
     // Step 3: Display dishes based on user input
 
@@ -22,7 +22,7 @@ int main() {
     // Step 5: Display the recipe.
 
     // Free allocated memory for ingredients and categories
-    freeMemory(&userIngredients, userIngredientCount);
+    free(ingredients);
     freeMemory(&categories, categoryCount);
 
     return 0;
