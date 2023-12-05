@@ -1,12 +1,13 @@
 #include "app-library.h"
 
 void getUserInput(struct Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount) {
-    char *option = (char *)malloc(2 * sizeof(char));  // Allocate memory for option
+    char option[2]; // Allocate memory for option
     printf("What would you like to do?\n");
 
     while (1) {
         printf("Enter 'i' for ingredients or 'c' for categories: ");
         scanf("%s", option);
+        printf("%s", option);
 
         if (strcmp(option, "i") == 0) {
             getUserInputIngredients(ingredients, ingredientCount);
@@ -18,9 +19,6 @@ void getUserInput(struct Ingredient **ingredients, int *ingredientCount, char **
             printf("Invalid input. Please enter 'i' or 'c': ");
         }
     }
-
-    // Free allocated memory
-    free(option);
 }
 
 void getUserInputIngredients(struct Ingredient **ingredients, int *ingredientCount) {
