@@ -1,6 +1,6 @@
 #include "app-library.h"
 
-void getUserInput(struct Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount) {
+void userInput(Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount) {
     char option[2]; // Allocate memory for option
     printf("What would you like to do?\n");
 
@@ -9,9 +9,9 @@ void getUserInput(struct Ingredient **ingredients, int *ingredientCount, char **
         scanf("%s", option);
 
         if (strcmp(option, "i") == 0) {
-            getUserInputIngredients(ingredients, ingredientCount);
+            userInputIngredients(ingredients, ingredientCount);
         } else if (strcmp(option, "c") == 0) {
-            getUserInputCategories(categories, categoryCount);
+            userInputCategories(categories, categoryCount);
         } else if (strcmp(option, "d") == 0) {
             break;
         } else {
@@ -20,10 +20,10 @@ void getUserInput(struct Ingredient **ingredients, int *ingredientCount, char **
     }
 }
 
-void getUserInputIngredients(struct Ingredient **ingredients, int *ingredientCount) {
+void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
     printf("Enter the ingredients you have, enter 'done' when finished:\n");
 
-    struct Ingredient ingredient;
+    Ingredient ingredient;
     *ingredients = NULL;
 
     while (1) {
@@ -35,17 +35,17 @@ void getUserInputIngredients(struct Ingredient **ingredients, int *ingredientCou
         }
 
         printf("Ingredient %d > Amount: ", *ingredientCount + 1);
-        scanf("%s", ingredient.amount);
+        scanf("%lf", ingredient.amount);
 
         // Dynamically allocate memory for the new ingredient
-        *ingredients = realloc(*ingredients, (*ingredientCount + 1) * sizeof(struct Ingredient));
+        *ingredients = realloc(*ingredients, (*ingredientCount + 1) * sizeof(Ingredient));
         (*ingredients)[*ingredientCount] = ingredient;
 
         (*ingredientCount)++;
     }
 }
 
-void getUserInputCategories(char ***categories, int *categoryCount) {
+void userInputCategories(char ***categories, int *categoryCount) {
     char category[MAX_NAME];
     printf("Enter categories you are interested in, enter 'done' when finished\n");
     while (1) {
