@@ -13,7 +13,7 @@ int main(void) {
 void load_recipe_test(void) {
     //load recipes into recipe array and initialize variables
     FILE *file = fopen("src/library/recipes.txt", "r");
-    //check_load(file);
+    check_load(file);
     Recipe *recipes = NULL;
     int recipeCount = load_recipe_struct(file, &recipes);
 
