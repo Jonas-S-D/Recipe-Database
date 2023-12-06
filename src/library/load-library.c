@@ -1,3 +1,5 @@
+#include "app-library.h"
+
 int load_recipe_struct(FILE *file, Recipe **recipes) {
     char line[MAX_LINE]; // char array to hold lines
     int recipeCount = 0;  // Variable to keep track of the number of recipes
