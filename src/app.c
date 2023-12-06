@@ -34,12 +34,15 @@ int main() {
 
 
     // Free allocated memory for ingredients and categories
-    free(ingredients);
-    freeMemory(&categories, categoryCount);
-    for (int i = 0; i < recipeCount; i++) {
-        free(recipes[i].ingredients);
-    }
+
+   // free(ingredients);
+   // freeMemory(&categories, categoryCount);
+   // for (int i = 0; i < recipeCount; i++) {
+   //     free(recipes[i].ingredients);
+   // }
+   //
     free(recipes);
 
     return 0;
 }
+

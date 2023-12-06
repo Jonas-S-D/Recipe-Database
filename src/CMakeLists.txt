@@ -9,6 +9,13 @@ add_executable(food_app
         Compare ingredients/compare-ingredients.c
 )
 
-add_subdirectory(Compare ingredients)
+add_subdirectory(Compare test)
 
 target_include_directories(food_app PRIVATE "Compare ingredients")
+
+add_library(app app.c)
+target_link_libraries(app m)
+target_include_directories(app PUBLIC .)
+
+add_test(NAME test_functions.c COMMAND tests)
+

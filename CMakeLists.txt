@@ -4,6 +4,5 @@ project(P1-Recipe-Database)
 
 set(CMAKE_C_STANDARD 11)
 
-add_subdirectory(src)
-
+add_subdirectory(src test)
 enable_testing()
