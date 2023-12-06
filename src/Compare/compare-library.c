@@ -83,7 +83,7 @@ char ***Allocate_array(unsigned int rows, unsigned int cols) {
         recipe_arr[i] = (char **) malloc(cols * sizeof(char *));
         for (int j = 0; j < cols; ++j) {
             // Calculate the index into the 1D data array
-            int index = i * cols + j;
+            unsigned int index = i * cols + j;
             // Set the pointer to the corresponding location in the data array
             recipe_arr[i][j] = data + index;
         }
