@@ -19,7 +19,7 @@ int main() {
     // printProgramExplanation();
 
     // Step 2: Get user input
-    // userInput(&ingredients, &ingredientCount, &categories, &categoryCount);
+     userInput(&ingredients, &ingredientCount, &categories, &categoryCount);
 
     // Step 3: Display dishes based on user input
 
