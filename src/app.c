@@ -1,6 +1,5 @@
 #include "library/app-library.c"
 #include "library/load-library.c"
-#include "Compare/compare-library.c"
 #include <stdio.h>
 
 int main() {
