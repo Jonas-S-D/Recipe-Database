@@ -12,8 +12,7 @@ void userInput(Ingredient **ingredients, int *ingredientCount, char ***categorie
     printf("What would you like to do?\n");
 
     while (1) {
-        printf("Enter 'i' for ingredients or 'c' for categories>");
-        printf("Enter 'd' when you are done");
+        printf("Enter 'i' for ingredients, 'c' for categories, and 'd' when you are done>");
         scanf("%s", option);
 
         if (strcmp(option, "i") == 0) {
