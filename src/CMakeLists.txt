@@ -4,8 +4,6 @@ add_executable(food_app
         app.c
         library/app-library.c
         library/load-library.c
-        Compare ingredients/compare-library.c
-        Compare ingredients/compare-library.h
         Compare ingredients/compare-ingredients.c
 )
 

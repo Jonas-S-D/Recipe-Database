@@ -1,4 +1,5 @@
-#include "../src/library/app-library.h"
+#include "../src/library/app-library.c"
+#include "../src/library/load-library.c"
 #include <assert.h>
 
 // Prototyper til test-funktioner
@@ -22,7 +23,7 @@ void load_recipe_test(void) {
 
     //check load_recipe_struct loading of name
     //assert(recipes[0].name == "Oksekoeds lasagne" && recipes[3].name == "Biksemad");
-    if (strcmp(recipes[0].name, "Oksekoeds lasagne") && strcmp(recipes[3].name, "Biksemad")) {
+    if (strcmp(recipes[0].name, "Oksekoeds lasagne") == 0 && strcmp(recipes[3].name, "Biksemad") == 0) {
         assert(1);
         printf("Works");
     }
