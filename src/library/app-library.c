@@ -1,11 +1,19 @@
 #include "app-library.h"
-
+/**
+ * Gets user input for what they would like to do.
+ * The user can chose to enter "i" for ingredients or "c" for categories or "d" for done
+ * @param ingredients Is the struct "Ingredient" that has been defined in "app-library.h"
+ * @param ingredientCount Counts how many ingredients have been entered
+ * @param categories The category of food that the user wants
+ * @param categoryCount Counts how many categories have been entered
+ */
 void userInput(Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount) {
     char option[2]; // Allocate memory for option
     printf("What would you like to do?\n");
 
     while (1) {
         printf("Enter 'i' for ingredients or 'c' for categories>");
+        printf("Enter 'd' when you are done");
         scanf("%s", option);
 
         if (strcmp(option, "i") == 0) {
@@ -19,7 +27,12 @@ void userInput(Ingredient **ingredients, int *ingredientCount, char ***categorie
         }
     }
 }
-
+/**
+ * Gets user input for ingredients
+ * here the user can enter as many ingredients as they want and type 'done' when they are finished
+ * @param ingredients Is the struct "Ingredient" that has been defined in "app-library.h"
+ * @param ingredientCount Counts the number of ingredients entered
+ */
 void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
     printf("Enter the ingredients you have, enter 'done' when finished:\n");
 
@@ -44,7 +57,12 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
         (*ingredientCount)++;
     }
 }
-
+/**
+ * Gets user input for categories
+ * here the user can enter categories as they want and type 'done' when they are finished
+ * @param categories The category of food that the user wants
+ * @param categoryCount Counts the number of categories entered
+ */
 void userInputCategories(char ***categories, int *categoryCount) {
     char category[MAX_NAME];
     printf("Enter categories you are interested in, enter 'done' when finished\n");
@@ -63,7 +81,11 @@ void userInputCategories(char ***categories, int *categoryCount) {
         (*categoryCount)++;
     }
 }
-
+/**
+ * Releases memory blocks from the allocated "realloc function" in "userInputIngredients" and "userInputCategories"
+ * @param array
+ * @param count
+ */
 void freeMemory(char ***array, int count) {
     for (int i = 0; i < count; ++i) {
         free((*array)[i]);
@@ -71,6 +93,7 @@ void freeMemory(char ***array, int count) {
     free(*array);
     *array = NULL;
 }
+
 
 void printProgramExplanation() {
     printf("\nProgram explanation:\n"
