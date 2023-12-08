@@ -39,14 +39,14 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
     *ingredients = NULL;
 
     while (1) {
-        printf("Ingredient %d > ", *ingredientCount + 1);
+        printf("Ingredient %d >", *ingredientCount + 1);
         scanf("%s", ingredient.name);
 
         if (strcmp(ingredient.name, "done") == 0) {
             return;
         }
 
-        printf("Ingredient %d > Amount: ", *ingredientCount + 1);
+        printf("Ingredient %d > Amount:", *ingredientCount + 1);
         scanf("%lf", ingredient.amount);
 
         // Dynamically allocate memory for the new ingredient
