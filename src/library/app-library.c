@@ -42,12 +42,40 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
         printf("Ingredient %d > ", *ingredientCount + 1);
         scanf("%s", ingredient.name);
 
+        // Convert user input to lowercase.
+        for (int i = 0; ingredient.name[i]; i++) {
+            ingredient.name[i] = tolower((unsigned char)ingredient.name[i]);
+        }
+
         if (strcmp(ingredient.name, "done") == 0) {
             return;
         }
 
-        printf("Ingredient %d > Amount: ", *ingredientCount + 1);
-        scanf("%lf %s", ingredient.amount, ingredient.unit);
+        // Loop to handle user input being valid.
+        do {
+            printf("Ingredient %d > Amount: ", *ingredientCount + 1);
+            // Checks if the user inputs 2 inputs that are valid a double and a char.
+            if (scanf("%lf %s", ingredient.amount, ingredient.unit) != 2) {
+                while (getchar() != '\n');
+
+                printf("Invalid input. Please enter both amount and unit.\n");
+                continue; // Ask the user to enter the values again
+            }
+
+
+            // Convert user input to lowercase for comparison
+            for (int i = 0; ingredient.unit[i]; i++) {
+                ingredient.unit[i] = tolower((unsigned char)ingredient.unit[i]);
+            }
+
+            // Check if the user input is within the acceptable units string
+            if (strstr(ACCEPTABLE_UNITS, ingredient.unit) != NULL) {
+                break; // Exit the loop when a valid unit is entered
+            } else {
+                printf("Invalid unit. Please try again.\n");
+            }
+
+        } while (1); // Infinite loop until a valid unit is entered
 
         // Dynamically allocate memory for the new ingredient
         *ingredients = realloc(*ingredients, (*ingredientCount + 1) * sizeof(Ingredient));
