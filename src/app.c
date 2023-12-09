@@ -8,7 +8,7 @@ void printIngredients(Ingredient *ingredients, int ingredientCount) {
     for (int i = 0; i < ingredientCount; ++i) {
         printf("Ingredient %d:\n", i + 1);
         printf("Name: %s\n", ingredients[i].name);
-        printf("Amount: %lf ", *ingredients[i].amount);
+        printf("Amount: %.2lf ", *ingredients[i].amount);
         printf("\nUnit: %s\n", ingredients[i].unit);
         printf("\n");
     }
@@ -36,9 +36,11 @@ int main() {
     printIngredients(ingredients, ingredientCount);
 
     // Step 3: Display dishes based on user input
+    /*
     print_recipes(recipes, recipeCount);
     fclose(file); // close the file
     printf("testing -> %s",recipes[0].name);
+    */
 
     // Step 4: Let the user pick their dish
 
