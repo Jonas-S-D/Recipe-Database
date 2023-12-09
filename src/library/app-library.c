@@ -105,6 +105,11 @@ void userInputCategories(char ***categories, int *categoryCount) {
         printf(">");
         scanf("%s", category);
 
+        // Convert user category input to lowercase.
+        for (int i = 0; category[i]; i++) {
+            category[i] = tolower((unsigned char)category[i]);
+        }
+
         if (strcmp(category, "done") == 0) {
             return;  // Return to the menu
         }
