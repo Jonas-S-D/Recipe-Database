@@ -47,10 +47,18 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
         }
 
         printf("Ingredient %d > Amount: ", *ingredientCount + 1);
-        scanf("%lf", ingredient.amount);
+        scanf("%lf %s", ingredient.amount, ingredient.unit);
 
         // Dynamically allocate memory for the new ingredient
         *ingredients = realloc(*ingredients, (*ingredientCount + 1) * sizeof(Ingredient));
+
+        // Memory allocation failed
+        if (*ingredients == NULL) {
+            printf("Memory allocation failed. Exiting.\n");
+            free(*ingredients);
+            exit(EXIT_FAILURE);
+        }
+
         (*ingredients)[*ingredientCount] = ingredient;
 
         (*ingredientCount)++;
@@ -75,6 +83,14 @@ void userInputCategories(char ***categories, int *categoryCount) {
 
         // Dynamically allocate memory for the new category
         *categories = realloc(*categories, (*categoryCount + 1) * sizeof(char *));
+
+        // Memory allocation failed
+        if (*categories == NULL) {
+            printf("Memory allocation failed. Exiting.\n");
+            free(*categories);
+            exit(EXIT_FAILURE);
+        }
+
         (*categories)[*categoryCount] = strdup(category);
 
         (*categoryCount)++;
