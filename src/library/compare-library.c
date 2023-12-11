@@ -72,7 +72,7 @@ void sortRecipes(Recipe FilteredRecipe, Ingredient *ingredients) {
         for (int k = 0; FilteredRecipe.ingredients[k].name[0] != '\0'; ++k) {
             printf("Comparing with: %s\n", FilteredRecipe.ingredients[k].name);
             if (strcmp(FilteredRecipe.ingredients[k].name, ingredients[j].name) == 0) {
-                printf("Match found!\nDecrementing missingIngredients.\n");
+                printf("Match found!\n");
                 FilteredRecipe.missingIngredients--;
                 break;
             }
