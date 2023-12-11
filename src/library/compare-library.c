@@ -54,29 +54,22 @@ void filterRecipes(Recipe *recipes, Recipe *FilteredRecipes, char **categories, 
 // Sort recipes by least missing ingredients
 void sortRecipes(Recipe FilteredRecipe, Ingredient ingredients) {
     int ingredientCount = 0;
+    int missingCount = 0;
 
     for (int i = 0; *FilteredRecipe.ingredients[i].name != '\0'; ++i) {
         ingredientCount++;
     }
 
-    int j = 0;
-    while (ingredients.name[j] != '\0') {
-        int k = 0;
-        int found = 0;
-
-        while (FilteredRecipe.ingredients[k].name[0] != '\0') {
+    for (int j = 0; ingredients.name[j] != '\0'; ++j) {
+        for (int k = 0; FilteredRecipe.ingredients[k].name[0] != '\0'; ++k) {
             if (strcmp(FilteredRecipe.ingredients[k].name, &ingredients.name[j]) == 0) {
-                found = 1;
+                missingCount++;
                 break;
             }
-            k++;
         }
-
-        if (!found) {
-            FilteredRecipe.missingIngredients++;
-        }
-        j++;
     }
+    FilteredRecipe.missingIngredients = ingredientCount - missingCount;
+
     printf("\ningredientCount: %d\n", ingredientCount);
     printf("missingCount: %d\n", FilteredRecipe.missingIngredients);
 }
