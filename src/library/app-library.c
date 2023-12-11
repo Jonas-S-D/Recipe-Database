@@ -9,20 +9,20 @@
  */
 void userInput(Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount) {
     char option[2]; // Allocate memory for option
-    printf("What would you like to do?\n");
+    printf("Hvad vil du gerne goere?\n");
 
     while (1) {
-        printf("Enter 'i' for ingredients, 'c' for categories, and 'd' when you are done>");
+        printf("Indtast 'i' for ingredienser, 'k' for kategorier og 'f', naar du er faerdig>");
         scanf("%s", option);
 
         if (strcmp(option, "i") == 0) {
             userInputIngredients(ingredients, ingredientCount);
-        } else if (strcmp(option, "c") == 0) {
+        } else if (strcmp(option, "k") == 0) {
             userInputCategories(categories, categoryCount);
-        } else if (strcmp(option, "d") == 0) {
+        } else if (strcmp(option, "f") == 0) {
             break;
         } else {
-            printf("Invalid input!\n");
+            printf("Ugyldigt input!\n");
         }
     }
 }
@@ -33,13 +33,13 @@ void userInput(Ingredient **ingredients, int *ingredientCount, char ***categorie
  * @param ingredientCount Counts the number of ingredients entered
  */
 void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
-    printf("Enter the ingredients you have, enter 'done' when finished:\n");
+    printf("Indtast de ingredienser du har, indtast 'faerdig' naar du er faerdig:\n");
 
     Ingredient ingredient;
     *ingredients = NULL;
 
     while (1) {
-        printf("Ingredient %d > ", *ingredientCount + 1);
+        printf("Ingrediens %d > ", *ingredientCount + 1);
         scanf("%s", ingredient.name);
 
         // Convert user input to lowercase.
@@ -47,18 +47,18 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
             ingredient.name[i] = tolower((unsigned char)ingredient.name[i]);
         }
 
-        if (strcmp(ingredient.name, "done") == 0) {
+        if (strcmp(ingredient.name, "faerdig") == 0) {
             return;
         }
 
         // Loop to handle user input being valid.
         do {
-            printf("Ingredient %d > Amount: ", *ingredientCount + 1);
+            printf("Ingrediens %d > Maengde: ", *ingredientCount + 1);
             // Checks if the user inputs 2 inputs that are valid a double and a char.
             if (scanf("%lf %s", ingredient.amount, ingredient.unit) != 2) {
                 while (getchar() != '\n');
 
-                printf("Invalid input. Please enter both amount and unit.\n");
+                printf("Ugyldigt input. Indtast venligts baade beløb og enhed.\n");
                 continue; // Ask the user to enter the values again
             }
 
@@ -72,7 +72,7 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
             if (strstr(ACCEPTABLE_UNITS, ingredient.unit) != NULL) {
                 break; // Exit the loop when a valid unit is entered
             } else {
-                printf("Invalid unit. Please try again.\n");
+                printf("Ugyldig enhed. Proev igen\n");
             }
 
         } while (1); // Infinite loop until a valid unit is entered
@@ -82,7 +82,7 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
 
         // Memory allocation failed
         if (*ingredients == NULL) {
-            printf("Memory allocation failed. Exiting.\n");
+            printf("Hukommelsestildeling mislykkedes. Afslutter.\n");
             free(*ingredients);
             exit(EXIT_FAILURE);
         }
@@ -100,7 +100,7 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
  */
 void userInputCategories(char ***categories, int *categoryCount) {
     char category[MAX_NAME];
-    printf("Enter categories you are interested in, enter 'done' when finished\n");
+    printf("Indtast kategorier, du er interesseret i, indtast 'faerdig', naar du er faerdig\n");
     while (1) {
         printf(">");
         scanf("%s", category);
@@ -110,7 +110,7 @@ void userInputCategories(char ***categories, int *categoryCount) {
             category[i] = tolower((unsigned char)category[i]);
         }
 
-        if (strcmp(category, "done") == 0) {
+        if (strcmp(category, "faerdig") == 0) {
             return;  // Return to the menu
         }
 
@@ -119,7 +119,7 @@ void userInputCategories(char ***categories, int *categoryCount) {
 
         // Memory allocation failed
         if (*categories == NULL) {
-            printf("Memory allocation failed. Exiting.\n");
+            printf("Hukommelsestildeling mislykkedes. Afslutter.\n");
             free(*categories);
             exit(EXIT_FAILURE);
         }
@@ -144,11 +144,11 @@ void freeMemory(char ***array, int count) {
 
 
 void printProgramExplanation() {
-    printf("\nProgram explanation:\n"
-           "The purpose of this program is so reduce the amount food waste in the users household.\n"
-           "This is being done by comparing the users inventory of food and recommending the most relevant dishes.\n"
-           "Dishes with the least amount of ingredients missing will be prioritized higher.\n"
-           "The program works by requesting ingredients 'i' and a category 'c' of food.\n"
-           "When the user has prompted the desired information a list of dishes will be printed.\n"
-           "Now the user can choose a dish of their liking that will be printed together with the recipe.\n\n");
+    printf("\nProgramforklaring:\n"
+           "Formaalet med dette program er at reducere maengden af madspild i brugerens husstand.\n"
+           "Dette goeres ved at sammenligne brugernes lager af foedevarer of anbefale de mest relevante madretter.\n"
+           "Retter, hvor der mangler mindst maengder af ingredienser, vil blive prioriteret hoejere.\n"
+           "Programmet fungerer ved at anmode om, ingredienserne 'i' og kategorierne 'k' af mad.\n"
+           "Når brugerne har bedt om den oenskede information, udskrives en liste over madretter.\n"
+           "Nu kan brugeren vaelge en madret som de gerne vil have udskrives sammen med opskriften.\n\n");
 }
