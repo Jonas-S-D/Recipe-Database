@@ -10,7 +10,7 @@
  */
 
 // Filter loaded recipes by category
-void filterRecipe(Recipe recipe, Recipe FilteredRecipe, char **categories, int CategoryCount, int recipeCount) {
+void filterRecipe(Recipe recipe, Recipe FilteredRecipe, char **categories, int CategoryCount, int recipeCount, Ingredient ingredients) {
     int counter = 0;
     if (categories != NULL) {
         for (int i = 0; i < CategoryCount; ++i) { // Number of chosen categories
@@ -34,13 +34,14 @@ void filterRecipe(Recipe recipe, Recipe FilteredRecipe, char **categories, int C
     } else { // No categories chosen
         memcpy(&FilteredRecipe, &recipe, sizeof(recipe));
     }
+    sortRecipes(FilteredRecipe, ingredients);
 }
 
-void filterRecipes(Recipe *recipes, Recipe *FilteredRecipes, char **categories, int CategoryCount, int RecipeCount) {
+void filterRecipes(Recipe *recipes, Recipe *FilteredRecipes, char **categories, int CategoryCount, int RecipeCount, Ingredient ingredients) {
     // printf("Number of recipes tested: %d\n", RecipeCount);
     for (int i = 0; i < RecipeCount; i++) {
         // printf("Printing test of recipe %d\n", i + 1);
-        filterRecipe(recipes[i], FilteredRecipes[0], categories, CategoryCount, RecipeCount);
+        filterRecipe(recipes[i], FilteredRecipes[0], categories, CategoryCount, RecipeCount, ingredients);
     }
 }
 
@@ -54,7 +55,7 @@ void filterRecipes(Recipe *recipes, Recipe *FilteredRecipes, char **categories, 
 void sortRecipes(Recipe FilteredRecipe, Ingredient ingredients) {
     int ingredientCount = 0;
 
-    for (int i = 0; FilteredRecipe.ingredients->name[i] != '\0'; ++i) {
+    for (int i = 0; *FilteredRecipe.ingredients[i].name != '\0'; ++i) {
         ingredientCount++;
     }
 
@@ -76,8 +77,8 @@ void sortRecipes(Recipe FilteredRecipe, Ingredient ingredients) {
         }
         j++;
     }
-    printf("ingredientCount: %d", ingredientCount);
-    printf("missingCount: %d", FilteredRecipe.missingIngredients);
+    printf("\ningredientCount: %d\n", ingredientCount);
+    printf("missingCount: %d\n", FilteredRecipe.missingIngredients);
 }
 
 /**
