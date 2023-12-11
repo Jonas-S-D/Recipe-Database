@@ -44,7 +44,7 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
 
         // Convert user input to lowercase.
         for (int i = 0; ingredient.name[i]; i++) {
-            ingredient.name[i] = tolower((unsigned char)ingredient.name[i]);
+            ingredient.name[i] = (char) tolower(ingredient.name[i]);
         }
 
         if (strcmp(ingredient.name, "faerdig") == 0) {
@@ -65,7 +65,7 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
 
             // Convert user input to lowercase for comparison
             for (int i = 0; ingredient.unit[i]; i++) {
-                ingredient.unit[i] = tolower((unsigned char)ingredient.unit[i]);
+                ingredient.unit[i] = (char) tolower(ingredient.unit[i]);
             }
 
             // Check if the user input is within the acceptable units string
@@ -107,7 +107,7 @@ void userInputCategories(char ***categories, int *categoryCount) {
 
         // Convert user category input to lowercase.
         for (int i = 0; category[i]; i++) {
-            category[i] = tolower((unsigned char)category[i]);
+            category[i] = (char) tolower(category[i]);
         }
 
         if (strcmp(category, "faerdig") == 0) {
