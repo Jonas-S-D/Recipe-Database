@@ -66,12 +66,10 @@ void filterRecipe(Recipe recipe, Recipe FilteredRecipe, char **categories, int C
                         }
                     }
                     if (!duplicate) {
-                        strcpy(FilteredRecipe.name, recipe.name);
-                        strcpy(FilteredRecipe.explanation, recipe.explanation);
-                        strcpy(FilteredRecipe.categories[counter], categories[i]);
+                        memcpy(&FilteredRecipe, &recipe, sizeof(recipe));
                         printf("Filtered recipe %d category %s\n", counter + 1, FilteredRecipe.categories[counter]);
                         printf("Filtered recipe %d name %s\n", counter + 1, FilteredRecipe.name);
-                        printf("Filtered recipe %d explanation %s\n", counter + 1, FilteredRecipe.explanation);
+                        // printf("Filtered recipe %d explanation %s\n", counter + 1, FilteredRecipe.explanation);
                         counter++;
                     }
                     break;
