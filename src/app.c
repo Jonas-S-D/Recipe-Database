@@ -28,7 +28,7 @@ int main() {
     int recipeCount = load_recipe_struct(file, &recipes);
 
     // Step 1: Program Explanation
-    // printProgramExplanation();
+     printProgramExplanation();
 
     // Step 2: Get user input
     userInput(&ingredients, &ingredientCount, &categories, &categoryCount);
