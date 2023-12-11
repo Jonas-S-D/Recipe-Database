@@ -25,6 +25,7 @@ int main() {
 
     // Step 3: Display dishes based on user input
     filterRecipes(recipes, &FilteredRecipe, categories, categoryCount, recipeCount);
+    sortRecipes(FilteredRecipe, *ingredients);
 
     // print_recipes(recipes, recipeCount);
     fclose(file); // close the file

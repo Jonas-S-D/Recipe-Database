@@ -42,3 +42,4 @@ void print_recipes(Recipe *recipes, int recipe_count);
 // Compare
 void filterRecipe(Recipe recipe, Recipe FilteredRecipe, char **categories, int categoryCount, int recipeCount);
 void filterRecipes(Recipe *recipes, Recipe *FilteredRecipes, char **categories, int CategoryCount, int RecipeCount);
+void sortRecipes(Recipe FilteredRecipe, Ingredient ingredients);
