@@ -8,7 +8,7 @@ int load_recipe_struct(FILE *file, Recipe **recipes) {
             // Increase the size of the recipes array to accommodate new recipes
             *recipes = realloc(*recipes, (recipeCount + 1) * sizeof(Recipe));
             if (*recipes == NULL) { //report if it ran into an error
-                perror("ERROR extending recipe array");
+                perror("Fejl ved udvidelse af opskriftsarray");
                 exit(EXIT_FAILURE);
             }
 
@@ -34,7 +34,7 @@ int load_recipe_struct(FILE *file, Recipe **recipes) {
 //function to check if file has been loaded
 void check_load(FILE *file) {
     if (file == NULL) { //report if it ran into an error
-        perror("Error opening file");
+        perror("Fejl ved aabning af fil");
         exit(EXIT_FAILURE);
     }
 }
@@ -42,14 +42,14 @@ void check_load(FILE *file) {
 //function to print recipe
 void print_recipe(Recipe recipe) {
     printf("**************************************************\n");
-    printf("Recipe name: %s\n\n", recipe.name);
+    printf("Opskriftens navn: %s\n\n", recipe.name);
     for (int i = 0; recipe.categories[i][0] != '\0'; i++) {
-        printf("Recipe categories: %s\n", recipe.categories[i]);
+        printf("opskrifts kategorier: %s\n", recipe.categories[i]);
     }
     printf("\n");
-    printf("Recipe description: %s\n\n", recipe.explanation);
+    printf("Opskrifts beskrivelse: %s\n\n", recipe.explanation);
     for (int j = 0; recipe.ingredients[j].name[0] != '\0'; j++) {
-        printf("Recipe ingredient %d's name is: %s and you need %.1lf %s\n", j + 1, recipe.ingredients[j].name,
+        printf("Opskrifts ingrediens %d hedder: %s og du skal bruge %.1lf %s\n", j + 1, recipe.ingredients[j].name,
                *recipe.ingredients[j].amount, recipe.ingredients[j].unit);
     }
     printf("\n");
@@ -57,9 +57,9 @@ void print_recipe(Recipe recipe) {
 
 //function to print all recipes in struct array
 void print_recipes(Recipe *recipes, int recipe_count) {
-    printf("Number of recipes: %d\n", recipe_count);
+    printf("Antal opskrifter: %d\n", recipe_count);
     for (int i = 0; i < recipe_count; i++) {
-        printf("Printing Recipe %d\n", i + 1);
+        printf("Udskriver opskrift %d\n", i + 1);
         print_recipe(recipes[i]);
     }
 }
