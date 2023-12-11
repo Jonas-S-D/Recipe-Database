@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 #define MAX_CAT 100
 #define MAX_NAME 100
@@ -8,6 +9,7 @@
 #define MAX_AMOUNT 20
 #define MAX_LINE 1000
 #define Max_UNIT 5
+#define ACCEPTABLE_UNITS "g stk "
 
 // Define the struct for ingredients
 typedef struct {
