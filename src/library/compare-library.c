@@ -54,6 +54,7 @@ void filterRecipes(Recipe *recipes, Recipe *FilteredRecipes, char **categories, 
 
 void sortFilteredRecipes(Recipe *FilteredRecipes, Ingredient *ingredients) {
     for (int i = 0; FilteredRecipes[i].name[0] != '\0'; ++i) {
+        printf("\n.... Checking: %s ....\n", FilteredRecipes[i].name);
         sortRecipes(FilteredRecipes[i], ingredients);
     }
 }
