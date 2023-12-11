@@ -57,23 +57,25 @@ void filterRecipe(Recipe recipe, Recipe FilteredRecipe, char **categories, int C
     if (categories[0] != NULL) {
         for (int i = 0; i < CategoryCount; ++i) { // Number of chosen categories
             for (int j = 0; recipe.categories[j][0] != '\0'; ++j) { // Number of all categories
-                int duplicate = 0;
-                for (int k = 0; k < counter; ++k) {
-                    if (strcmp(FilteredRecipe.name, recipe.name) == 0) {
-                        duplicate = 1;
-                        break;
+                if (strcmp(categories[i], recipe.categories[j]) == 0) {
+                    int duplicate = 0;
+                    for (int k = 0; k < counter; ++k) {
+                        if (strcmp(FilteredRecipe.name, recipe.name) == 0) {
+                            duplicate = 1;
+                            break;
+                        }
                     }
+                    if (!duplicate) {
+                        strcpy(FilteredRecipe.name, recipe.name);
+                        strcpy(FilteredRecipe.explanation, recipe.explanation);
+                        strcpy(FilteredRecipe.categories[counter], categories[i]);
+                        printf("Filtered recipe %d category %s\n", counter + 1, FilteredRecipe.categories[counter]);
+                        printf("Filtered recipe %d name %s\n", counter + 1, FilteredRecipe.name);
+                        printf("Filtered recipe %d explanation %s\n", counter + 1, FilteredRecipe.explanation);
+                        counter++;
+                    }
+                    break;
                 }
-                if (!duplicate) {
-                    strcpy(FilteredRecipe.name, recipe.name);
-                    strcpy(FilteredRecipe.explanation, recipe.explanation);
-                    strcpy(FilteredRecipe.categories[counter], categories[i]);
-                    printf("Filtered recipe %d category %s\n", counter + 1, FilteredRecipe.categories[counter]);
-                    printf("Filtered recipe %d name %s\n", counter + 1, FilteredRecipe.name);
-                    printf("Filtered recipe %d explanation %s\n", counter + 1, FilteredRecipe.explanation);
-                    counter++;
-                }
-                break;
             }
         }
     } else {
