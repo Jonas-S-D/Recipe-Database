@@ -53,7 +53,28 @@ void printRecipe(Recipe recipe) {
 
 // Filter loaded recipes by category
 void filterRecipe(Recipe recipe, Recipe FilteredRecipe, char **categories, int CategoryCount) {
-    for (int i = 0; recipe.categories[i][0] != '\0'; ++i) {
+    int counter = 0;
+    if (categories[0] != NULL) {
+        for (int i = 0; i < CategoryCount; ++i) { // Number of chosen categories
+            for (int j = 0; recipe.categories[j][0] != '\0'; ++j) { // Number of all categories
+                // for (int k = 0; recipe.name)
+
+                if (strcmp(categories[i], recipe.categories[j]) == 0) { // Compares
+                    // strcpy(FilteredRecipe.categories[counter], categories[i]);
+                    memcpy(&FilteredRecipe, &recipe, sizeof(Recipe)); // Copies
+                    printf("Filtered recipe %d category %s\n", counter + 1, FilteredRecipe.categories[counter]);
+                    printf("Filtered recipe %d name %s\n", counter + 1, FilteredRecipe.name);
+                    printf("Filtered recipe %d explanation %s\n", counter + 1, FilteredRecipe.explanation);
+                    counter++;
+                }
+            }
+        }
+    } else {
+        printf("Ingen kategorier valgt\n");
+    }
+    printf("Counter: %d\n", counter);
+}
+    /* for (int i = 0; recipe.categories[i][0] != '\0'; ++i) {
         for (int j = 0; j < CategoryCount; ++j) {
             if (&categories[i][0] != NULL) {
                 if (strcmp(categories[i], recipe.categories[i]) == 0) {
@@ -64,37 +85,7 @@ void filterRecipe(Recipe recipe, Recipe FilteredRecipe, char **categories, int C
                 printf("No category chosen\n");
             }
         }
-    }
-
-
-    /* for (int i = 0; i < CategoryCount; ++i) {
-        for (int j = 0; recipe.categories[j][0] != '\0'; ++j) {
-            if (strcmp(categories[i], recipe.categories[j]) == 0) {
-                printf("\nTest succes\n");
-                strcpy(FilteredRecipe.categories[i], recipe.categories[j]);
-                strcpy(&FilteredRecipe.name[i], &recipe.name[j]);
-                strcpy(&FilteredRecipe.explanation[i], &recipe.explanation[j]);
-                strcpy(&FilteredRecipe.ingredients->name[i], &recipe.ingredients->name[j]);
-                printf("Test recipe category: %s\n", FilteredRecipe.categories[i]);
-                printf("Test recipe name: %s\n", &FilteredRecipe.name[i]);
-                printf("Test recipe explanation: %s\n", &FilteredRecipe.explanation[i]);
-                printf("Test recipe ingredients: %s\n", &FilteredRecipe.ingredients->name[i]);
-            } else {
-                printf("\nTest fail\n");
-            }
-        }
     } */
-    /*for (int f = 0; f < 3; ++f) {
-        // printf("Recipe 1 categories: %s\n", recipe.categories[f]);
-        if (recipe.categories[f][0] != '\0') {
-           printf("Recipe categories: %s\n", recipe.categories[f]);
-        } else {
-            printf("Empty\n");
-        }
-    }*/
-    /*for (int b = 0; b < 1; ++b) {
-        printf("Name: %s\n", &recipe.name[b]);
-    }*/
 }
 
 void filterRecipes(Recipe *recipes, Recipe *FilteredRecipes, char **categories, int CategoryCount, int RecipeCount) {
