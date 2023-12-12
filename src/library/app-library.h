@@ -8,7 +8,6 @@
 #define MAX_AMOUNT 20
 #define MAX_LINE 1000
 #define Max_UNIT 5
-#define MAX_RECIPES 30
 
 // Define the struct for ingredients
 typedef struct {

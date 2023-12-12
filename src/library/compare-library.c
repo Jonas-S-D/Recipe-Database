@@ -11,7 +11,7 @@
 
 // Filter loaded recipes by category
 Recipe* filterRecipe(const Recipe* recipe, char** categories, int CategoryCount) {
-    Recipe* FilteredRecipe = malloc(sizeof(Recipe) * MAX_RECIPES);
+    Recipe* FilteredRecipe = malloc(sizeof(Recipe) * 100);
     if (FilteredRecipe == NULL) {
         printf("Memory allocation failed for FilteredRecipe.\n");
         return NULL;
