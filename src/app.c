@@ -27,22 +27,24 @@ int main() {
     int categoryCount = 0;
     Recipe *recipes = NULL; // Array to store recipe structs
     int recipeCount = load_recipe_struct(file, &recipes);
-    Recipe FilteredRecipe;
+    int filteredCount = 0;
 
     // Step 1: Program Explanation
-     printProgramExplanation();
+    // printProgramExplanation();
 
     // Step 2: Get user input
     userInput(&ingredients, &ingredientCount, &categories, &categoryCount);
 
     // Step 3: Display dishes based on user input
-    Recipe *filteredRecipes = filterRecipes(recipes, categories, categoryCount, recipeCount);
+    Recipe *filteredRecipes = filterRecipes(recipes, categories, categoryCount, recipeCount, &filteredCount);
 
     if (filteredRecipes == NULL) {
         printf("filterRecipes returned a NULL pointer. Check for errors inside the function.\n");
     }
 
     sortFilteredRecipes(filteredRecipes, ingredients, ingredientCount);
+
+    qsortFunction(filteredRecipes, filteredCount);
     // sortRecipes(FilteredRecipe, *ingredients);
 
     // print_recipes(recipes, recipeCount);

@@ -47,7 +47,7 @@ Recipe* filterRecipe(const Recipe* recipe, char** categories, int CategoryCount)
 }
 
 
-Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCount, int RecipeCount) {
+Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCount, int RecipeCount, int *filteredCount) {
     // Check if the input parameters are valid
     if (recipes == NULL || RecipeCount <= 0) {
         printf("Invalid input parameters to filterRecipes.\n");
@@ -62,12 +62,14 @@ Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCoun
 
     for (int i = 0; i < RecipeCount; i++) {
         Recipe* filtered = filterRecipe(&recipes[i], categories, CategoryCount);
+        (*filteredCount)++;
         if (filtered == NULL) {
             printf("filterRecipe returned NULL for recipe %d (%s).\n", i, recipes[i].name);
         } else {
             filteredRecipes[i] = *filtered;
         }
     }
+    filteredRecipes[RecipeCount].name[0] = '\0';
 
     for (int i = 0; i < RecipeCount; ++i) {
         if (filteredRecipes[i].name[0] == '\0') {
@@ -76,6 +78,7 @@ Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCoun
             }
             filteredRecipes[RecipeCount - 1].name[0] = '\0';
             RecipeCount--;
+            (*filteredCount)--;
             --i;
         }
     }
@@ -133,6 +136,30 @@ void sortRecipes(Recipe* FilteredRecipe, Ingredient* ingredients, int ingredient
     printf("\ningredientCount: %d\n", count);
     printf("missingCount: %d\n", FilteredRecipe->missingIngredients);
 }
+
+// Compare function
+int compareFunction(const void *a, const void *b) {
+    Recipe *recipeA = (Recipe *) a;
+    Recipe *recipeB = (Recipe *) b;
+
+    return (recipeA->missingIngredients - recipeB->missingIngredients);
+}
+
+// qsort
+void qsortFunction(Recipe *FilteredRecipe, int size) {
+    printf("Before sorting:\n");
+    for (int i = 0; i < size; ++i) {
+        printf("%s missing ingredients: %d\n", &FilteredRecipe[i].name[0], FilteredRecipe[i].missingIngredients);
+    }
+
+    qsort(FilteredRecipe, size, sizeof(Recipe), compareFunction);
+
+    printf("After sorting:\n");
+    for (int j = 0; j < size; ++j) {
+        printf("%s missing ingredients: %d\n", FilteredRecipe[j].name, FilteredRecipe[j].missingIngredients);
+    }
+}
+
 
 /**
  * The last process of Compare returns the three first recipes in the sorted list of recipes.
