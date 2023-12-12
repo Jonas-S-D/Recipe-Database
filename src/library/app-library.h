@@ -8,14 +8,14 @@
 #define MAX_EXPLANATION 2000
 #define MAX_AMOUNT 20
 #define MAX_LINE 1000
-#define Max_UNIT 5
+#define MAX_UNIT 5
 #define ACCEPTABLE_UNITS "g stk "
 
 // Define the struct for ingredients
 typedef struct {
     char name[MAX_NAME]; //char array for name of ingredient
     double amount[MAX_AMOUNT]; //char array for amount of ingredient needed
-    char unit[Max_UNIT]; //char array for units (g, ml, stk)
+    char unit[MAX_UNIT]; //char array for units (g, ml, stk)
 } Ingredient;
 
 // Define the struct for recipes
