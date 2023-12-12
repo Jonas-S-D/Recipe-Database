@@ -16,15 +16,11 @@ Recipe* filterRecipe(const Recipe* recipe, char** categories, int CategoryCount)
         printf("Memory allocation failed for FilteredRecipe.\n");
         return NULL;
     }
-
-    printf("Memory allocation successful. Processing recipe: %s\n", recipe->name);
     int counter = 0;
 
     if (categories != NULL && CategoryCount > 0) {
         for (int i = 0; i < CategoryCount; ++i) {
-            printf("Checking category: %s\n", categories[i]);
             for (int j = 0; recipe->categories[j][0] != '\0'; ++j) {
-                printf("Comparing with recipe category: %s\n", recipe->categories[j]);
                 if (strcmp(categories[i], recipe->categories[j]) == 0) {
                     int duplicate = 0;
                     for (int k = 0; k < counter; ++k) {
@@ -37,18 +33,15 @@ Recipe* filterRecipe(const Recipe* recipe, char** categories, int CategoryCount)
                     if (!duplicate) {
                             FilteredRecipe[counter] = *recipe;
                             counter++;
-                            printf("Recipe added: %s\n", recipe->name);
                         }
                     break; // Break from innermost for-loop
                 } else {
-                    //strcpy(FilteredRecipe[counter].name, "lol");
                 }
             }
         }
     } else { // No categories chosen
         FilteredRecipe[counter] = *recipe;
         counter++;
-        printf("No categories provided. Recipe added: %s\n", recipe->name);
     }
     return FilteredRecipe;
 }
@@ -67,7 +60,6 @@ Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCoun
         return NULL;
     }
 
-    printf("Memory allocation successful. Filtering recipes...\n");
     for (int i = 0; i < RecipeCount; i++) {
         Recipe* filtered = filterRecipe(&recipes[i], categories, CategoryCount);
         if (filtered == NULL) {
@@ -77,26 +69,15 @@ Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCoun
         }
     }
 
-    // Optional: Print some details of the filtered recipes
-
     for (int i = 0; i < RecipeCount; ++i) {
         if (filteredRecipes[i].name[0] == '\0') {
-            // Shift elements up in the array
             for (int j = i; j < RecipeCount - 1; ++j) {
                 filteredRecipes[j] = filteredRecipes[j + 1];
             }
-            // Set the last element to have an empty name
             filteredRecipes[RecipeCount - 1].name[0] = '\0';
             RecipeCount--;
             --i;
         }
-    }
-
-
-    printf("Filtered recipes:\n");
-    for (int i = 0; i < RecipeCount; i++) {
-        printf("Recipe %d: %s\n", i, filteredRecipes[i].name);
-        // Add more details if needed
     }
 
     return filteredRecipes;
