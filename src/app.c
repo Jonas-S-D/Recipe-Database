@@ -44,7 +44,7 @@ int main() {
 
     sortFilteredRecipes(filteredRecipes, ingredients, ingredientCount);
 
-    qsortFunction(filteredRecipes);
+    qsortFunction(filteredRecipes, 4);
     // sortRecipes(FilteredRecipe, *ingredients);
 
     // print_recipes(recipes, recipeCount);

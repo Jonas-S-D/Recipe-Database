@@ -47,5 +47,5 @@ Recipe* filterRecipe(const Recipe* recipe, char** categories, int CategoryCount)
 Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCount, int RecipeCount);
 void sortFilteredRecipes(Recipe *FilteredRecipes, Ingredient *ingredients, int ingredientCount);
 void sortRecipes(Recipe* FilteredRecipe, Ingredient* ingredients, int ingredientCount);
-void qsortFunction(Recipe *FilteredRecipe);
+void qsortFunction(Recipe *FilteredRecipe, int size);
 int compareFunction(const void *a, const void *b);

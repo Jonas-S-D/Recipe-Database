@@ -68,6 +68,7 @@ Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCoun
             filteredRecipes[i] = *filtered;
         }
     }
+    filteredRecipes[RecipeCount].name[0] = '\0';
 
     for (int i = 0; i < RecipeCount; ++i) {
         if (filteredRecipes[i].name[0] == '\0') {
@@ -139,21 +140,21 @@ int compareFunction(const void *a, const void *b) {
     Recipe *recipeA = (Recipe *) a;
     Recipe *recipeB = (Recipe *) b;
 
-    return (recipeB->missingIngredients - recipeA->missingIngredients);
+    return (recipeA->missingIngredients - recipeB->missingIngredients);
 }
 
 // qsort
-void qsortFunction(Recipe *FilteredRecipe) {
+void qsortFunction(Recipe *FilteredRecipe, int size) {
     printf("Before sorting:\n");
-    for (int i = 0; i < 2; ++i) {
+    for (int i = 0; i < size; ++i) {
         printf("%s missing ingredients: %d\n", &FilteredRecipe[i].name[0], FilteredRecipe[i].missingIngredients);
     }
 
-    //qsort(&FilteredRecipe->missingIngredients, 2, sizeof(int), compareFunction);
+    qsort(FilteredRecipe, size, sizeof(Recipe), compareFunction);
 
     printf("After sorting:\n");
-    for (int j = 0; j < 2; ++j) {
-        //printf("%d", FilteredRecipe[j].missingIngredients);
+    for (int j = 0; j < size; ++j) {
+        printf("%s missing ingredients: %d\n", FilteredRecipe[j].name, FilteredRecipe[j].missingIngredients);
     }
 }
 
