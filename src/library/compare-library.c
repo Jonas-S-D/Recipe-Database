@@ -77,7 +77,7 @@ Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCoun
         }
     }
 
-    // Optional: Print some details of the filtered recipes
+    // Optional: Print some details of the filtered recipes.
     printf("Filtered recipes:\n");
     for (int i = 0; i < RecipeCount; i++) {
         printf("Recipe %d: %s\n", i, filteredRecipes[i].name);
