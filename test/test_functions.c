@@ -8,6 +8,7 @@ void load_recipe_test(void);
 int main(void) {
     //Kør alle test-funktioner.
     load_recipe_test();
+    printf("Great succes!!!");
 }
 
 // Unit_tests
@@ -22,20 +23,19 @@ void load_recipe_test(void) {
     assert(recipeCount == 4);
 
     //check load_recipe_struct loading of name
-    //assert(recipes[0].name == "Oksekoeds lasagne" && recipes[3].name == "Biksemad");
-    if (strcmp(recipes[0].name, "Oksekoeds lasagne") == 0 && strcmp(recipes[3].name, "Biksemad") == 0) {
-        assert(1);
-        printf("Works");
-    }
-    /*
+    assert(strcmp(recipes[0].name, "Oksekoeds lasagne") == 0 && strcmp(recipes[3].name, "Biksemad") == 0);
+    assert(strcmp(recipes[0].name, "Oksekoeds lasagne") == 0 && strcmp(recipes[3].name, "Biksemad") == 0);
+
+
     //check load_recipe_struct loading of categories
-    assert(recipes[0].categories[0] == "varm aftensmad" && recipes[3].categories[2] == "varm aftensmad");
+    assert(strcmp(recipes[0].categories[0], "varm aftensmad") == 0 && strcmp(recipes[3].categories[2], "varm aftensmad") == 0);
 
     //check load_recipe_struct loading of explanation
     assert(recipes[0].explanation[0] == 'S' && recipes[3].explanation[0] == 's');
 
     //check load_recipe_struct loading of ingredient name amount and unit
-    assert(&recipes[0].ingredients->name[0] == "oksekoed" && &recipes[3].ingredients->name[0] == "kartofler");
+    assert(strcmp(&recipes[0].ingredients->name[0], "oksekoed") == 0 &&
+                   strcmp(&recipes[3].ingredients->name[0], "kartofler") == 0);
     assert(recipes[0].ingredients->amount[0] == 500 && recipes[3].ingredients->amount[0] == 500);
-    assert(&recipes[0].ingredients->unit[0] == "g" && &recipes[3].ingredients->unit[0] == "g");*/
+    assert(strcmp(recipes[0].ingredients[0].unit, "g") == 0 && strcmp(recipes[3].ingredients[1].unit, "stk") == 0);
 }

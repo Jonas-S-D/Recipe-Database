@@ -3,6 +3,18 @@
 #include "library/compare-library.c"
 #include <stdio.h>
 
+// Test function der senere vil blive fjernet når vi ikke skal printe ingredienserne længere.
+void printIngredients(Ingredient *ingredients, int ingredientCount) {
+    printf("Printing ingredients:\n");
+    for (int i = 0; i < ingredientCount; ++i) {
+        printf("Ingredient %d:\n", i + 1);
+        printf("Name: %s\n", ingredients[i].name);
+        printf("Amount: %.2lf ", *ingredients[i].amount);
+        printf("\nUnit: %s\n", ingredients[i].unit);
+        printf("\n");
+    }
+}
+
 int main() {
     // Open the text file for reading
     FILE *file = fopen("src/library/recipes.txt", "r"); // load file into the location of the file pointer
@@ -18,7 +30,7 @@ int main() {
     Recipe FilteredRecipe;
 
     // Step 1: Program Explanation
-    // printProgramExplanation();
+     printProgramExplanation();
 
     // Step 2: Get user input
     userInput(&ingredients, &ingredientCount, &categories, &categoryCount);
@@ -50,6 +62,7 @@ int main() {
     //     free(recipes[i].ingredients);
     // }
     //
+  
     free(recipes);
 
     return 0;
