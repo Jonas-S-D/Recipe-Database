@@ -11,7 +11,7 @@
 
 // Filter loaded recipes by category
 Recipe* filterRecipe(const Recipe* recipe, char** categories, int CategoryCount) {
-    Recipe* FilteredRecipe = malloc(sizeof(Recipe));
+    Recipe* FilteredRecipe = malloc(sizeof(Recipe) * MAX_RECIPES);
     if (FilteredRecipe == NULL) {
         printf("Memory allocation failed for FilteredRecipe.\n");
         return NULL;
@@ -28,25 +28,25 @@ Recipe* filterRecipe(const Recipe* recipe, char** categories, int CategoryCount)
                 if (strcmp(categories[i], recipe->categories[j]) == 0) {
                     int duplicate = 0;
                     for (int k = 0; k < counter; ++k) {
-                        if (strcmp(FilteredRecipe->name, recipe->name) == 0) {
+                        if (strcmp(FilteredRecipe[k].name, recipe->name) == 0) {
                             duplicate = 1;
                             break;
                         }
                     }
 
                     if (!duplicate) {
-                        *FilteredRecipe = *recipe;
+                        // Update the specific recipe in FilteredRecipe
+                        FilteredRecipe[counter] = *recipe;
                         counter++;
                         printf("Recipe added: %s\n", recipe->name);
-                    } else {
-                        printf("Duplicate recipe found: %s\n", recipe->name);
                     }
                     break; // Break from innermost for-loop
                 }
             }
         }
     } else { // No categories chosen
-        *FilteredRecipe = *recipe;
+        FilteredRecipe[counter] = *recipe;
+        counter++;
         printf("No categories provided. Recipe added: %s\n", recipe->name);
     }
 
