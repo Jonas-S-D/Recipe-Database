@@ -47,7 +47,7 @@ Recipe* filterRecipe(const Recipe* recipe, char** categories, int CategoryCount)
 }
 
 
-Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCount, int RecipeCount) {
+Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCount, int RecipeCount, int *filteredCount) {
     // Check if the input parameters are valid
     if (recipes == NULL || RecipeCount <= 0) {
         printf("Invalid input parameters to filterRecipes.\n");
@@ -62,6 +62,7 @@ Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCoun
 
     for (int i = 0; i < RecipeCount; i++) {
         Recipe* filtered = filterRecipe(&recipes[i], categories, CategoryCount);
+        (*filteredCount)++;
         if (filtered == NULL) {
             printf("filterRecipe returned NULL for recipe %d (%s).\n", i, recipes[i].name);
         } else {
@@ -77,6 +78,7 @@ Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCoun
             }
             filteredRecipes[RecipeCount - 1].name[0] = '\0';
             RecipeCount--;
+            (*filteredCount)--;
             --i;
         }
     }
