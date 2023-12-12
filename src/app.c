@@ -30,7 +30,7 @@ int main() {
     Recipe FilteredRecipe;
 
     // Step 1: Program Explanation
-     printProgramExplanation();
+    // printProgramExplanation();
 
     // Step 2: Get user input
     userInput(&ingredients, &ingredientCount, &categories, &categoryCount);
@@ -43,6 +43,8 @@ int main() {
     }
 
     sortFilteredRecipes(filteredRecipes, ingredients, ingredientCount);
+
+    qsortFunction(filteredRecipes);
     // sortRecipes(FilteredRecipe, *ingredients);
 
     // print_recipes(recipes, recipeCount);
