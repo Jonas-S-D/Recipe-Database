@@ -9,7 +9,7 @@
 #define MAX_AMOUNT 20
 #define MAX_LINE 1000
 #define MAX_UNIT 5
-#define ACCEPTABLE_UNITS "g stk "
+#define ACCEPTABLE_UNITS "g stk dl ml l"
 
 // Define the struct for ingredients
 typedef struct {
@@ -31,6 +31,8 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount);
 void userInputCategories(char ***categories, int *categoryCount);
 void freeMemory(char ***array, int count);
 void printProgramExplanation();
+
+// Load
 int load_recipe_struct(FILE *file, Recipe **recipes);
 void check_load(FILE *file);
 void parse_categories(FILE *file, Recipe *recipe);
@@ -38,3 +40,7 @@ void parse_explanation(FILE *file, Recipe *recipe);
 void print_recipe(Recipe recipe);
 void parse_ingredients(FILE *file, Recipe *recipe);
 void print_recipes(Recipe *recipes, int recipe_count);
+
+// Compare
+void filterRecipe(Recipe recipe, Recipe FilteredRecipe, char **categories, int categoryCount, int recipeCount);
+void filterRecipes(Recipe *recipes, Recipe *FilteredRecipes, char **categories, int CategoryCount, int RecipeCount);
