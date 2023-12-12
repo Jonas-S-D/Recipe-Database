@@ -56,7 +56,7 @@ Recipe* filterRecipe(const Recipe* recipe, char** categories, int CategoryCount)
 
 Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCount, int RecipeCount) {
     // Check if the input parameters are valid
-    if (recipes == NULL || categories == NULL || CategoryCount <= 0 || RecipeCount <= 0) {
+    if (recipes == NULL || RecipeCount <= 0) {
         printf("Invalid input parameters to filterRecipes.\n");
         return NULL;
     }
