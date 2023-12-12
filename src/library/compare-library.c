@@ -134,6 +134,30 @@ void sortRecipes(Recipe* FilteredRecipe, Ingredient* ingredients, int ingredient
     printf("missingCount: %d\n", FilteredRecipe->missingIngredients);
 }
 
+// Compare function
+int compareFunction(const void *a, const void *b) {
+    Recipe *recipeA = (Recipe *) a;
+    Recipe *recipeB = (Recipe *) b;
+
+    return (recipeB->missingIngredients - recipeA->missingIngredients);
+}
+
+// qsort
+void qsortFunction(Recipe *FilteredRecipe) {
+    printf("Before sorting:\n");
+    for (int i = 0; i < 2; ++i) {
+        printf("%s missing ingredients: %d\n", &FilteredRecipe[i].name[0], FilteredRecipe[i].missingIngredients);
+    }
+
+    //qsort(&FilteredRecipe->missingIngredients, 2, sizeof(int), compareFunction);
+
+    printf("After sorting:\n");
+    for (int j = 0; j < 2; ++j) {
+        //printf("%d", FilteredRecipe[j].missingIngredients);
+    }
+}
+
+
 /**
  * The last process of Compare returns the three first recipes in the sorted list of recipes.
  */
