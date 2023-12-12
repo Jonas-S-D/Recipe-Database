@@ -65,7 +65,7 @@ Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCoun
 void sortFilteredRecipes(Recipe* FilteredRecipes, Ingredient* ingredients, int ingredientCount) {
     for (int i = 0; FilteredRecipes[i].name[0] != '\0'; ++i) {
         printf("\n.... Checking: %s ....\n", FilteredRecipes[i].name);
-        sortRecipes(&FilteredRecipes[i], ingredients, ingredientCount);
+        sortRecipes(&FilteredRecipes[i], ingredients, ingredientCount);  // Pass a pointer
     }
 }
 
@@ -82,6 +82,13 @@ void sortRecipes(Recipe* FilteredRecipe, Ingredient* ingredients, int ingredient
         printf("\nChecking ingredient: %s\n", ingredients[j].name);
         for (int k = 0; FilteredRecipe->ingredients[k].name[0] != '\0'; ++k) {
             printf("Comparing with: %s\n", FilteredRecipe->ingredients[k].name);
+
+            // Defensive check to avoid invalid memory access
+            if (k >= MAX_AMOUNT || j >= MAX_AMOUNT) {
+                printf("Invalid index detected! Aborting...\n");
+                return;
+            }
+
             if (strcmp(FilteredRecipe->ingredients[k].name, ingredients[j].name) == 0) {
                 printf("Match found!\n");
                 FilteredRecipe->missingIngredients--;
