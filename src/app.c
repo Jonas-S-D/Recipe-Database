@@ -36,7 +36,14 @@ int main() {
     userInput(&ingredients, &ingredientCount, &categories, &categoryCount);
 
     // Step 3: Display dishes based on user input
-    filterRecipes(recipes, &FilteredRecipe, categories, categoryCount, recipeCount);
+    Recipe *filteredRecipes = filterRecipes(recipes, categories, categoryCount, recipeCount);
+
+    if (filteredRecipes == NULL) {
+        printf("filterRecipes returned a NULL pointer. Check for errors inside the function.\n");
+    }
+
+    sortFilteredRecipes(filteredRecipes, ingredients, ingredientCount);
+    // sortRecipes(FilteredRecipe, *ingredients);
 
     // print_recipes(recipes, recipeCount);
     fclose(file); // close the file
@@ -48,13 +55,15 @@ int main() {
 
 
     // Free allocated memory for ingredients and categories
-    free(ingredients);
-    freeMemory(&categories, categoryCount);
-    for (int i = 0; i < recipeCount; i++) {
-        free(recipes[i].ingredients);
-    }
+
+    // free(ingredients);
+    // freeMemory(&categories, categoryCount);
+    // for (int i = 0; i < recipeCount; i++) {
+    //     free(recipes[i].ingredients);
+    // }
+    //
+  
     free(recipes);
 
     return 0;
 }
-

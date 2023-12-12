@@ -24,6 +24,7 @@ typedef struct {
     char categories[MAX_CAT][MAX_NAME]; //pointer to char arrays for categories
     char explanation[MAX_EXPLANATION]; //char array for recipe explanation
     Ingredient *ingredients; // Dynamic array for ingredients
+    int missingIngredients;
 } Recipe;
 
 void userInput(Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount);
@@ -42,5 +43,7 @@ void parse_ingredients(FILE *file, Recipe *recipe);
 void print_recipes(Recipe *recipes, int recipe_count);
 
 // Compare
-void filterRecipe(Recipe recipe, Recipe FilteredRecipe, char **categories, int categoryCount, int recipeCount);
-void filterRecipes(Recipe *recipes, Recipe *FilteredRecipes, char **categories, int CategoryCount, int RecipeCount);
+Recipe* filterRecipe(const Recipe* recipe, char** categories, int CategoryCount);
+Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCount, int RecipeCount);
+void sortFilteredRecipes(Recipe *FilteredRecipes, Ingredient *ingredients, int ingredientCount);
+void sortRecipes(Recipe* FilteredRecipe, Ingredient* ingredients, int ingredientCount);
