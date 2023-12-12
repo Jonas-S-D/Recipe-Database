@@ -35,12 +35,13 @@ Recipe* filterRecipe(const Recipe* recipe, char** categories, int CategoryCount)
                     }
 
                     if (!duplicate) {
-                        // Update the specific recipe in FilteredRecipe
-                        FilteredRecipe[counter] = *recipe;
-                        counter++;
-                        printf("Recipe added: %s\n", recipe->name);
-                    }
+                            FilteredRecipe[counter] = *recipe;
+                            counter++;
+                            printf("Recipe added: %s\n", recipe->name);
+                        }
                     break; // Break from innermost for-loop
+                } else {
+                    //strcpy(FilteredRecipe[counter].name, "lol");
                 }
             }
         }
@@ -49,7 +50,6 @@ Recipe* filterRecipe(const Recipe* recipe, char** categories, int CategoryCount)
         counter++;
         printf("No categories provided. Recipe added: %s\n", recipe->name);
     }
-
     return FilteredRecipe;
 }
 
@@ -78,6 +78,21 @@ Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCoun
     }
 
     // Optional: Print some details of the filtered recipes
+
+    for (int i = 0; i < RecipeCount; ++i) {
+        if (filteredRecipes[i].name[0] == '\0') {
+            // Shift elements up in the array
+            for (int j = i; j < RecipeCount - 1; ++j) {
+                filteredRecipes[j] = filteredRecipes[j + 1];
+            }
+            // Set the last element to have an empty name
+            filteredRecipes[RecipeCount - 1].name[0] = '\0';
+            RecipeCount--;
+            --i;
+        }
+    }
+
+
     printf("Filtered recipes:\n");
     for (int i = 0; i < RecipeCount; i++) {
         printf("Recipe %d: %s\n", i, filteredRecipes[i].name);
