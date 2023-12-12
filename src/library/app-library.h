@@ -41,7 +41,7 @@ void parse_ingredients(FILE *file, Recipe *recipe);
 void print_recipes(Recipe *recipes, int recipe_count);
 
 // Compare
-void filterRecipe(Recipe recipe, Recipe FilteredRecipe, char **categories, int categoryCount, int recipeCount, Ingredient *ingredients, int ingredientCount);
-void filterRecipes(Recipe *recipes, Recipe *FilteredRecipes, char **categories, int CategoryCount, int RecipeCount, Ingredient *ingredients, int ingredientCount);
+Recipe* filterRecipe(const Recipe* recipe, char** categories, int CategoryCount);
+Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCount, int RecipeCount);
 void sortFilteredRecipes(Recipe *FilteredRecipes, Ingredient *ingredients, int ingredientCount);
-void sortRecipes(Recipe FilteredRecipe, Ingredient *ingredients, int ingredientCount);
+void sortRecipes(Recipe* FilteredRecipe, Ingredient* ingredients, int ingredientCount);

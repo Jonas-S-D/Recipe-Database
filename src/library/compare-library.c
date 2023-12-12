@@ -10,40 +10,50 @@
  */
 
 // Filter loaded recipes by category
-void filterRecipe(Recipe recipe, Recipe FilteredRecipe, char **categories, int CategoryCount, int recipeCount, Ingredient *ingredients, int ingredientCount) {
-    int counter = 0;
-    if (categories != NULL) {
-        for (int i = 0; i < CategoryCount; ++i) { // Number of chosen categories
-            for (int j = 0; recipe.categories[j][0] != '\0'; ++j) { // Number of all categories
-                if (strcmp(categories[i], recipe.categories[j]) == 0) {
-                    int duplicate = 0;
-                    for (int k = 0; k < counter; ++k) {
-                        if (strcmp(FilteredRecipe.name, recipe.name) == 0) {
-                            duplicate = 1;
-                            break;
+Recipe* filterRecipe(const Recipe* recipe, char** categories, int CategoryCount) {
+    Recipe* FilteredRecipe = malloc(sizeof(Recipe));
+
+    if (FilteredRecipe != NULL) {
+        int counter = 0;
+
+        if (categories != NULL) {
+            for (int i = 0; i < CategoryCount; ++i) {
+                for (int j = 0; recipe->categories[j][0] != '\0'; ++j) {
+                    if (strcmp(categories[i], recipe->categories[j]) == 0) {
+                        int duplicate = 0;
+                        for (int k = 0; k < counter; ++k) {
+                            if (strcmp(FilteredRecipe->name, recipe->name) == 0) {
+                                duplicate = 1;
+                                break;
+                            }
                         }
+
+                        if (!duplicate) {
+                            *FilteredRecipe = *recipe;
+                            counter++;
+                        }
+                        break;
                     }
-                    if (!duplicate) {
-                        memcpy(&FilteredRecipe, &recipe, sizeof(recipe)); // Undersøg hvordan den virker her
-                        counter++;
-                    }
-                    break;
                 }
             }
+        } else { // No categories chosen
+            *FilteredRecipe = *recipe;
         }
-    } else { // No categories chosen
-        memcpy(&FilteredRecipe, &recipe, sizeof(recipe));
     }
-    //sortRecipes(FilteredRecipe, ingredients);
-    sortFilteredRecipes(&FilteredRecipe, ingredients, ingredientCount);
+
+    return FilteredRecipe;
 }
 
-void filterRecipes(Recipe *recipes, Recipe *FilteredRecipes, char **categories, int CategoryCount, int RecipeCount, Ingredient *ingredients, int ingredientCount) {
-    // printf("Number of recipes tested: %d\n", RecipeCount);
-    for (int i = 0; i < RecipeCount; i++) {
-        // printf("Printing test of recipe %d\n", i + 1);
-        filterRecipe(recipes[i], FilteredRecipes[0], categories, CategoryCount, RecipeCount, ingredients, ingredientCount);
+Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCount, int RecipeCount) {
+    Recipe* filteredRecipes = malloc(sizeof(Recipe) * RecipeCount);
+
+    if (filteredRecipes != NULL) {
+        for (int i = 0; i < RecipeCount; i++) {
+            filteredRecipes[i] = *filterRecipe(&recipes[i], categories, CategoryCount);
+        }
     }
+
+    return filteredRecipes;
 }
 
 /**
@@ -52,37 +62,36 @@ void filterRecipes(Recipe *recipes, Recipe *FilteredRecipes, char **categories, 
  * and ordering the recipes from least missing ingredients to most missing ingredients.
  */
 
-void sortFilteredRecipes(Recipe *FilteredRecipes, Ingredient *ingredients, int ingredientCount) {
+void sortFilteredRecipes(Recipe* FilteredRecipes, Ingredient* ingredients, int ingredientCount) {
     for (int i = 0; FilteredRecipes[i].name[0] != '\0'; ++i) {
         printf("\n.... Checking: %s ....\n", FilteredRecipes[i].name);
-        sortRecipes(FilteredRecipes[i], ingredients, ingredientCount);
+        sortRecipes(&FilteredRecipes[i], ingredients, ingredientCount);
     }
 }
 
 // Sort recipes by least missing ingredients
-void sortRecipes(Recipe FilteredRecipe, Ingredient *ingredients, int ingredientCount) {
+void sortRecipes(Recipe* FilteredRecipe, Ingredient* ingredients, int ingredientCount) {
     int count = 0;
 
-    for (int i = 0; *FilteredRecipe.ingredients[i].name != '\0'; ++i) {
+    for (int i = 0; FilteredRecipe->ingredients[i].name[0] != '\0'; ++i) {
         count++;
     }
-    FilteredRecipe.missingIngredients = count;
+    FilteredRecipe->missingIngredients = count;
 
     for (int j = 0; j < ingredientCount; ++j) {
-    //for (int j = 0; ingredients[j].name[0] != '\0'; ++j) {
         printf("\nChecking ingredient: %s\n", ingredients[j].name);
-        for (int k = 0; FilteredRecipe.ingredients[k].name[0] != '\0'; ++k) {
-            printf("Comparing with: %s\n", FilteredRecipe.ingredients[k].name);
-            if (strcmp(FilteredRecipe.ingredients[k].name, ingredients[j].name) == 0) {
+        for (int k = 0; FilteredRecipe->ingredients[k].name[0] != '\0'; ++k) {
+            printf("Comparing with: %s\n", FilteredRecipe->ingredients[k].name);
+            if (strcmp(FilteredRecipe->ingredients[k].name, ingredients[j].name) == 0) {
                 printf("Match found!\n");
-                FilteredRecipe.missingIngredients--;
+                FilteredRecipe->missingIngredients--;
                 break;
             }
         }
     }
 
     printf("\ningredientCount: %d\n", count);
-    printf("missingCount: %d\n", FilteredRecipe.missingIngredients);
+    printf("missingCount: %d\n", FilteredRecipe->missingIngredients);
 }
 
 /**
