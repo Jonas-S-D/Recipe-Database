@@ -173,7 +173,7 @@ void userInputSearch(Recipe *recipes, int recipeCount) {
         int inner_loop = 1;
 
         //ask user for recipe or whether to finish search
-        printf("indtast opskrift du oensker at finde og 'f' for at afslutte og gaa tilbage til hovedskaermen\n>");
+        printf("indtast opskrift du oensker at finde og 'f' for at afslutte og gaa tilbage til hovedmenuen\n>");
         scanf(" %[^\n]", target);
         if (strcmp(target, "f") == 0) {
             break;
@@ -198,7 +198,7 @@ void userInputSearch(Recipe *recipes, int recipeCount) {
 
             //inner loop to co ask the user if they want to try again or exit
             while (inner_loop == 1) {
-                printf("Tast ja for at proeve igen og nej for at gaa tilbage til hovedskaermen.\n>");
+                printf("Tast ja for at proeve igen og nej for at gaa tilbage til hovedmenuen.\n>");
                 scanf(" %s", break_loop);
                 strcpy(break_loop, string_to_lower(break_loop));
 

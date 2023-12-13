@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#define MAX_CAT 100
+#define MAX_CAT 20
 #define MAX_NAME 100
 #define MAX_EXPLANATION 2000
 #define MAX_AMOUNT 20
@@ -39,9 +39,9 @@ void freeMemory(char ***array, int count);
 void printProgramExplanation();
 
 // Load
-int load_recipe_struct(FILE *file, Recipe **recipes);
+int load_recipe_struct(FILE *file, Recipe **recipes, char unique_categories[MAX_CAT][MAX_NAME], int *unique_categories_count);
 void check_load(FILE *file);
-void parse_categories(FILE *file, Recipe *recipe);
+void parse_categories(FILE *file, Recipe *recipe, char unique_categories[MAX_CAT][MAX_NAME], int *unique_categories_count);
 void parse_explanation(FILE *file, Recipe *recipe);
 void print_recipe(Recipe recipe);
 void parse_ingredients(FILE *file, Recipe *recipe);

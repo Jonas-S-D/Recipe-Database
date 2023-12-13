@@ -1,7 +1,6 @@
-int load_recipe_struct(FILE *file, Recipe **recipes) {
+int load_recipe_struct(FILE *file, Recipe **recipes, char unique_categories[MAX_CAT][MAX_NAME], int *unique_categories_count) {
     char line[MAX_LINE]; // char array to hold lines
     int recipeCount = 0;  // Variable to keep track of the number of recipes
-
     // Reading the file line by line
     while (fgets(line, sizeof(line), file) != NULL) { //run loop
         if (line[0] != '\n') {
@@ -14,9 +13,8 @@ int load_recipe_struct(FILE *file, Recipe **recipes) {
 
             // Parse recipe name
             sscanf(line, ">%[^\n]", (*recipes)[recipeCount].name);
-
             // Parse categories
-            parse_categories(file, &(*recipes)[recipeCount]);
+            parse_categories(file, &(*recipes)[recipeCount], unique_categories, unique_categories_count);
 
             // Parse recipe explanation
             parse_explanation(file, &(*recipes)[recipeCount]);
@@ -65,19 +63,36 @@ void print_recipes(Recipe *recipes, int recipe_count) {
 }
 
 //function to parse categories
-void parse_categories(FILE *file, Recipe *recipe) {
+void parse_categories(FILE *file, Recipe *recipe, char unique_categories[MAX_CAT][MAX_NAME], int *unique_categories_count) {
     char line[MAX_LINE];
     fgets(line, sizeof(line), file);
     sscanf(line, ">%[^\n]", line);
     int count = 0;
     char *token = strtok(line, ",\n");
 
-    while (token != NULL && count < MAX_CAT) {
+    while (token != NULL) {
+        // add token to recipe categories
         strcpy(recipe->categories[count], token);
+
+        // Check if the category is already in unique categories array
+        int unique = 1;
+
+        for (int i = 0; i < *unique_categories_count; i++) {
+            if (strcmp(unique_categories[i], token) == 0) {
+                unique = 0;
+                break;
+            }
+        }
+
+        if (unique == 1) {
+            strcpy(unique_categories[*unique_categories_count], token);
+            *unique_categories_count = *unique_categories_count + 1;
+        }
         token = strtok(NULL, ",\n");
         count++;
     }
 }
+
 
 //function to parse explanation
 void parse_explanation(FILE *file, Recipe *recipe) {
