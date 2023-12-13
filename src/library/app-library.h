@@ -27,7 +27,12 @@ typedef struct {
     int missingIngredients;
 } Recipe;
 
-void userInput(Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount);
+typedef struct {
+    char name[MAX_NAME]; //char array for name
+    int index; //array to hold index of recipe
+} Name_index;
+
+void userInput(Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount, Recipe *recipes, int recipeCount);
 void userInputIngredients(Ingredient **ingredients, int *ingredientCount);
 void userInputCategories(char ***categories, int *categoryCount);
 void freeMemory(char ***array, int count);
@@ -49,3 +54,8 @@ void sortFilteredRecipes(Recipe *FilteredRecipes, Ingredient *ingredients, int i
 void sortRecipes(Recipe* FilteredRecipe, Ingredient* ingredients, int ingredientCount);
 void qsortFunction(Recipe *FilteredRecipe, int size);
 int compareFunction(const void *a, const void *b);
+
+int binary_search_recipes(Name_index *name_index_arr, int high, const char *target);
+char* string_to_lower(const char* str);
+Name_index * name_index_arr(Recipe *recipes,int recipe_count);
+void userInputSearch(Recipe *recipes, int recipeCount);

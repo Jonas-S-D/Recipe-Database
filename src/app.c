@@ -1,6 +1,7 @@
 #include "library/app-library.c"
 #include "library/load-library.c"
 #include "library/compare-library.c"
+#include "library/app-search.c"
 #include <stdio.h>
 
 // Test function der senere vil blive fjernet når vi ikke skal printe ingredienserne længere.
@@ -29,12 +30,12 @@ int main() {
     int recipeCount = load_recipe_struct(file, &recipes);
     int filteredCount = 0;
 
-    // Step 1: Program Explanation
+        // Step 1: Program Explanation
     // printProgramExplanation();
 
     // Step 2: Get user input
-    userInput(&ingredients, &ingredientCount, &categories, &categoryCount);
-
+    userInput(&ingredients, &ingredientCount, &categories, &categoryCount, recipes, recipeCount);
+/*
     // Step 3: Display dishes based on user input
     Recipe *filteredRecipes = filterRecipes(recipes, categories, categoryCount, recipeCount, &filteredCount);
 
@@ -46,7 +47,7 @@ int main() {
 
     qsortFunction(filteredRecipes, filteredCount);
     // sortRecipes(FilteredRecipe, *ingredients);
-
+*/
     // print_recipes(recipes, recipeCount);
     fclose(file); // close the file
     // printf("testing -> %s",recipes[0].name);

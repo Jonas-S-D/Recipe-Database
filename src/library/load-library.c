@@ -49,7 +49,7 @@ void print_recipe(Recipe recipe) {
     printf("\n");
     printf("Opskrifts beskrivelse: %s\n\n", recipe.explanation);
     for (int j = 0; recipe.ingredients[j].name[0] != '\0'; j++) {
-        printf("Opskrifts ingrediens %d hedder: %s og du skal bruge %.1lf %s\n", j + 1, recipe.ingredients[j].name,
+        printf("Opskrifts ingrediens %d hedder %s, og du skal bruge %.1lf %s\n", j + 1, recipe.ingredients[j].name,
                *recipe.ingredients[j].amount, recipe.ingredients[j].unit);
     }
     printf("\n");
@@ -76,9 +76,6 @@ void parse_categories(FILE *file, Recipe *recipe) {
         strcpy(recipe->categories[count], token);
         token = strtok(NULL, ",\n");
         count++;
-        if (token == NULL) {
-            recipe->categories[count][0] = '\0';
-        }
     }
 }
 
@@ -122,9 +119,4 @@ void parse_ingredients(FILE *file, Recipe *recipe) {
 
         ingredientCount++;
     } while (fgets(line, sizeof(line), file) != NULL && line[0] != '>' && line[0] != '\n');
-
-    // Null-terminate the ingredients array
-    recipe->ingredients = realloc(recipe->ingredients, (ingredientCount + 1) * sizeof(Ingredient));
-    recipe->ingredients[ingredientCount].name[0] = '\0';
-    recipe->ingredients[ingredientCount].amount[0] = '\0';
 }
