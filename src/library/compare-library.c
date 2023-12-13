@@ -35,13 +35,11 @@ Recipe* filterRecipe(const Recipe* recipe, char** categories, int CategoryCount)
                             counter++;
                         }
                     break; // Break from innermost for-loop
-                } else {
                 }
             }
         }
     } else { // No categories chosen
         FilteredRecipe[counter] = *recipe;
-        counter++;
     }
     return FilteredRecipe;
 }

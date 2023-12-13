@@ -9,8 +9,8 @@ void printIngredients(Ingredient *ingredients, int ingredientCount) {
     for (int i = 0; i < ingredientCount; ++i) {
         printf("Ingredient %d:\n", i + 1);
         printf("Name: %s\n", ingredients[i].name);
-        printf("Amount: %.2lf ", *ingredients[i].amount);
-        printf("\nUnit: %s\n", ingredients[i].unit);
+        printf("Amount: %.2lf\n", *ingredients[i].amount);
+        printf("Unit: %s\n", ingredients[i].unit);
         printf("\n");
     }
 }
