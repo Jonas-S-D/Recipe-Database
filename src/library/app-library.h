@@ -49,3 +49,5 @@ void sortFilteredRecipes(Recipe *FilteredRecipes, Ingredient *ingredients, int i
 void sortRecipes(Recipe* FilteredRecipe, Ingredient* ingredients, int ingredientCount);
 void qsortFunction(Recipe *FilteredRecipe, int size);
 int compareFunction(const void *a, const void *b);
+int unitCompare(Recipe* FilteredRecipe, Ingredient *ingredients, int recipe, int userInput);
+void unitConvert(char **unit, double *amount);
