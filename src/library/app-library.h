@@ -27,6 +27,13 @@ typedef struct {
     Ingredient *ingredients; // Dynamic array for ingredients
 } Recipe;
 
+typedef struct
+{
+    char name[MAX_NAME];
+    char store[MAX_NAME];
+    double price;
+} Item;
+
 void userInput(Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount);
 void userInputIngredients(Ingredient **ingredients, int *ingredientCount);
 void userInputCategories(char ***categories, int *categoryCount);
@@ -51,3 +58,6 @@ void qsortFunction(Recipe *FilteredRecipe, int size);
 int compareFunction(const void *a, const void *b);
 int unitCompare(Recipe* FilteredRecipe, Ingredient *ingredients, int recipe, int userInput);
 void unitConvert(char *unit, double *amount);
+
+// Price Compare
+void findLowestPrice(char missingIngredients[][MAX_NAME], int arrLength);
