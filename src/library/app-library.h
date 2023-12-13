@@ -23,8 +23,8 @@ typedef struct {
     char name[MAX_NAME]; //char array for name
     char categories[MAX_CAT][MAX_NAME]; //pointer to char arrays for categories
     char explanation[MAX_EXPLANATION]; //char array for recipe explanation
-    Ingredient *ingredients; // Dynamic array for ingredients
     int missingIngredients;
+    Ingredient *ingredients; // Dynamic array for ingredients
 } Recipe;
 
 void userInput(Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount);
