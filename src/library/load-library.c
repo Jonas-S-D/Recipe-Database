@@ -101,6 +101,7 @@ void parse_ingredients(FILE *file, Recipe *recipe) {
 
     // Initialize dynamic array for ingredients
     recipe->ingredients = NULL;
+    recipe->missingIngredients = 0;
 
     do {
         recipe->ingredients = realloc(

@@ -9,8 +9,8 @@ void printIngredients(Ingredient *ingredients, int ingredientCount) {
     for (int i = 0; i < ingredientCount; ++i) {
         printf("Ingredient %d:\n", i + 1);
         printf("Name: %s\n", ingredients[i].name);
-        printf("Amount: %.2lf ", *ingredients[i].amount);
-        printf("\nUnit: %s\n", ingredients[i].unit);
+        printf("Amount: %.2lf\n", *ingredients[i].amount);
+        printf("Unit: %s\n", ingredients[i].unit);
         printf("\n");
     }
 }
@@ -27,16 +27,25 @@ int main() {
     int categoryCount = 0;
     Recipe *recipes = NULL; // Array to store recipe structs
     int recipeCount = load_recipe_struct(file, &recipes);
-    Recipe FilteredRecipe;
+    int filteredCount = 0;
 
     // Step 1: Program Explanation
-     printProgramExplanation();
+    // printProgramExplanation();
 
     // Step 2: Get user input
     userInput(&ingredients, &ingredientCount, &categories, &categoryCount);
 
     // Step 3: Display dishes based on user input
-    filterRecipes(recipes, &FilteredRecipe, categories, categoryCount, recipeCount);
+    Recipe *filteredRecipes = filterRecipes(recipes, categories, categoryCount, recipeCount, &filteredCount);
+
+    if (filteredRecipes == NULL) {
+        printf("filterRecipes returned a NULL pointer. Check for errors inside the function.\n");
+    }
+
+    sortFilteredRecipes(filteredRecipes, ingredients, ingredientCount);
+
+    qsortFunction(filteredRecipes, filteredCount);
+    // sortRecipes(FilteredRecipe, *ingredients);
 
     // print_recipes(recipes, recipeCount);
     fclose(file); // close the file
@@ -48,13 +57,15 @@ int main() {
 
 
     // Free allocated memory for ingredients and categories
-    free(ingredients);
-    freeMemory(&categories, categoryCount);
-    for (int i = 0; i < recipeCount; i++) {
-        free(recipes[i].ingredients);
-    }
+
+    // free(ingredients);
+    // freeMemory(&categories, categoryCount);
+    // for (int i = 0; i < recipeCount; i++) {
+    //     free(recipes[i].ingredients);
+    // }
+    //
+  
     free(recipes);
 
     return 0;
 }
-
