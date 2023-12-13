@@ -14,7 +14,7 @@
 // Define the struct for ingredients
 typedef struct {
     char name[MAX_NAME]; //char array for name of ingredient
-    double amount[MAX_AMOUNT]; //char array for amount of ingredient needed
+    double amount[MAX_AMOUNT]; //double array for amount of ingredient needed
     char unit[MAX_UNIT]; //char array for units (g, ml, stk)
 } Ingredient;
 
