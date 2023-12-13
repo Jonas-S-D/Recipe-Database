@@ -140,12 +140,14 @@ void sortRecipes(Recipe* FilteredRecipe, Ingredient* ingredients, int ingredient
 
 int unitCompare(Recipe* FilteredRecipe, Ingredient *ingredients, int recipe, int userInput) {
     double recipeAmount = FilteredRecipe->ingredients[recipe].amount[0];
-    char *recipeUnit = FilteredRecipe->ingredients[recipe].unit;
     double userAmount = ingredients[userInput].amount[0];
-    char *userUnit = ingredients[userInput].unit;
+    char recipeUnit[4];
+    char userUnit[4];
+    strcpy(recipeUnit, FilteredRecipe->ingredients[recipe].unit);
+    strcpy(userUnit, ingredients[userInput].unit);
 
-    unitConvert(&recipeUnit, &recipeAmount);;
-    unitConvert(&userUnit, &userAmount);;
+    unitConvert(recipeUnit, &recipeAmount);;
+    unitConvert(userUnit, &userAmount);;
 
     printf("\n\nRecipe: %lf %s", recipeAmount, recipeUnit);
     printf("\nUser: %lf %s\n\n", userAmount, userUnit);
@@ -159,12 +161,12 @@ int unitCompare(Recipe* FilteredRecipe, Ingredient *ingredients, int recipe, int
     }
 }
 
-void unitConvert(char **unit, double *amount) {
-    if (strcmp(*unit, "ml") == 0) {
-        strcpy(*unit, "dl");
+void unitConvert(char *unit, double *amount) {
+    if (strcmp(unit, "ml") == 0) {
+        strcpy(unit, "dl");
         *amount /= 100;
-    } else if (strcmp(*unit, "l") == 0) {
-        strcpy(*unit, "dl");
+    } else if (strcmp(unit, "l") == 0) {
+        strcpy(unit, "dl");
         *amount *= 10;
     }
 }
