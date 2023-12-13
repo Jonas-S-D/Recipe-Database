@@ -127,8 +127,11 @@ void sortRecipes(Recipe* FilteredRecipe, Ingredient* ingredients, int ingredient
             printf("Comparing with: %s\n", FilteredRecipe->ingredients[k].name);
             if (strcmp(FilteredRecipe->ingredients[k].name, ingredients[j].name) == 0) {
                 printf("Match found!\n");
-                unitCompare(FilteredRecipe, ingredients, k, j);
-                FilteredRecipe->missingIngredients--;
+                if(unitCompare(FilteredRecipe, ingredients, k, j) == 1){
+                    printf("Unit Match found!\n");
+                    FilteredRecipe->missingIngredients--;
+                    break;
+                }
                 break;
             }
         }
@@ -168,6 +171,9 @@ void unitConvert(char *unit, double *amount) {
     } else if (strcmp(unit, "l") == 0) {
         strcpy(unit, "dl");
         *amount *= 10;
+    } else if (strcmp(unit, "kg") == 0) {
+        strcpy(unit, "g");
+        *amount *= 1000;
     }
 }
 
