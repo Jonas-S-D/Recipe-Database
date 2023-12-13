@@ -127,7 +127,11 @@ void sortRecipes(Recipe* FilteredRecipe, Ingredient* ingredients, int ingredient
             printf("Comparing with: %s\n", FilteredRecipe->ingredients[k].name);
             if (strcmp(FilteredRecipe->ingredients[k].name, ingredients[j].name) == 0) {
                 printf("Match found!\n");
-                FilteredRecipe->missingIngredients--;
+                if(unitCompare(FilteredRecipe, ingredients, k, j) == 1){
+                    printf("Unit Match found!\n");
+                    FilteredRecipe->missingIngredients--;
+                    break;
+                }
                 break;
             }
         }
@@ -135,6 +139,42 @@ void sortRecipes(Recipe* FilteredRecipe, Ingredient* ingredients, int ingredient
 
     printf("\ningredientCount: %d\n", count);
     printf("missingCount: %d\n", FilteredRecipe->missingIngredients);
+}
+
+int unitCompare(Recipe* FilteredRecipe, Ingredient *ingredients, int recipe, int userInput) {
+    double recipeAmount = FilteredRecipe->ingredients[recipe].amount[0];
+    double userAmount = ingredients[userInput].amount[0];
+    char recipeUnit[4];
+    char userUnit[4];
+    strcpy(recipeUnit, FilteredRecipe->ingredients[recipe].unit);
+    strcpy(userUnit, ingredients[userInput].unit);
+
+    unitConvert(recipeUnit, &recipeAmount);;
+    unitConvert(userUnit, &userAmount);;
+
+    printf("\n\nRecipe: %lf %s", recipeAmount, recipeUnit);
+    printf("\nUser: %lf %s\n\n", userAmount, userUnit);
+
+    if (strcmp(recipeUnit, userUnit) != 0) {
+        return 0;
+    } else if (recipeAmount > userAmount) {
+        return 0;
+    } else {
+        return 1;
+    }
+}
+
+void unitConvert(char *unit, double *amount) {
+    if (strcmp(unit, "ml") == 0) {
+        strcpy(unit, "dl");
+        *amount /= 100;
+    } else if (strcmp(unit, "l") == 0) {
+        strcpy(unit, "dl");
+        *amount *= 10;
+    } else if (strcmp(unit, "kg") == 0) {
+        strcpy(unit, "g");
+        *amount *= 1000;
+    }
 }
 
 // Compare function

@@ -9,7 +9,7 @@
 #define MAX_AMOUNT 20
 #define MAX_LINE 1000
 #define MAX_UNIT 5
-#define ACCEPTABLE_UNITS "g stk dl ml l"
+#define ACCEPTABLE_UNITS "g stk dl ml l kg"
 
 // Define the struct for ingredients
 typedef struct {
@@ -49,3 +49,5 @@ void sortFilteredRecipes(Recipe *FilteredRecipes, Ingredient *ingredients, int i
 void sortRecipes(Recipe* FilteredRecipe, Ingredient* ingredients, int ingredientCount);
 void qsortFunction(Recipe *FilteredRecipe, int size);
 int compareFunction(const void *a, const void *b);
+int unitCompare(Recipe* FilteredRecipe, Ingredient *ingredients, int recipe, int userInput);
+void unitConvert(char *unit, double *amount);
