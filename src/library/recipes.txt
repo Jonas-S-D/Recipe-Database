@@ -1,5 +1,5 @@
 >Biksemad
->Rester,koed,varm aftensmad
+>rester,koed,varm aftensmad
 >skrael og skaer kartofler I mindre tern og kog kartoflerne. steg bacon paa pande. skaer loeg I mindre stykker. bland alle ingredienser I en wok og svits.
 >kartofler, 500g
 loeg, 2 stk
@@ -26,7 +26,7 @@ smoer, 5g
 
 
 >Indbagte loegringe
->Varm aftensmad,appetizer,vegetar
+>varm aftensmad,appetizer,vegetar
 >Skaer loeg i passende skiver og skil dem ad til en masse loegringe. Bland derefter beignetdejen ved at piske ingredienserne sammen til en tynd dej. Varm olie stille og roligt op.
 Olien er klar naar lidt rasp giver bobler naar det rammer overfladen. Kom loegringene i beignetdejen og put dem i olien en ad gangen. Pas paa med at lave for mange paa en gang.
 Naar de er gyldne tages de op af olien og placeres paa noget koekkenrulle indtil de spises. Drys evt. med lidt salt.
