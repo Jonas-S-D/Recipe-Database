@@ -10,50 +10,37 @@
  */
 
 // Filter loaded recipes by category
-Recipe *filterRecipe(const Recipe *recipe, char **categories, int CategoryCount) {
-    Recipe *FilteredRecipe = malloc(sizeof(Recipe) * 100);
+Recipe *filterRecipe(const Recipe *recipe, char **categories, int CategoryCount, int recipeCount) {
+    Recipe *FilteredRecipe = malloc(sizeof(Recipe) * recipeCount); // Dynamically allocates FilteredRecipe
     if (FilteredRecipe == NULL) {
         printf("Memory allocation failed for FilteredRecipe.\n");
         return NULL;
     }
     int counter = 0;
 
-    if (categories != NULL && CategoryCount > 0) {
-        for (int i = 0; i < CategoryCount; ++i) {
-            test(recipe, categories, FilteredRecipe, counter, i);
+    if (categories != NULL && CategoryCount > 0) { // At least one category chosen
+        for (int i = 0; i < CategoryCount; ++i) { // Checks through the users categories
+            filterRecipeCategories(recipe, categories, FilteredRecipe, i, counter);
         }
     } else { // No categories chosen
         FilteredRecipe[counter] = *recipe;
     }
+
     return FilteredRecipe;
 }
 
-void test(const Recipe *recipe, char **categories, Recipe *FilteredRecipe, int counter, int i) {
-
-    for (int j = 0; recipe->categories[j][0] != '\0'; ++j) {
+// Filter the recipes' categories for 'filterRecipe'
+void filterRecipeCategories(const Recipe *recipe, char **categories, Recipe *FilteredRecipe, int i, int counter) {
+    for (int j = 0; recipe->categories[j][0] != '\0'; ++j) { // Checks through the recipes categories
         if (strcmp(categories[i], recipe->categories[j]) == 0) {
-            int duplicate = 0;
-            for (int k = 0; k < counter; ++k) {
-                if (strcmp(FilteredRecipe[k].name, recipe->name) == 0) {
-                    duplicate = 1;
-                    break;
-                }
-            }
-
-            if (!duplicate) {
-                FilteredRecipe[counter] = *recipe;
-                counter++;
-            }
-            break; // Break from innermost for-loop
+            FilteredRecipe[counter] = *recipe;
+            break;
         }
     }
 }
 
-
-Recipe *
-filterRecipes(const Recipe *recipes, char **categories, int CategoryCount, int RecipeCount, int *filteredCount) {
-    // Check if the input parameters are valid
-    if (recipes == NULL || RecipeCount <= 0) {
+Recipe *filterRecipes(const Recipe *recipes, char **categories, int CategoryCount, int RecipeCount, int *filteredCount) {
+    if (recipes == NULL || RecipeCount <= 0) { // Check if the input parameters are valid
         printf("Invalid input parameters to filterRecipes.\n");
         return NULL;
     }
@@ -65,7 +52,7 @@ filterRecipes(const Recipe *recipes, char **categories, int CategoryCount, int R
     }
 
     for (int i = 0; i < RecipeCount; i++) {
-        Recipe *filtered = filterRecipe(&recipes[i], categories, CategoryCount);
+        Recipe *filtered = filterRecipe(&recipes[i], categories, CategoryCount, RecipeCount);
         (*filteredCount)++;
         if (filtered == NULL) {
             printf("filterRecipe returned NULL for recipe %d (%s).\n", i, recipes[i].name);
