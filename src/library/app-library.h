@@ -9,12 +9,12 @@
 #define MAX_AMOUNT 20
 #define MAX_LINE 1000
 #define MAX_UNIT 5
-#define ACCEPTABLE_UNITS "g stk dl ml l"
+#define ACCEPTABLE_UNITS "g stk dl ml l kg"
 
 // Define the struct for ingredients
 typedef struct {
     char name[MAX_NAME]; //char array for name of ingredient
-    double amount[MAX_AMOUNT]; //char array for amount of ingredient needed
+    double amount[MAX_AMOUNT]; //double array for amount of ingredient needed
     char unit[MAX_UNIT]; //char array for units (g, ml, stk)
 } Ingredient;
 
@@ -23,8 +23,8 @@ typedef struct {
     char name[MAX_NAME]; //char array for name
     char categories[MAX_CAT][MAX_NAME]; //pointer to char arrays for categories
     char explanation[MAX_EXPLANATION]; //char array for recipe explanation
-    Ingredient *ingredients; // Dynamic array for ingredients
     int missingIngredients;
+    Ingredient *ingredients; // Dynamic array for ingredients
 } Recipe;
 
 typedef struct {
@@ -54,8 +54,9 @@ void sortFilteredRecipes(Recipe *FilteredRecipes, Ingredient *ingredients, int i
 void sortRecipes(Recipe* FilteredRecipe, Ingredient* ingredients, int ingredientCount);
 void qsortFunction(Recipe *FilteredRecipe, int size);
 int compareFunction(const void *a, const void *b);
-
 int binary_search_recipes(Name_index *name_index_arr, int high, const char *target);
 char* string_to_lower(const char* str);
 Name_index * name_index_arr(Recipe *recipes,int recipe_count);
 void userInputSearch(Recipe *recipes, int recipeCount);
+int unitCompare(Recipe* FilteredRecipe, Ingredient *ingredients, int recipe, int userInput);
+void unitConvert(char *unit, double *amount);

@@ -48,7 +48,7 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
         scanf("%s", ingredient.name);
 
         // Convert user input to lowercase.
-        for (int i = 0; ingredient.name[i]; i++) {
+        for (int i = 0; ingredient.name[i] != '\0'; i++) {
             ingredient.name[i] = (char) tolower(ingredient.name[i]);
         }
 
@@ -69,7 +69,7 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
 
 
             // Convert user input to lowercase for comparison
-            for (int i = 0; ingredient.unit[i]; i++) {
+            for (int i = 0; ingredient.unit[i] != '\0'; i++) {
                 ingredient.unit[i] = (char) tolower(ingredient.unit[i]);
             }
 
@@ -112,7 +112,7 @@ void userInputCategories(char ***categories, int *categoryCount) {
         scanf("%s", category);
 
         // Convert user category input to lowercase.
-        for (int i = 0; category[i]; i++) {
+        for (int i = 0; category[i] != '\0'; i++) {
             category[i] = (char) tolower(category[i]);
         }
 
