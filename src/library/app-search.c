@@ -1,14 +1,14 @@
 // Binary search function
-int binary_search_recipes(Name_index *name_index_arr, int high, const char *target) {
+int binarySearchRecipes(nameIndex *nameIndexArr, int high, const char *target) {
     int low = 0;
     while (low <= high) {
         int mid = low + (high - low) / 2;
 
-        int comparison = strcmp(name_index_arr[mid].name, target);
+        int comparison = strcmp(nameIndexArr[mid].name, target);
 
         // Check if the target is present at the middle
         if (comparison == 0) {
-            return name_index_arr[mid].index;
+            return nameIndexArr[mid].index;
         }
 
         // If the target is in the left half
@@ -26,7 +26,7 @@ int binary_search_recipes(Name_index *name_index_arr, int high, const char *targ
 }
 
 //converts a string to lower case
-char* string_to_lower(const char* str) {
+char* stringToLower(const char* str) {
     // Calculate the length of the input string
     int length = 0;
     while (str[length] != '\0') {
@@ -34,36 +34,36 @@ char* string_to_lower(const char* str) {
     }
 
     // Allocate memory for char array
-    char* lower_str = (char*)malloc((length + 1) * sizeof(char));
+    char* lowerStr = (char*)malloc((length + 1) * sizeof(char));
 
     // Check if memory allocation is successful
-    if (lower_str == NULL) {
+    if (lowerStr == NULL) {
         fprintf(stderr, "Memory allocation failed\n");
         exit(EXIT_FAILURE);
     }
 
     // Convert each character to lowercase
     for (int i = 0; i < length; i++) {
-        lower_str[i] = tolower(str[i]);
+        lowerStr[i] = tolower(str[i]);
     }
 
     // Add the null terminator
-    lower_str[length] = '\0';
-    return lower_str;
+    lowerStr[length] = '\0';
+    return lowerStr;
 }
 
 //function to create an array of structs containing recipe names and their index
-Name_index *name_index_arr(Recipe *recipes, int recipe_count) {
-    Name_index *name_index_struct_array;
+nameIndex *nameIndexArr(Recipe *recipes, int recipeCount) {
+    nameIndex *nameIndexStructArray;
 
     //allocate memory for the array
-    name_index_struct_array = (Name_index *) malloc(sizeof(Name_index) * recipe_count);
+    nameIndexStructArray = (nameIndex *) malloc(sizeof(nameIndex) * recipeCount);
 
     // add recipe names and indexes to array
-    for (int i = 0; i < recipe_count; i++) {
-        strcpy(name_index_struct_array[i].name, string_to_lower(recipes[i].name));
-        name_index_struct_array[i].index = i;
+    for (int i = 0; i < recipeCount; i++) {
+        strcpy(nameIndexStructArray[i].name, stringToLower(recipes[i].name));
+        nameIndexStructArray[i].index = i;
     }
 
-    return name_index_struct_array;
+    return nameIndexStructArray;
 }

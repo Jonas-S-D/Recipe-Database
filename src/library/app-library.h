@@ -37,26 +37,26 @@ typedef struct
 typedef struct {
     char name[MAX_NAME]; //char array for name
     int index; //array to hold index of recipe
-} Name_index;
+} nameIndex;
 
 void convertTolower(char* str);
-void determineOption(char *option, Ingredient *ingredients, int *ingredientCount, char **categories, int*categoryCount, Recipe *recipes, int recipeCount, char unique_categories[MAX_CAT][MAX_NAME]);
-void userInput(Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount, Recipe *recipes, int recipeCount, char unique_categories[MAX_CAT][MAX_NAME], int unique_categories_count);
+void determineOption(char *option, Ingredient *ingredients, int *ingredientCount, char **categories, int*categoryCount, Recipe *recipes, int recipeCount, char uniqueCategories[MAX_CAT][MAX_NAME]);
+void userInput(Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount, Recipe *recipes, int recipeCount, char uniqueCategories[MAX_CAT][MAX_NAME], int uniqueCategoriesCount);
 void userInputIngredients(Ingredient **ingredients, int *ingredientCount);
-void userInputCategories(char ***categories, int *categoryCount, char unique_categories[MAX_CAT][MAX_NAME], int unique_categories_count);
-void printCategories(char unique_categories[MAX_CAT][MAX_NAME], int unique_categories_count);
+void userInputCategories(char ***categories, int *categoryCount, char uniqueCategories[MAX_CAT][MAX_NAME], int uniqueCategoriesCount);
+void printCategories(char uniqueCategories[MAX_CAT][MAX_NAME], int uniqueCategoriesCount);
 void freeMemory(char ***array, int count);
 void printProgramExplanation();
 void chooseRecipe(const Recipe* chosenRecipe);
 
 // Load
-int load_recipe_struct(FILE *file, Recipe **recipes, char unique_categories[MAX_CAT][MAX_NAME], int *unique_categories_count);
-void check_load(FILE *file);
-void parse_categories(FILE *file, Recipe *recipe, char unique_categories[MAX_CAT][MAX_NAME], int *unique_categories_count);
-void parse_explanation(FILE *file, Recipe *recipe);
-void print_recipe(Recipe recipe);
-void parse_ingredients(FILE *file, Recipe *recipe);
-void print_recipes(Recipe *recipes, int recipe_count);
+int loadRecipeStruct(FILE *file, Recipe **recipes, char uniqueCategories[MAX_CAT][MAX_NAME], int *uniqueCategoriesCount);
+void checkLoad(FILE *file);
+void parseCategories(FILE *file, Recipe *recipe, char uniqueCategories[MAX_CAT][MAX_NAME], int *uniqueCategoriesCount);
+void parseExplanation(FILE *file, Recipe *recipe);
+void printRecipe(Recipe recipe);
+void parseIngredients(FILE *file, Recipe *recipe);
+void printRecipes(Recipe *recipes, int recipeCount);
 
 // Compare
 Recipe* filterRecipe(const Recipe* recipe, char** categories, int CategoryCount);
@@ -65,9 +65,9 @@ Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCoun
 void sortFilteredRecipes(Recipe *FilteredRecipes, Ingredient *ingredients, int ingredientCount);
 void sortRecipes(Recipe* FilteredRecipe, Ingredient* ingredients, int ingredientCount);
 int compareFunction(const void *a, const void *b);
-int binary_search_recipes(Name_index *name_index_arr, int high, const char *target);
-char* string_to_lower(const char* str);
-Name_index * name_index_arr(Recipe *recipes,int recipe_count);
+int binarySearchRecipes(nameIndex *nameIndexArr, int high, const char *target);
+char* stringToLower(const char* str);
+nameIndex *nameIndexArr(Recipe *recipes,int recipeCount);
 void userInputSearch(Recipe *recipes, int recipeCount);
 int unitCompare(Recipe* FilteredRecipe, Ingredient *ingredients, int recipe, int userInput);
 void unitConvert(char *unit, double *amount);
