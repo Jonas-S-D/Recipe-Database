@@ -204,3 +204,76 @@ void qsortFunction(Recipe *FilteredRecipe, int size) {
  */
 
 // Return the first three recipes (the ones with the least missing ingredients)
+
+// Finds which store that has the lowest price of an ingredient
+void findLowestPrice(char missingIngredients[][MAX_NAME], int arrLength)
+{
+    /* opens file and returns an error if file pointer points to NULL */
+    FILE *file = fopen("priser.csv", "r");
+    if (file == NULL)
+    {
+        printf("Error opening file\n");
+        return;
+    }
+
+    Item* item;
+    char buffer[MAX_LINE];
+    int structLength = 0;
+
+    /* counts number of rows in file */
+    while (!feof(file))
+    {
+        fgets(buffer, MAX_LINE, file);
+        structLength++;
+    }
+    /* resets file pointer position to beginning of file */
+    fseek(file, 0, SEEK_SET);
+
+    /* allocates memory for array of structs depending on number of rows in csv file */
+    item = malloc(structLength * sizeof(Item));
+    if (item == NULL)
+    {
+        printf("Failed to allocate memory\n");
+        fclose(file);
+        return;
+    }
+
+    /* scans data from file into array of structs */
+    int count = 0;
+    while (!feof(file))
+    {
+        fscanf(file, "%[^,], %[^,], %lf,\n", item[count].store, item[count].name, &item[count].price);
+        count++;
+    }
+    fclose(file);
+
+    /* variables used to save each ingredient, the lowest price and the store which it can be bought */
+    char storeName[MAX_NAME];
+    char itemName[MAX_NAME];
+    double lowestPrice = 1000;
+
+    /* searches for which store has the lowest price for each ingredient */
+    for (int i = 0; i < arrLength; i++)
+    {
+        lowestPrice = 1000;
+        for (int j = 0; j < structLength; j++)
+        {
+            if (strcmp(missingIngredients[i], item[j].name) == 0 && lowestPrice > item[j].price)
+            {
+                lowestPrice = item[j].price;
+                strcpy(storeName,item[j].store);
+                strcpy(itemName,item[j].name);
+            }
+        }
+        /* checks if ingredient was found in the struct array */
+        if (strcmp(missingIngredients[i], itemName) == 0)
+        {
+            printf("Billigste %s kan kobes i %s for %.2lf kr.\n", itemName, storeName, lowestPrice);
+        }
+        else
+        {
+            printf("%s kan ikke findes i databasen\n", missingIngredients[i]);
+        }
+    }
+    free(item);
+}

@@ -27,6 +27,13 @@ typedef struct {
     Ingredient *ingredients; // Dynamic array for ingredients
 } Recipe;
 
+typedef struct
+{
+    char name[MAX_NAME];
+    char store[MAX_NAME];
+    double price;
+} Item;
+
 typedef struct {
     char name[MAX_NAME]; //char array for name
     int index; //array to hold index of recipe
@@ -63,3 +70,6 @@ Name_index * name_index_arr(Recipe *recipes,int recipe_count);
 void userInputSearch(Recipe *recipes, int recipeCount);
 int unitCompare(Recipe* FilteredRecipe, Ingredient *ingredients, int recipe, int userInput);
 void unitConvert(char *unit, double *amount);
+
+// Price Compare
+void findLowestPrice(char missingIngredients[][MAX_NAME], int arrLength);
