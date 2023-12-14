@@ -11,29 +11,29 @@
 
 // Filter loaded recipes by category
 Recipe *filterRecipe(const Recipe *recipe, char **categories, int CategoryCount, int recipeCount) {
-    Recipe *FilteredRecipe = malloc(sizeof(Recipe) * recipeCount); // Dynamically allocates FilteredRecipe
+    Recipe *FilteredRecipe = malloc(sizeof(Recipe)); // Dynamically allocates FilteredRecipe
     if (FilteredRecipe == NULL) {
         printf("Memory allocation failed for FilteredRecipe.\n");
         return NULL;
     }
-    int counter = 0;
+    FilteredRecipe->name[0] = '\0';
 
     if (categories != NULL && CategoryCount > 0) { // At least one category chosen
         for (int i = 0; i < CategoryCount; ++i) { // Checks through the users categories
-            filterRecipeCategories(recipe, categories, FilteredRecipe, i, counter);
-        }
+                    filterRecipeCategories(recipe, categories, FilteredRecipe, i);
+                }
     } else { // No categories chosen
-        FilteredRecipe[counter] = *recipe;
+        *FilteredRecipe = *recipe;
     }
 
     return FilteredRecipe;
 }
 
 // Filter the recipes' categories for 'filterRecipe'
-void filterRecipeCategories(const Recipe *recipe, char **categories, Recipe *FilteredRecipe, int i, int counter) {
+void filterRecipeCategories(const Recipe *recipe, char **categories, Recipe *FilteredRecipe, int i) {
     for (int j = 0; recipe->categories[j][0] != '\0'; ++j) { // Checks through the recipes categories
         if (strcmp(categories[i], recipe->categories[j]) == 0) {
-            FilteredRecipe[counter] = *recipe;
+            *FilteredRecipe= *recipe;
             break;
         }
     }
