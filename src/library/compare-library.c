@@ -10,7 +10,7 @@
  */
 
 // Filter loaded recipes by category
-Recipe *filterRecipe(const Recipe *recipe, char **categories, int CategoryCount, int recipeCount) {
+Recipe *filterRecipe(const Recipe *recipe, char **categories, int CategoryCount) {
     Recipe *FilteredRecipe = malloc(sizeof(Recipe)); // Dynamically allocates FilteredRecipe
     if (FilteredRecipe == NULL) {
         printf("Memory allocation failed for FilteredRecipe.\n");
@@ -52,7 +52,7 @@ Recipe *filterRecipes(const Recipe *recipes, char **categories, int CategoryCoun
     }
 
     for (int i = 0; i < RecipeCount; i++) {
-        Recipe *filtered = filterRecipe(&recipes[i], categories, CategoryCount, RecipeCount);
+        Recipe *filtered = filterRecipe(&recipes[i], categories, CategoryCount);
         (*filteredCount)++;
         if (filtered == NULL) {
             printf("filterRecipe returned NULL for recipe %d (%s).\n", i, recipes[i].name);
