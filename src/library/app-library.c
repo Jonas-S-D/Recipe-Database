@@ -17,17 +17,23 @@ void userInput(Ingredient **ingredients, int *ingredientCount, char ***categorie
         printf("Indtast 'i' for ingredienser, 'k' for kategorier, 's' for at soege efter specifikke opskrifter, og 'f' naar du er faerdig>");
         scanf("%s", option);
 
-        if (strcmp(option, "i") == 0) {
-            userInputIngredients(ingredients, ingredientCount);
-        } else if (strcmp(option, "k") == 0) {
-            userInputCategories(categories, categoryCount);
-        } else if (strcmp(option, "s") == 0) {
-            userInputSearch(recipes, recipeCount);
+        if (strcmp(option, "f") != 0) {
+            determineOption(option, *ingredients, ingredientCount, *categories, categoryCount, recipes, recipeCount);
         } else if (strcmp(option, "f") == 0) {
             break;
-        } else {
+        }
+        else {
             printf("Ugyldigt input!\n");
         }
+    }
+}
+void determineOption(char *option, Ingredient *ingredients, int *ingredientCount, char **categories, int*categoryCount, Recipe *recipes, int recipeCount) {
+    if (strcmp(option, "i") == 0) {
+        userInputIngredients(&ingredients, ingredientCount);
+    } else if (strcmp(option, "k") == 0) {
+        userInputCategories(&categories, categoryCount);
+    } else if (strcmp(option, "s") == 0) {
+        userInputSearch(recipes, recipeCount);
     }
 }
 
@@ -69,9 +75,7 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
 
 
             // Convert user input to lowercase for comparison
-            for (int i = 0; ingredient.unit[i] != '\0'; i++) {
-                ingredient.unit[i] = (char) tolower(ingredient.unit[i]);
-            }
+            IngredientsToLowerCase(&ingredient);
 
             // Check if the user input is within the acceptable units string
             if (strstr(ACCEPTABLE_UNITS, ingredient.unit) != NULL) {
@@ -97,6 +101,13 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
         (*ingredientCount)++;
     }
 }
+
+void IngredientsToLowerCase(char *ingredient) {
+    for (int i = 0; ingredient->unit[i] != '\0'; i++) {
+        ingredient->unit[i] = (char) tolower(ingredient->unit[i]);
+    }
+}
+
 
 /**
  * Gets user input for categories
