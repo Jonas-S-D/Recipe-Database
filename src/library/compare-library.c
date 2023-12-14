@@ -108,19 +108,20 @@ void sortRecipes(Recipe *filteredRecipe, Ingredient *ingredients, int ingredient
     for (int i = 0; filteredRecipe->ingredients[i].name[0] != '\0'; ++i) {
         count++;
     }
-    filteredRecipe->missingIngredients = count;
 
     for (int j = 0; j < ingredientCount; ++j) {
         for (int k = 0; filteredRecipe->ingredients[k].name[0] != '\0'; ++k) {
             if (strcmp(filteredRecipe->ingredients[k].name, ingredients[j].name) == 0) {
                 if (unitCompare(filteredRecipe, ingredients, k, j) == 1) {
-                    filteredRecipe->missingIngredients--;
+                    count--;
                     break;
                 }
                 break;
             }
         }
+
     }
+    filteredRecipe->missingIngredients = count;
 }
 
 int unitCompare(Recipe *filteredRecipe, Ingredient *ingredients, int recipe, int userInput) {
