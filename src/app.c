@@ -32,13 +32,21 @@ int main() {
     Recipe *recipes = NULL; // Array to store recipe structs
     int recipeCount = load_recipe_struct(file, &recipes, unique_categories, &unique_categories_count);
     int filteredCount = 0;
+    Recipe *chosenRecipe;
 
-        // Step 1: Program Explanation
+    // Step 1: Program Explanation
     // printProgramExplanation();
 
+    for (int i = 0; i < unique_categories_count; i++) {
+        printf("%s\n", unique_categories[i]);
+    }
+
     // Step 2: Get user input
-    userInput(&ingredients, &ingredientCount, &categories, &categoryCount, recipes, recipeCount);
-/*
+    userInput(&ingredients, &ingredientCount, &categories, &categoryCount, recipes, recipeCount, unique_categories);
+
+    for (int i = 0; i < categoryCount; i++) {
+        printf("%s\n", categories[i]);
+    }
     // Step 3: Display dishes based on user input
     Recipe *filteredRecipes = filterRecipes(recipes, categories, categoryCount, recipeCount, &filteredCount);
 
@@ -50,12 +58,13 @@ int main() {
 
     qsortFunction(filteredRecipes, filteredCount);
     // sortRecipes(FilteredRecipe, *ingredients);
-*/
+
     // print_recipes(recipes, recipeCount);
     fclose(file); // close the file
     // printf("testing -> %s",recipes[0].name);
 
     // Step 4: Let the user pick their dish
+    chooseRecipe(filteredRecipes);
 
     // Step 5: Display the recipe.
 

@@ -32,13 +32,14 @@ typedef struct {
     int index; //array to hold index of recipe
 } Name_index;
 
-void userInput(Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount, Recipe *recipes, int recipeCount);
 void determineOption(char *option, Ingredient *ingredients, int *ingredientCount, char **categories, int*categoryCount, Recipe *recipes, int recipeCount);
-void userInputIngredients(Ingredient **ingredients, int *ingredientCount);
 void IngredientsToLowerCase(char *ingredient);
-void userInputCategories(char ***categories, int *categoryCount);
+void userInput(Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount, Recipe *recipes, int recipeCount, char unique_categories[MAX_CAT][MAX_NAME]);
+void userInputIngredients(Ingredient **ingredients, int *ingredientCount);
+void userInputCategories(char ***categories, int *categoryCount, char unique_categories[MAX_CAT][MAX_NAME]);
 void freeMemory(char ***array, int count);
 void printProgramExplanation();
+void chooseRecipe(const Recipe* chosenRecipe);
 
 // Load
 int load_recipe_struct(FILE *file, Recipe **recipes, char unique_categories[MAX_CAT][MAX_NAME], int *unique_categories_count);
@@ -49,7 +50,7 @@ void print_recipe(Recipe recipe);
 void parse_ingredients(FILE *file, Recipe *recipe);
 void print_recipes(Recipe *recipes, int recipe_count);
 
-// Compare
+// Compare-library.c
 Recipe* filterRecipe(const Recipe* recipe, char** categories, int CategoryCount);
 Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCount, int RecipeCount, int *filteredCount);
 void sortFilteredRecipes(Recipe *FilteredRecipes, Ingredient *ingredients, int ingredientCount);
