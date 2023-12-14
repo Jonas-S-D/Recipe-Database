@@ -4,39 +4,27 @@
 #include "library/app-search.c"
 #include <stdio.h>
 
-// Test function der senere vil blive fjernet når vi ikke skal printe ingredienserne længere.
-void printIngredients(Ingredient *ingredients, int ingredientCount) {
-    printf("Printing ingredients:\n");
-    for (int i = 0; i < ingredientCount; ++i) {
-        printf("Ingredient %d:\n", i + 1);
-        printf("Name: %s\n", ingredients[i].name);
-        printf("Amount: %.2lf\n", *ingredients[i].amount);
-        printf("Unit: %s\n", ingredients[i].unit);
-        printf("\n");
-    }
-}
-
 int main() {
     // Open the text file for reading
     FILE *file = fopen("src/library/recipes.txt", "r"); // load file into the location of the file pointer
-    check_load(file);
+    checkLoad(file);
 
     // User input variables
-    char unique_categories[MAX_CAT][MAX_NAME];
-    int unique_categories_count = 0;
+    char uniqueCategories[MAX_CAT][MAX_NAME];
+    int uniqueCategoriesCount = 0;
     Ingredient *ingredients;
     int ingredientCount = 0;
     char **categories = NULL;
     int categoryCount = 0;
     Recipe *recipes = NULL; // Array to store recipe structs
-    int recipeCount = load_recipe_struct(file, &recipes, unique_categories, &unique_categories_count);
+    int recipeCount = loadRecipeStruct(file, &recipes, uniqueCategories, &uniqueCategoriesCount);
     int filteredCount = 0;
 
     // Step 1: Program Explanation
     printProgramExplanation();
 
     // Step 2: Get user input
-    userInput(&ingredients, &ingredientCount, &categories, &categoryCount, recipes, recipeCount, unique_categories, unique_categories_count);
+    userInput(&ingredients, &ingredientCount, &categories, &categoryCount, recipes, recipeCount, uniqueCategories, uniqueCategoriesCount);
 
     // Step 3: Display dishes based on user input
     Recipe *filteredRecipes = filterRecipes(recipes, categories, categoryCount, recipeCount, &filteredCount);

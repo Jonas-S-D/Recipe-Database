@@ -11,48 +11,48 @@
 
 // Filter loaded recipes by category
 Recipe *filterRecipe(const Recipe *recipe, char **categories, int CategoryCount) {
-    Recipe *FilteredRecipe = malloc(sizeof(Recipe)); // Dynamically allocates FilteredRecipe
-    if (FilteredRecipe == NULL) {
+    Recipe *filteredRecipe = malloc(sizeof(Recipe)); // Dynamically allocates FilteredRecipe
+    if (filteredRecipe == NULL) {
         printf("Memory allocation failed for FilteredRecipe.\n");
         return NULL;
     }
-    FilteredRecipe->name[0] = '\0';
+    filteredRecipe->name[0] = '\0';
 
     if (categories != NULL && CategoryCount > 0) { // At least one category chosen
         for (int i = 0; i < CategoryCount; ++i) { // Checks through the users categories
-                    filterRecipeCategories(recipe, categories, FilteredRecipe, i);
+                    filterRecipeCategories(recipe, categories, filteredRecipe, i);
                 }
     } else { // No categories chosen
-        *FilteredRecipe = *recipe;
+        *filteredRecipe = *recipe;
     }
 
-    return FilteredRecipe;
+    return filteredRecipe;
 }
 
 // Filter the recipes' categories for 'filterRecipe'
-void filterRecipeCategories(const Recipe *recipe, char **categories, Recipe *FilteredRecipe, int i) {
+void filterRecipeCategories(const Recipe *recipe, char **categories, Recipe *filteredRecipe, int i) {
     for (int j = 0; recipe->categories[j][0] != '\0'; ++j) { // Checks through the recipes categories
         if (strcmp(categories[i], recipe->categories[j]) == 0) {
-            *FilteredRecipe= *recipe;
+            *filteredRecipe= *recipe;
             break;
         }
     }
 }
 
-Recipe *filterRecipes(const Recipe *recipes, char **categories, int CategoryCount, int RecipeCount, int *filteredCount) {
-    if (recipes == NULL || RecipeCount <= 0) { // Check if the input parameters are valid
+Recipe *filterRecipes(const Recipe *recipes, char **categories, int categoryCount, int recipeCount, int *filteredCount) {
+    if (recipes == NULL || recipeCount <= 0) { // Check if the input parameters are valid
         printf("Invalid input parameters to filterRecipes.\n");
         return NULL;
     }
 
-    Recipe *filteredRecipes = malloc(sizeof(Recipe) * RecipeCount);
+    Recipe *filteredRecipes = malloc(sizeof(Recipe) * recipeCount);
     if (filteredRecipes == NULL) {
         printf("Memory allocation failed for filteredRecipes.\n");
         return NULL;
     }
 
-    for (int i = 0; i < RecipeCount; i++) {
-        Recipe *filtered = filterRecipe(&recipes[i], categories, CategoryCount);
+    for (int i = 0; i < recipeCount; i++) {
+        Recipe *filtered = filterRecipe(&recipes[i], categories, categoryCount);
         (*filteredCount)++;
         if (filtered == NULL) {
             printf("filterRecipe returned NULL for recipe %d (%s).\n", i, recipes[i].name);
@@ -60,15 +60,15 @@ Recipe *filterRecipes(const Recipe *recipes, char **categories, int CategoryCoun
             filteredRecipes[i] = *filtered;
         }
     }
-    filteredRecipes[RecipeCount].name[0] = '\0';
+    filteredRecipes[recipeCount].name[0] = '\0';
 
-    for (int i = 0; i < RecipeCount; ++i) {
+    for (int i = 0; i < recipeCount; ++i) {
         if (filteredRecipes[i].name[0] == '\0') {
-            for (int j = i; j < RecipeCount - 1; ++j) {
+            for (int j = i; j < recipeCount - 1; ++j) {
                 filteredRecipes[j] = filteredRecipes[j + 1];
             }
-            filteredRecipes[RecipeCount - 1].name[0] = '\0';
-            RecipeCount--;
+            filteredRecipes[recipeCount - 1].name[0] = '\0';
+            recipeCount--;
             (*filteredCount)--;
             --i;
         }
@@ -84,37 +84,37 @@ Recipe *filterRecipes(const Recipe *recipes, char **categories, int CategoryCoun
  * and ordering the recipes from least missing ingredients to most missing ingredients.
  */
 
-void sortFilteredRecipes(Recipe *FilteredRecipes, Ingredient *ingredients, int ingredientCount) {
-    if (FilteredRecipes == NULL) {
-        printf("FilteredRecipes is not accessible (NULL pointer).\n");
+void sortFilteredRecipes(Recipe *filteredRecipes, Ingredient *ingredients, int ingredientCount) {
+    if (filteredRecipes == NULL) {
+        printf("filteredRecipes is not accessible (NULL pointer).\n");
         return;
     }
 
-    for (int i = 0; FilteredRecipes[i].name[0] != '\0'; ++i) {
+    for (int i = 0; filteredRecipes[i].name[0] != '\0'; ++i) {
         // Additional check (optional, based on your specific implementation)
-        if (&FilteredRecipes[i] == NULL) {
+        if (&filteredRecipes[i] == NULL) {
             printf("FilteredRecipes[%d] is not accessible (NULL pointer).\n", i);
             continue; // Skip this iteration
         }
-        sortRecipes(&FilteredRecipes[i], ingredients, ingredientCount);
+        sortRecipes(&filteredRecipes[i], ingredients, ingredientCount);
     }
 }
 
 
 // Sort recipes by least missing ingredients
-void sortRecipes(Recipe *FilteredRecipe, Ingredient *ingredients, int ingredientCount) {
+void sortRecipes(Recipe *filteredRecipe, Ingredient *ingredients, int ingredientCount) {
     int count = 0;
 
-    for (int i = 0; FilteredRecipe->ingredients[i].name[0] != '\0'; ++i) {
+    for (int i = 0; filteredRecipe->ingredients[i].name[0] != '\0'; ++i) {
         count++;
     }
-    FilteredRecipe->missingIngredients = count;
+    filteredRecipe->missingIngredients = count;
 
     for (int j = 0; j < ingredientCount; ++j) {
-        for (int k = 0; FilteredRecipe->ingredients[k].name[0] != '\0'; ++k) {
-            if (strcmp(FilteredRecipe->ingredients[k].name, ingredients[j].name) == 0) {
-                if (unitCompare(FilteredRecipe, ingredients, k, j) == 1) {
-                    FilteredRecipe->missingIngredients--;
+        for (int k = 0; filteredRecipe->ingredients[k].name[0] != '\0'; ++k) {
+            if (strcmp(filteredRecipe->ingredients[k].name, ingredients[j].name) == 0) {
+                if (unitCompare(filteredRecipe, ingredients, k, j) == 1) {
+                    filteredRecipe->missingIngredients--;
                     break;
                 }
                 break;
@@ -123,12 +123,12 @@ void sortRecipes(Recipe *FilteredRecipe, Ingredient *ingredients, int ingredient
     }
 }
 
-int unitCompare(Recipe *FilteredRecipe, Ingredient *ingredients, int recipe, int userInput) {
-    double recipeAmount = FilteredRecipe->ingredients[recipe].amount[0];
+int unitCompare(Recipe *filteredRecipe, Ingredient *ingredients, int recipe, int userInput) {
+    double recipeAmount = filteredRecipe->ingredients[recipe].amount[0];
     double userAmount = ingredients[userInput].amount[0];
     char recipeUnit[4];
     char userUnit[4];
-    strcpy(recipeUnit, FilteredRecipe->ingredients[recipe].unit);
+    strcpy(recipeUnit, filteredRecipe->ingredients[recipe].unit);
     strcpy(userUnit, ingredients[userInput].unit);
 
     unitConvert(recipeUnit, &recipeAmount);;
