@@ -1,14 +1,3 @@
-/**
- * Compare function.
- * Look at compare flowchart (Figure 3.4) in Overleaf
-*/
-
-/**
- * The next process filters the loaded recipes if the user has entered one or more categories
- * then it removes all recipes with no matching category tag,
- * if the user hasn't entered any category, the filter process returns all recipes.
- */
-
 // Filter loaded recipes by category
 Recipe *filterRecipe(const Recipe *recipe, char **categories, int CategoryCount) {
     Recipe *filteredRecipe = malloc(sizeof(Recipe)); // Dynamically allocates FilteredRecipe
@@ -20,8 +9,8 @@ Recipe *filterRecipe(const Recipe *recipe, char **categories, int CategoryCount)
 
     if (categories != NULL && CategoryCount > 0) { // At least one category chosen
         for (int i = 0; i < CategoryCount; ++i) { // Checks through the users categories
-                    filterRecipeCategories(recipe, categories, filteredRecipe, i);
-                }
+            filterRecipeCategories(recipe, categories, filteredRecipe, i);
+        }
     } else { // No categories chosen
         *filteredRecipe = *recipe;
     }
@@ -33,7 +22,7 @@ Recipe *filterRecipe(const Recipe *recipe, char **categories, int CategoryCount)
 void filterRecipeCategories(const Recipe *recipe, char **categories, Recipe *filteredRecipe, int i) {
     for (int j = 0; recipe->categories[j][0] != '\0'; ++j) { // Checks through the recipes categories
         if (strcmp(categories[i], recipe->categories[j]) == 0) {
-            *filteredRecipe= *recipe;
+            *filteredRecipe = *recipe;
             break;
         }
     }
@@ -76,13 +65,6 @@ Recipe *filterRecipes(const Recipe *recipes, char **categories, int categoryCoun
 
     return filteredRecipes;
 }
-
-
-/**
- * The second last process of Compare 'Sort Recipes by least missing ingredients'
- * sorts recipes by comparing the user's stored ingredients with ingredients needed in each recipe,
- * and ordering the recipes from least missing ingredients to most missing ingredients.
- */
 
 void sortFilteredRecipes(Recipe *filteredRecipes, Ingredient *ingredients, int ingredientCount) {
     if (filteredRecipes == NULL) {
@@ -165,31 +147,21 @@ int compareFunction(const void *a, const void *b) {
     return (recipeA->missingIngredients - recipeB->missingIngredients);
 }
 
-
-/**
- * The last process of Compare returns the three first recipes in the sorted list of recipes.
- */
-
-// Return the first three recipes (the ones with the least missing ingredients)
-
 // Finds which store that has the lowest price of an ingredient
-void findLowestPrice(char missingIngredients[][MAX_NAME], int arrLength)
-{
+void findLowestPrice(char missingIngredients[][MAX_NAME], int arrLength) {
     /* opens file and returns an error if file pointer points to NULL */
     FILE *file = fopen("priser.csv", "r");
-    if (file == NULL)
-    {
+    if (file == NULL) {
         printf("Error opening file\n");
         return;
     }
 
-    Item* item;
+    Item *item;
     char buffer[MAX_LINE];
     int structLength = 0;
 
     /* counts number of rows in file */
-    while (!feof(file))
-    {
+    while (!feof(file)) {
         fgets(buffer, MAX_LINE, file);
         structLength++;
     }
@@ -198,8 +170,7 @@ void findLowestPrice(char missingIngredients[][MAX_NAME], int arrLength)
 
     /* allocates memory for array of structs depending on number of rows in csv file */
     item = malloc(structLength * sizeof(Item));
-    if (item == NULL)
-    {
+    if (item == NULL) {
         printf("Failed to allocate memory\n");
         fclose(file);
         return;
@@ -207,8 +178,7 @@ void findLowestPrice(char missingIngredients[][MAX_NAME], int arrLength)
 
     /* scans data from file into array of structs */
     int count = 0;
-    while (!feof(file))
-    {
+    while (!feof(file)) {
         fscanf(file, "%[^,], %[^,], %lf,\n", item[count].store, item[count].name, &item[count].price);
         count++;
     }
@@ -220,25 +190,19 @@ void findLowestPrice(char missingIngredients[][MAX_NAME], int arrLength)
     double lowestPrice = 1000;
 
     /* searches for which store has the lowest price for each ingredient */
-    for (int i = 0; i < arrLength; i++)
-    {
+    for (int i = 0; i < arrLength; i++) {
         lowestPrice = 1000;
-        for (int j = 0; j < structLength; j++)
-        {
-            if (strcmp(missingIngredients[i], item[j].name) == 0 && lowestPrice > item[j].price)
-            {
+        for (int j = 0; j < structLength; j++) {
+            if (strcmp(missingIngredients[i], item[j].name) == 0 && lowestPrice > item[j].price) {
                 lowestPrice = item[j].price;
-                strcpy(storeName,item[j].store);
-                strcpy(itemName,item[j].name);
+                strcpy(storeName, item[j].store);
+                strcpy(itemName, item[j].name);
             }
         }
         /* checks if ingredient was found in the struct array */
-        if (strcmp(missingIngredients[i], itemName) == 0)
-        {
+        if (strcmp(missingIngredients[i], itemName) == 0) {
             printf("Billigste %s kan kobes i %s for %.2lf kr.\n", itemName, storeName, lowestPrice);
-        }
-        else
-        {
+        } else {
             printf("%s kan ikke findes i databasen\n", missingIngredients[i]);
         }
     }
