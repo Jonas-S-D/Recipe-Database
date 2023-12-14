@@ -9,7 +9,7 @@
  * @param categoryCount Counts how many categories have been entered
  */
 void userInput(Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount, Recipe *recipes,
-               int recipeCount) {
+               int recipeCount, char unique_categories[MAX_CAT][MAX_NAME]) {
     char option[3]; // Allocate memory for option
     printf("Hvad vil du gerne goere?\n");
 
@@ -20,7 +20,7 @@ void userInput(Ingredient **ingredients, int *ingredientCount, char ***categorie
         if (strcmp(option, "i") == 0) {
             userInputIngredients(ingredients, ingredientCount);
         } else if (strcmp(option, "k") == 0) {
-            userInputCategories(categories, categoryCount);
+            userInputCategories(categories, categoryCount, unique_categories);
         } else if (strcmp(option, "s") == 0) {
             userInputSearch(recipes, recipeCount);
         } else if (strcmp(option, "f") == 0) {
@@ -104,12 +104,18 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
  * @param categories The category of food that the user wants
  * @param categoryCount Counts the number of categories entered
  */
-void userInputCategories(char ***categories, int *categoryCount) {
+void userInputCategories(char ***categories, int *categoryCount, char unique_categories[MAX_CAT][MAX_NAME]) {
     char category[MAX_NAME];
     printf("Indtast kategorier, du er interesseret i, indtast 'faerdig', naar du er faerdig\n");
+
     while (1) {
         printf(">");
-        scanf("%s", category);
+        // Use fgets to read the entire line, including spaces
+        if (fgets(category, sizeof(category), stdin) == NULL) {
+            printf("Error reading input. Exiting...\n");
+            exit(EXIT_FAILURE);
+        }
+        category[strcspn(category, "\n")] = '\0';
 
         // Convert user category input to lowercase.
         for (int i = 0; category[i] != '\0'; i++) {
@@ -120,19 +126,33 @@ void userInputCategories(char ***categories, int *categoryCount) {
             return;  // Return to the menu
         }
 
-        // Dynamically allocate memory for the new category
-        *categories = realloc(*categories, (*categoryCount + 1) * sizeof(char *));
+        int validCategory = 0;
 
-        // Memory allocation failed
-        if (*categories == NULL) {
-            printf("Hukommelsestildeling mislykkedes. Afslutter.\n");
-            free(*categories);
-            exit(EXIT_FAILURE);
+        for (int i = 0; i < MAX_CAT; i++) {
+            if (strcmp(unique_categories[i], category) == 0) {
+                validCategory = 1;
+                break; // Exit the loop when a valid category is entered
+            }
         }
 
-        (*categories)[*categoryCount] = strdup(category);
+        // Process the entered category
+        if (validCategory) {
+            // Dynamically allocate memory for the new category
+            *categories = realloc(*categories, (*categoryCount + 1) * sizeof(char *));
 
-        (*categoryCount)++;
+            // Memory allocation failed
+            if (*categories == NULL) {
+                printf("Hukommelsestildeling mislykkedes. Afslutter.\n");
+                free(*categories);
+                exit(EXIT_FAILURE);
+            }
+
+            (*categories)[*categoryCount] = strdup(category);
+
+            (*categoryCount)++;
+        } else {
+            printf("Ugyldig kategori. Proev igen\n");
+        }
     }
 }
 
