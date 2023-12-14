@@ -59,17 +59,17 @@ void parseIngredients(FILE *file, Recipe *recipe);
 void printRecipes(Recipe *recipes, int recipeCount);
 
 // Compare
-Recipe* filterRecipe(const Recipe* recipe, char** categories, int CategoryCount);
-void filterRecipeCategories(const Recipe *recipe, char **categories, Recipe *FilteredRecipe, int i);
-Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCount, int RecipeCount, int *filteredCount);
-void sortFilteredRecipes(Recipe *FilteredRecipes, Ingredient *ingredients, int ingredientCount);
-void sortRecipes(Recipe* FilteredRecipe, Ingredient* ingredients, int ingredientCount);
+Recipe* filterRecipe(const Recipe* recipe, char** categories, int categoryCount);
+void filterRecipeCategories(const Recipe *recipe, char **categories, Recipe *filteredRecipe, int i);
+Recipe* filterRecipes(const Recipe* recipes, char** categories, int categoryCount, int recipeCount, int *filteredCount);
+void sortFilteredRecipes(Recipe *filteredRecipes, Ingredient *ingredients, int ingredientCount);
+void sortRecipes(Recipe* filteredRecipe, Ingredient* ingredients, int ingredientCount);
 int compareFunction(const void *a, const void *b);
 int binarySearchRecipes(nameIndex *nameIndexArr, int high, const char *target);
 char* stringToLower(const char* str);
 nameIndex *nameIndexArr(Recipe *recipes,int recipeCount);
 void userInputSearch(Recipe *recipes, int recipeCount);
-int unitCompare(Recipe* FilteredRecipe, Ingredient *ingredients, int recipe, int userInput);
+int unitCompare(Recipe* filteredRecipe, Ingredient *ingredients, int recipe, int userInput);
 void unitConvert(char *unit, double *amount);
 
 // Price Compare
