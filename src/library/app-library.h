@@ -32,6 +32,8 @@ typedef struct {
     int index; //array to hold index of recipe
 } Name_index;
 
+void determineOption(char *option, Ingredient *ingredients, int *ingredientCount, char **categories, int*categoryCount, Recipe *recipes, int recipeCount);
+void IngredientsToLowerCase(char *ingredient);
 void userInput(Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount, Recipe *recipes, int recipeCount, char unique_categories[MAX_CAT][MAX_NAME]);
 void userInputIngredients(Ingredient **ingredients, int *ingredientCount);
 void userInputCategories(char ***categories, int *categoryCount, char unique_categories[MAX_CAT][MAX_NAME]);
