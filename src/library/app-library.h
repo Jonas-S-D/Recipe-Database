@@ -27,13 +27,15 @@ typedef struct {
     int missingIngredients;
 } Recipe;
 
+//app-library.c
 void userInput(Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount);
 void userInputIngredients(Ingredient **ingredients, int *ingredientCount);
 void userInputCategories(char ***categories, int *categoryCount);
 void freeMemory(char ***array, int count);
 void printProgramExplanation();
+void chooseRecipe(const Recipe* chosenRecipe);
 
-// Load
+// Load-library.c
 int load_recipe_struct(FILE *file, Recipe **recipes);
 void check_load(FILE *file);
 void parse_categories(FILE *file, Recipe *recipe);
@@ -42,7 +44,7 @@ void print_recipe(Recipe recipe);
 void parse_ingredients(FILE *file, Recipe *recipe);
 void print_recipes(Recipe *recipes, int recipe_count);
 
-// Compare
+// Compare-library.c
 Recipe* filterRecipe(const Recipe* recipe, char** categories, int CategoryCount);
 Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCount, int RecipeCount, int *filteredCount);
 void sortFilteredRecipes(Recipe *FilteredRecipes, Ingredient *ingredients, int ingredientCount);
