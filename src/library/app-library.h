@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#define MAX_CAT 100
+#define MAX_CAT 20
 #define MAX_NAME 100
 #define MAX_EXPLANATION 2000
 #define MAX_AMOUNT 20
@@ -27,16 +27,31 @@ typedef struct {
     Ingredient *ingredients; // Dynamic array for ingredients
 } Recipe;
 
-void userInput(Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount);
+typedef struct
+{
+    char name[MAX_NAME];
+    char store[MAX_NAME];
+    double price;
+} Item;
+
+typedef struct {
+    char name[MAX_NAME]; //char array for name
+    int index; //array to hold index of recipe
+} Name_index;
+
+void convertTolower(char* str);
+void determineOption(char *option, Ingredient *ingredients, int *ingredientCount, char **categories, int*categoryCount, Recipe *recipes, int recipeCount, char unique_categories[MAX_CAT][MAX_NAME]);
+void userInput(Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount, Recipe *recipes, int recipeCount, char unique_categories[MAX_CAT][MAX_NAME]);
 void userInputIngredients(Ingredient **ingredients, int *ingredientCount);
-void userInputCategories(char ***categories, int *categoryCount);
+void userInputCategories(char ***categories, int *categoryCount, char unique_categories[MAX_CAT][MAX_NAME]);
 void freeMemory(char ***array, int count);
 void printProgramExplanation();
+void chooseRecipe(const Recipe* chosenRecipe);
 
 // Load
-int load_recipe_struct(FILE *file, Recipe **recipes);
+int load_recipe_struct(FILE *file, Recipe **recipes, char unique_categories[MAX_CAT][MAX_NAME], int *unique_categories_count);
 void check_load(FILE *file);
-void parse_categories(FILE *file, Recipe *recipe);
+void parse_categories(FILE *file, Recipe *recipe, char unique_categories[MAX_CAT][MAX_NAME], int *unique_categories_count);
 void parse_explanation(FILE *file, Recipe *recipe);
 void print_recipe(Recipe recipe);
 void parse_ingredients(FILE *file, Recipe *recipe);
@@ -50,5 +65,12 @@ void sortFilteredRecipes(Recipe *FilteredRecipes, Ingredient *ingredients, int i
 void sortRecipes(Recipe* FilteredRecipe, Ingredient* ingredients, int ingredientCount);
 void qsortFunction(Recipe *FilteredRecipe, int size);
 int compareFunction(const void *a, const void *b);
+int binary_search_recipes(Name_index *name_index_arr, int high, const char *target);
+char* string_to_lower(const char* str);
+Name_index * name_index_arr(Recipe *recipes,int recipe_count);
+void userInputSearch(Recipe *recipes, int recipeCount);
 int unitCompare(Recipe* FilteredRecipe, Ingredient *ingredients, int recipe, int userInput);
 void unitConvert(char *unit, double *amount);
+
+// Price Compare
+void findLowestPrice(char missingIngredients[][MAX_NAME], int arrLength);

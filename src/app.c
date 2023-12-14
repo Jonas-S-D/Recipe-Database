@@ -1,6 +1,7 @@
 #include "library/app-library.c"
 #include "library/load-library.c"
 #include "library/compare-library.c"
+#include "library/app-search.c"
 #include <stdio.h>
 
 // Test function der senere vil blive fjernet når vi ikke skal printe ingredienserne længere.
@@ -21,20 +22,29 @@ int main() {
     check_load(file);
 
     // User input variables
+    char unique_categories[MAX_CAT][MAX_NAME];
+    int unique_categories_count = 0;
     Ingredient *ingredients;
     int ingredientCount = 0;
     char **categories = NULL;
     int categoryCount = 0;
     Recipe *recipes = NULL; // Array to store recipe structs
-    int recipeCount = load_recipe_struct(file, &recipes);
+    int recipeCount = load_recipe_struct(file, &recipes, unique_categories, &unique_categories_count);
     int filteredCount = 0;
 
     // Step 1: Program Explanation
     // printProgramExplanation();
 
-    // Step 2: Get user input
-    userInput(&ingredients, &ingredientCount, &categories, &categoryCount);
+    for (int i = 0; i < unique_categories_count; i++) {
+        printf("%s\n", unique_categories[i]);
+    }
 
+    // Step 2: Get user input
+    userInput(&ingredients, &ingredientCount, &categories, &categoryCount, recipes, recipeCount, unique_categories);
+
+    for (int i = 0; i < categoryCount; i++) {
+        printf("%s\n", categories[i]);
+    }
     // Step 3: Display dishes based on user input
     Recipe *filteredRecipes = filterRecipes(recipes, categories, categoryCount, recipeCount, &filteredCount);
 
@@ -52,6 +62,7 @@ int main() {
     // printf("testing -> %s",recipes[0].name);
 
     // Step 4: Let the user pick their dish
+    chooseRecipe(filteredRecipes);
 
     // Step 5: Display the recipe.
 
