@@ -185,7 +185,7 @@ void printProgramExplanation() {
  * and then it gets printet out via a switch
  * @param chosenRecipe Is the struct "Recipe" that has been defined in app-library.h
  */
-void chooseRecipe(const Recipe* chosenRecipe){
+void chooseRecipe(const Recipe* chosenRecipe) {
     for (int i = 0; i < 3; ++i) {
         printf("\nOpskrift %d %s", i + 1, chosenRecipe[i].name);
     }
@@ -206,6 +206,8 @@ void chooseRecipe(const Recipe* chosenRecipe){
             break;
         default:
             break;
+    }
+}
 void userInputSearch(Recipe *recipes, int recipeCount) {
     // initialize loop variable
     int outer_loop = 1;
