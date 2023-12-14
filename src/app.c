@@ -33,46 +33,31 @@ int main() {
     int filteredCount = 0;
 
     // Step 1: Program Explanation
-    // printProgramExplanation();
-
-    for (int i = 0; i < unique_categories_count; i++) {
-        printf("%s\n", unique_categories[i]);
-    }
+    printProgramExplanation();
 
     // Step 2: Get user input
-    userInput(&ingredients, &ingredientCount, &categories, &categoryCount, recipes, recipeCount, unique_categories);
+    userInput(&ingredients, &ingredientCount, &categories, &categoryCount, recipes, recipeCount, unique_categories, unique_categories_count);
 
     // Step 3: Display dishes based on user input
     Recipe *filteredRecipes = filterRecipes(recipes, categories, categoryCount, recipeCount, &filteredCount);
-
     if (filteredRecipes == NULL) {
         printf("filterRecipes returned a NULL pointer. Check for errors inside the function.\n");
     }
-
     sortFilteredRecipes(filteredRecipes, ingredients, ingredientCount);
+    qsort(filteredRecipes, filteredCount, sizeof(Recipe), compareFunction);
 
-    qsortFunction(filteredRecipes, filteredCount);
-    // sortRecipes(FilteredRecipe, *ingredients);
-
-    // print_recipes(recipes, recipeCount);
     fclose(file); // close the file
-    // printf("testing -> %s",recipes[0].name);
 
-    // Step 4: Let the user pick their dish
+    // Step 4: Let the user pick their dish and choose the one to see
     chooseRecipe(filteredRecipes);
-
-    // Step 5: Display the recipe.
 
 
     // Free allocated memory for ingredients and categories
-
-    // free(ingredients);
-    // freeMemory(&categories, categoryCount);
-    // for (int i = 0; i < recipeCount; i++) {
-    //     free(recipes[i].ingredients);
-    // }
-    //
-  
+    free(ingredients);
+    freeMemory(&categories, categoryCount);
+    for (int i = 0; i < recipeCount; i++) {
+        free(recipes[i].ingredients);
+     }
     free(recipes);
 
     return 0;

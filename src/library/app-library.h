@@ -41,9 +41,10 @@ typedef struct {
 
 void convertTolower(char* str);
 void determineOption(char *option, Ingredient *ingredients, int *ingredientCount, char **categories, int*categoryCount, Recipe *recipes, int recipeCount, char unique_categories[MAX_CAT][MAX_NAME]);
-void userInput(Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount, Recipe *recipes, int recipeCount, char unique_categories[MAX_CAT][MAX_NAME]);
+void userInput(Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount, Recipe *recipes, int recipeCount, char unique_categories[MAX_CAT][MAX_NAME], int unique_categories_count);
 void userInputIngredients(Ingredient **ingredients, int *ingredientCount);
-void userInputCategories(char ***categories, int *categoryCount, char unique_categories[MAX_CAT][MAX_NAME]);
+void userInputCategories(char ***categories, int *categoryCount, char unique_categories[MAX_CAT][MAX_NAME], int unique_categories_count);
+void printCategories(char unique_categories[MAX_CAT][MAX_NAME], int unique_categories_count);
 void freeMemory(char ***array, int count);
 void printProgramExplanation();
 void chooseRecipe(const Recipe* chosenRecipe);
@@ -63,7 +64,6 @@ void filterRecipeCategories(const Recipe *recipe, char **categories, Recipe *Fil
 Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCount, int RecipeCount, int *filteredCount);
 void sortFilteredRecipes(Recipe *FilteredRecipes, Ingredient *ingredients, int ingredientCount);
 void sortRecipes(Recipe* FilteredRecipe, Ingredient* ingredients, int ingredientCount);
-void qsortFunction(Recipe *FilteredRecipe, int size);
 int compareFunction(const void *a, const void *b);
 int binary_search_recipes(Name_index *name_index_arr, int high, const char *target);
 char* string_to_lower(const char* str);

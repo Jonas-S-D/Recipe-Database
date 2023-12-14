@@ -9,7 +9,7 @@
  * @param categoryCount Counts how many categories have been entered
  */
 void userInput(Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount, Recipe *recipes,
-               int recipeCount, char unique_categories[MAX_CAT][MAX_NAME]) {
+               int recipeCount, char unique_categories[MAX_CAT][MAX_NAME], int unique_categories_count) {
     char option[3]; // Allocate memory for option
     printf("Hvad vil du gerne goere?\n");
 
@@ -20,7 +20,7 @@ void userInput(Ingredient **ingredients, int *ingredientCount, char ***categorie
         if (strcmp(option, "i") == 0) {
             userInputIngredients(ingredients, ingredientCount);
         } else if (strcmp(option, "k") == 0) {
-            userInputCategories(categories, categoryCount, unique_categories);
+            userInputCategories(categories, categoryCount, unique_categories, unique_categories_count);
         } else if (strcmp(option, "s") == 0) {
             userInputSearch(recipes, recipeCount);
         } else if (strcmp(option, "f") == 0) {
@@ -108,9 +108,9 @@ void convertToLowerCase(char *string) {
  * @param categories The category of food that the user wants
  * @param categoryCount Counts the number of categories entered
  */
-void userInputCategories(char ***categories, int *categoryCount, char unique_categories[MAX_CAT][MAX_NAME]) {
+void userInputCategories(char ***categories, int *categoryCount, char unique_categories[MAX_CAT][MAX_NAME], int unique_categories_count) {
     char category[MAX_NAME];
-    printf("Indtast kategorier, du er interesseret i, indtast 'faerdig', naar du er faerdig\n");
+    printf("Indtast kategorier, du er interesseret i, indtast 'i' for information om tilgengelige kategorier, indtast 'faerdig', naar du er faerdig\n");
 
     while (1) {
         printf(">");
@@ -126,7 +126,9 @@ void userInputCategories(char ***categories, int *categoryCount, char unique_cat
 
         if (strcmp(category, "faerdig") == 0) {
             return;  // Return to the menu
-        }
+        } else if (strcmp(category, "i") == 0) {
+            printCategories(unique_categories, unique_categories_count);
+        } else {
 
         int validCategory = 0;
 
@@ -155,7 +157,15 @@ void userInputCategories(char ***categories, int *categoryCount, char unique_cat
         } else {
             printf("Ugyldig kategori. Proev igen\n");
         }
+      }
     }
+}
+
+void printCategories(char unique_categories[MAX_CAT][MAX_NAME], int unique_categories_count) {
+    for (int i = 0; i < unique_categories_count; i++) {
+        printf("%s, ", unique_categories[i]);
+    }
+    printf("\n");
 }
 
 /**
@@ -189,7 +199,7 @@ void printProgramExplanation() {
  */
 void chooseRecipe(const Recipe* chosenRecipe) {
     for (int i = 0; i < 3; ++i) {
-        printf("\nOpskrift %d %s", i + 1, chosenRecipe[i].name);
+        printf("\nOpskrift %d %s (Manglende Ingredienser: %d)", i + 1, chosenRecipe[i].name, chosenRecipe[i].missingIngredients);
     }
 
     int userChoice = 0;
