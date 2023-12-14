@@ -134,4 +134,5 @@ void parseIngredients(FILE *file, Recipe *recipe) {
 
         ingredientCount++;
     } while (fgets(line, sizeof(line), file) != NULL && line[0] != '>' && line[0] != '\n');
+    recipe->ingredients[ingredientCount].name[0] = '\0';
 }
