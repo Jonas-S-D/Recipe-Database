@@ -37,6 +37,7 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount);
 void userInputCategories(char ***categories, int *categoryCount, char unique_categories[MAX_CAT][MAX_NAME]);
 void freeMemory(char ***array, int count);
 void printProgramExplanation();
+void chooseRecipe(const Recipe* chosenRecipe);
 
 // Load
 int load_recipe_struct(FILE *file, Recipe **recipes, char unique_categories[MAX_CAT][MAX_NAME], int *unique_categories_count);
@@ -47,7 +48,7 @@ void print_recipe(Recipe recipe);
 void parse_ingredients(FILE *file, Recipe *recipe);
 void print_recipes(Recipe *recipes, int recipe_count);
 
-// Compare
+// Compare-library.c
 Recipe* filterRecipe(const Recipe* recipe, char** categories, int CategoryCount);
 Recipe* filterRecipes(const Recipe* recipes, char** categories, int CategoryCount, int RecipeCount, int *filteredCount);
 void sortFilteredRecipes(Recipe *FilteredRecipes, Ingredient *ingredients, int ingredientCount);

@@ -32,6 +32,7 @@ int main() {
     Recipe *recipes = NULL; // Array to store recipe structs
     int recipeCount = load_recipe_struct(file, &recipes, unique_categories, &unique_categories_count);
     int filteredCount = 0;
+    Recipe *chosenRecipe;
 
     // Step 1: Program Explanation
     // printProgramExplanation();
@@ -63,6 +64,7 @@ int main() {
     // printf("testing -> %s",recipes[0].name);
 
     // Step 4: Let the user pick their dish
+    chooseRecipe(filteredRecipes);
 
     // Step 5: Display the recipe.
 

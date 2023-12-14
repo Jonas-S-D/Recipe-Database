@@ -180,6 +180,32 @@ void printProgramExplanation() {
            "Nu kan brugeren vaelge en madret som de gerne vil have udskrives sammen med opskriften.\n\n");
 }
 
+/**
+ * chooseRecipe allows the user to choose which of the three best recipes they want to make,
+ * and then it gets printet out via a switch
+ * @param chosenRecipe Is the struct "Recipe" that has been defined in app-library.h
+ */
+void chooseRecipe(const Recipe* chosenRecipe){
+    for (int i = 0; i < 3; ++i) {
+        printf("\nOpskrift %d %s", i + 1, chosenRecipe[i].name);
+    }
+
+    int userChoice = 0;
+    printf("\n\nTast 1,2 eller 3 for at vaelge en opskrift\n");
+    scanf("%d", &userChoice);
+
+    switch (userChoice) {
+        case (1):
+            print_recipe(chosenRecipe[0]);
+            break;
+        case (2):
+            print_recipe(chosenRecipe[1]);
+            break;
+        case (3):
+            print_recipe(chosenRecipe[2]);
+            break;
+        default:
+            break;
 void userInputSearch(Recipe *recipes, int recipeCount) {
     // initialize loop variable
     int outer_loop = 1;
