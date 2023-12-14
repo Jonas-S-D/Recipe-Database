@@ -42,9 +42,6 @@ int main() {
     // Step 2: Get user input
     userInput(&ingredients, &ingredientCount, &categories, &categoryCount, recipes, recipeCount, unique_categories);
 
-    for (int i = 0; i < categoryCount; i++) {
-        printf("%s\n", categories[i]);
-    }
     // Step 3: Display dishes based on user input
     Recipe *filteredRecipes = filterRecipes(recipes, categories, categoryCount, recipeCount, &filteredCount);
 
