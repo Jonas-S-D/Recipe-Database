@@ -25,14 +25,12 @@ int main() {
     char unique_categories[MAX_CAT][MAX_NAME];
     int unique_categories_count = 0;
     Ingredient *ingredients;
-    char **category_array;
     int ingredientCount = 0;
     char **categories = NULL;
     int categoryCount = 0;
     Recipe *recipes = NULL; // Array to store recipe structs
     int recipeCount = load_recipe_struct(file, &recipes, unique_categories, &unique_categories_count);
     int filteredCount = 0;
-    Recipe *chosenRecipe;
 
     // Step 1: Program Explanation
     // printProgramExplanation();
