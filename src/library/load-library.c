@@ -53,15 +53,6 @@ void printRecipe(Recipe recipe) {
     printf("\n");
 }
 
-//function to print all recipes in struct array
-void printRecipes(Recipe *recipes, int recipeCount) {
-    printf("Antal opskrifter: %d\n", recipeCount);
-    for (int i = 0; i < recipeCount; i++) {
-        printf("Udskriver opskrift %d\n", i + 1);
-        printRecipe(recipes[i]);
-    }
-}
-
 //function to parse categories
 void parseCategories(FILE *file, Recipe *recipe, char uniqueCategories[MAX_CAT][MAX_NAME], int *uniqueCategoriesCount) {
     char line[MAX_LINE];
