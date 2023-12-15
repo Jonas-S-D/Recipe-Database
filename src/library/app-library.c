@@ -200,28 +200,40 @@ void printProgramExplanation() {
  * @param chosenRecipe Is the struct "Recipe" that has been defined in app-library.h
  */
 void chooseRecipe(const Recipe* chosenRecipe) {
-    for (int i = 0; i < 3; ++i) {
-        printf("\nOpskrift %d %s (Manglende Ingredienser: %d)", i + 1, chosenRecipe[i].name, chosenRecipe[i].missingIngredients);
-    }
-
     int userChoice = 0;
-    printf("\n\nTast 1,2 eller 3 for at vaelge en opskrift\n");
-    scanf("%d", &userChoice);
-
-    switch (userChoice) {
-        case (1):
-            printRecipe(chosenRecipe[0]);
-            break;
-        case (2):
-            printRecipe(chosenRecipe[1]);
-            break;
-        case (3):
-            printRecipe(chosenRecipe[2]);
-            break;
-        default:
-            break;
+    /*
+     * Koden udskriver de tre opskrifter med færrest manglende ingredienser,
+     * ved samme på antal manglende ingredienser, vælger den de første i sorteringen.
+     */
+    for (int i = 0; i < 3; ++i) {
+        printf("\nOpskrift %d %s (Manglende Ingredienser: %d)", i + 1, chosenRecipe[i].name,
+               chosenRecipe[i].missingIngredients);
     }
-}
+    printf("\n\n");
+    /*
+     * Lader brugeren vælge hvilken af de 3 udprintede opskrifter som de vil se detaljerne på.
+    */
+    while (1) {
+        printf("Tast 1,2 eller 3 for at vaelge en opskrift\n");
+        //tjekker om brugerens input ikke er et tal i forhold til det skal være en int.
+        if (scanf("%d", &userChoice) != 1) {
+            printf("\nForkert input.  Indtast venligst et tal.\n");
+            clearInputBuffer();
+            continue;
+        }
+        // Switch case der fungere til 1, 2, og 3, hvis ikke forkert input og prøv igen.
+            switch (userChoice) {
+                case (1):
+                case (2):
+                case (3):
+                    printRecipe(chosenRecipe[userChoice - 1]);
+                    return;
+                default:
+                    printf("\nForkert input. Indtast venligst 1, 2, eller 3.\n");
+            }
+        }
+    }
+
 void userInputSearch(Recipe *recipes, int recipeCount) {
     // initialize loop variable
     int outerLoop = 1;
