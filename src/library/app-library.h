@@ -63,13 +63,15 @@ Recipe* filterRecipes(const Recipe* recipes, char** categories, int categoryCoun
 void sortFilteredRecipes(Recipe *filteredRecipes, Ingredient *ingredients, int ingredientCount);
 void sortRecipes(Recipe* filteredRecipe, Ingredient* ingredients, int ingredientCount);
 int compareFunction(const void *a, const void *b);
-int binarySearchRecipes(nameIndex *nameIndexArr, int high, const char *target);
-char* stringToLower(char* str);
-nameIndex *nameIndexArr(Recipe *recipes,int recipeCount);
 void userInputSearch(Recipe *recipes, int recipeCount);
 int unitCompare(Recipe* filteredRecipe, Ingredient *ingredients, int recipe, int userInput);
 void unitConvert(char *unit, double *amount);
 void clearInputBuffer();
+
+//search
+int binarySearchRecipes(nameIndex *nameIndexArr, int high, const char *target);
+char* stringToLower(char* str);
+nameIndex *nameIndexArr(Recipe *recipes,int recipeCount);
 
 // Price Compare
 void findLowestPrice(char missingIngredients[][MAX_NAME], int arrLength);
