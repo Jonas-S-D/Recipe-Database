@@ -1,4 +1,4 @@
-int load_recipe_struct(FILE *file, Recipe **recipes, char unique_categories[MAX_CAT][MAX_NAME], int *unique_categories_count) {
+int loadRecipeStruct(FILE *file, Recipe **recipes, char uniqueCategories[MAX_CAT][MAX_NAME], int *uniqueCategoriesCount) {
     char line[MAX_LINE]; // char array to hold lines
     int recipeCount = 0;  // Variable to keep track of the number of recipes
     // Reading the file line by line
@@ -14,13 +14,13 @@ int load_recipe_struct(FILE *file, Recipe **recipes, char unique_categories[MAX_
             // Parse recipe name
             sscanf(line, ">%[^\n]", (*recipes)[recipeCount].name);
             // Parse categories
-            parse_categories(file, &(*recipes)[recipeCount], unique_categories, unique_categories_count);
+            parseCategories(file, &(*recipes)[recipeCount], uniqueCategories, uniqueCategoriesCount);
 
             // Parse recipe explanation
-            parse_explanation(file, &(*recipes)[recipeCount]);
+            parseExplanation(file, &(*recipes)[recipeCount]);
 
             // Parse ingredients
-            parse_ingredients(file, &(*recipes)[recipeCount]);
+            parseIngredients(file, &(*recipes)[recipeCount]);
 
             // Increment recipeCount
             recipeCount++;
@@ -30,7 +30,7 @@ int load_recipe_struct(FILE *file, Recipe **recipes, char unique_categories[MAX_
 }
 
 //function to check if file has been loaded
-void check_load(FILE *file) {
+void checkLoad(FILE *file) {
     if (file == NULL) { //report if it ran into an error
         perror("Fejl ved aabning af fil");
         exit(EXIT_FAILURE);
@@ -38,7 +38,7 @@ void check_load(FILE *file) {
 }
 
 //function to print recipe
-void print_recipe(Recipe recipe) {
+void printRecipe(Recipe recipe) {
     printf("**************************************************\n");
     printf("Opskriftens navn: %s\n\n", recipe.name);
     for (int i = 0; recipe.categories[i][0] != '\0'; i++) {
@@ -54,16 +54,16 @@ void print_recipe(Recipe recipe) {
 }
 
 //function to print all recipes in struct array
-void print_recipes(Recipe *recipes, int recipe_count) {
-    printf("Antal opskrifter: %d\n", recipe_count);
-    for (int i = 0; i < recipe_count; i++) {
+void printRecipes(Recipe *recipes, int recipeCount) {
+    printf("Antal opskrifter: %d\n", recipeCount);
+    for (int i = 0; i < recipeCount; i++) {
         printf("Udskriver opskrift %d\n", i + 1);
-        print_recipe(recipes[i]);
+        printRecipe(recipes[i]);
     }
 }
 
 //function to parse categories
-void parse_categories(FILE *file, Recipe *recipe, char unique_categories[MAX_CAT][MAX_NAME], int *unique_categories_count) {
+void parseCategories(FILE *file, Recipe *recipe, char uniqueCategories[MAX_CAT][MAX_NAME], int *uniqueCategoriesCount) {
     char line[MAX_LINE];
     fgets(line, sizeof(line), file);
     sscanf(line, ">%[^\n]", line);
@@ -77,16 +77,16 @@ void parse_categories(FILE *file, Recipe *recipe, char unique_categories[MAX_CAT
         // Check if the category is already in unique categories array
         int unique = 1;
 
-        for (int i = 0; i < *unique_categories_count; i++) {
-            if (strcmp(unique_categories[i], token) == 0) {
+        for (int i = 0; i < *uniqueCategoriesCount; i++) {
+            if (strcmp(uniqueCategories[i], token) == 0) {
                 unique = 0;
                 break;
             }
         }
 
         if (unique == 1) {
-            strcpy(unique_categories[*unique_categories_count], token);
-            *unique_categories_count = *unique_categories_count + 1;
+            strcpy(uniqueCategories[*uniqueCategoriesCount], token);
+            *uniqueCategoriesCount = *uniqueCategoriesCount + 1;
         }
         token = strtok(NULL, ",\n");
         count++;
@@ -95,7 +95,7 @@ void parse_categories(FILE *file, Recipe *recipe, char unique_categories[MAX_CAT
 
 
 //function to parse explanation
-void parse_explanation(FILE *file, Recipe *recipe) {
+void parseExplanation(FILE *file, Recipe *recipe) {
     char line[MAX_LINE];
     fgets(line, sizeof(line), file);
     sscanf(line, ">%[^\n]", recipe->explanation);
@@ -105,7 +105,7 @@ void parse_explanation(FILE *file, Recipe *recipe) {
 }
 
 //function to parse ingredients in recipe
-void parse_ingredients(FILE *file, Recipe *recipe) {
+void parseIngredients(FILE *file, Recipe *recipe) {
     char line[MAX_LINE];
     int ingredientCount = 0;
 
@@ -134,4 +134,5 @@ void parse_ingredients(FILE *file, Recipe *recipe) {
 
         ingredientCount++;
     } while (fgets(line, sizeof(line), file) != NULL && line[0] != '>' && line[0] != '\n');
+    recipe->ingredients[ingredientCount].name[0] = '\0';
 }
