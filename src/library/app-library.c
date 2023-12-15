@@ -46,7 +46,9 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
 
     while (1) {
         printf("Ingrediens %d > ", *ingredientCount + 1);
-        scanf("%s", ingredient.name);
+        //scanf("%s", ingredient.name);
+        clearInputBuffer();
+        fscanf(stdin, "%99[^\n]", ingredient.name);
 
         // Convert user input to lowercase.
         convertTolower(ingredient.name);
@@ -59,10 +61,10 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
         do {
             printf("Ingrediens %d > Maengde: ", *ingredientCount + 1);
             // Checks if the user inputs 2 inputs that are valid a double and a char.
-            if (scanf("%lf %s", ingredient.amount, ingredient.unit) != 2) {
-                while (getchar() != '\n');
 
-                printf("Ugyldigt input. Indtast venligts baade beløb og enhed.\n");
+            if (scanf("%lf %s", ingredient.amount, ingredient.unit) != 2) {
+                printf("Ugyldigt input. Indtast venligts baade maengde og enhed.\n");
+                clearInputBuffer();
                 continue; // Ask the user to enter the values again
             }
 
@@ -283,4 +285,9 @@ void convertTolower(char* str) {
     for (int i = 0; str[i] != '\0'; i++) {
         str[i] = (char) tolower(str[i]);
     }
+}
+
+void clearInputBuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
 }
