@@ -56,7 +56,6 @@ void parseCategories(FILE *file, Recipe *recipe, char uniqueCategories[MAX_CAT][
 void parseExplanation(FILE *file, Recipe *recipe);
 void printRecipe(Recipe recipe);
 void parseIngredients(FILE *file, Recipe *recipe);
-void printRecipes(Recipe *recipes, int recipeCount);
 
 // Compare
 Recipe* filterRecipe(const Recipe* recipe, char** categories, int categoryCount);
