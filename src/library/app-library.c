@@ -57,7 +57,7 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
 
         // Loop to handle user input being valid.
         do {
-            printf("Ingrediens %d > Maengde & måleenhed: ", *ingredientCount + 1);
+            printf("Ingrediens %d > Maengde & maaleenhed: ", *ingredientCount + 1);
             // Checks if the user inputs 2 inputs that are valid a double and a char.
             if (scanf("%lf %s", ingredient.amount, ingredient.unit) != 2) {
                 while (getchar() != '\n');
