@@ -40,7 +40,6 @@ typedef struct {
 } nameIndex;
 
 void convertTolower(char* str);
-void determineOption(char *option, Ingredient *ingredients, int *ingredientCount, char **categories, int*categoryCount, Recipe *recipes, int recipeCount, char uniqueCategories[MAX_CAT][MAX_NAME]);
 void userInput(Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount, Recipe *recipes, int recipeCount, char uniqueCategories[MAX_CAT][MAX_NAME], int uniqueCategoriesCount);
 void userInputIngredients(Ingredient **ingredients, int *ingredientCount);
 void userInputCategories(char ***categories, int *categoryCount, char uniqueCategories[MAX_CAT][MAX_NAME], int uniqueCategoriesCount);
