@@ -16,7 +16,6 @@ Recipe *filterRecipe(const Recipe *recipe, char **categories, int CategoryCount)
         printf("Memory allocation failed for FilteredRecipe.\n");
         return NULL;
     }
-    filteredRecipe->name[0] = '\0';
 
     if (categories != NULL && CategoryCount > 0) { // At least one category chosen
         for (int i = 0; i < CategoryCount; ++i) { // Checks through the users categories

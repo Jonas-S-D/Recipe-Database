@@ -71,6 +71,7 @@ nameIndex *nameIndexArr(Recipe *recipes,int recipeCount);
 void userInputSearch(Recipe *recipes, int recipeCount);
 int unitCompare(Recipe* FilteredRecipe, Ingredient *ingredients, int recipe, int userInput);
 void unitConvert(char *unit, double *amount);
+void clearInputBuffer();
 
 // Price Compare
 void findLowestPrice(char missingIngredients[][MAX_NAME], int arrLength);
