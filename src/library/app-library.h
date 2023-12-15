@@ -64,7 +64,7 @@ void sortFilteredRecipes(Recipe *filteredRecipes, Ingredient *ingredients, int i
 void sortRecipes(Recipe* filteredRecipe, Ingredient* ingredients, int ingredientCount);
 int compareFunction(const void *a, const void *b);
 int binarySearchRecipes(nameIndex *nameIndexArr, int high, const char *target);
-char* stringToLower(const char* str);
+char* stringToLower(char* str);
 nameIndex *nameIndexArr(Recipe *recipes,int recipeCount);
 void userInputSearch(Recipe *recipes, int recipeCount);
 int unitCompare(Recipe* filteredRecipe, Ingredient *ingredients, int recipe, int userInput);
