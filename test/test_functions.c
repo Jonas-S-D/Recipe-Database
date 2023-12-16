@@ -1,6 +1,6 @@
 #include "../src/library/app-library.c"
 #include "../src/library/load-library.c"
-#include "../src/library/app-search.c"
+#include "../src/library/search-library.c"
 #include <assert.h>
 
 // Prototypes for the test functions
