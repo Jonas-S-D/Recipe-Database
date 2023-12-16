@@ -243,7 +243,7 @@ char **ingredientsNeeded(Recipe filteredRecipes, int userIngredients, Ingredient
         for (int j = 0; j < userIngredients; j++)
         {
             /* checks for common ingredients */
-            if (strcmp(filteredRecipes.ingredients[i].name, ingredients[j].name) == 0)
+            if (strcmp(filteredRecipes.ingredients[i].name, ingredients[j].name) == 0 && ingredients[j].amount[0] >= filteredRecipes.ingredients[i].amount[0])
             {
                 commonIngredients++;
             }
