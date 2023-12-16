@@ -1,4 +1,9 @@
-// Binary search function
+/**
+ * Binary search function
+ * @param *nameIndexArr pointer to the array to be searched.
+ * @param high variable containing last index of array.
+* @param *target pointer to the string to search for.
+ */
 int binarySearchRecipes(nameIndex *nameIndexArr, int high, const char *target) {
     int low = 0;
     while (low <= high) {
@@ -15,44 +20,32 @@ int binarySearchRecipes(nameIndex *nameIndexArr, int high, const char *target) {
         if (comparison > 0) {
             high = mid - 1;
         }
-        // If the target is in the right half
+            // If the target is in the right half
         else {
             low = mid + 1;
         }
     }
 
-    // If the target is not present in the array
+    // If the target is not present in the array return -1
     return -1;
 }
 
-//converts a string to lower case
-char* stringToLower(const char* str) {
-    // Calculate the length of the input string
-    int length = 0;
-    while (str[length] != '\0') {
-        length++;
+/**
+ * function that converts a string to lower case
+ * @param *str pointer to the string to be converted to lower case.
+ */
+char *stringToLower(char *str) {
+    for (int i = 0; str[i] != '\0'; i++) {
+        str[i] = (char) tolower(str[i]);
     }
-
-    // Allocate memory for char array
-    char* lowerStr = (char*)malloc((length + 1) * sizeof(char));
-
-    // Check if memory allocation is successful
-    if (lowerStr == NULL) {
-        fprintf(stderr, "Memory allocation failed\n");
-        exit(EXIT_FAILURE);
-    }
-
-    // Convert each character to lowercase
-    for (int i = 0; i < length; i++) {
-        lowerStr[i] = tolower(str[i]);
-    }
-
-    // Add the null terminator
-    lowerStr[length] = '\0';
-    return lowerStr;
+    return str;
 }
 
-//function to create an array of structs containing recipe names and their index
+//
+/**
+ * function to create an array of structs containing recipe names and their index
+ * @param *recipes pointer to the array of recipe to generate a nameIndex array based on.
+ */
 nameIndex *nameIndexArr(Recipe *recipes, int recipeCount) {
     nameIndex *nameIndexStructArray;
 

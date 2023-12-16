@@ -1,7 +1,7 @@
 #include "library/app-library.c"
 #include "library/load-library.c"
 #include "library/compare-library.c"
-#include "library/app-search.c"
+#include "library/search-library.c"
 #include <stdio.h>
 
 int main() {
