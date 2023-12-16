@@ -3,16 +3,16 @@
 #include "../src/library/app-search.c"
 #include <assert.h>
 
-// Prototyper til test-funktioner
+// Prototypes for the test functions
 void loadRecipeTest(void);
 
 int main(void) {
-    //Kør alle test-funktioner.
+    //run all test functions
     loadRecipeTest();
     printf("Great succes!!!");
 }
 
-// Unit_tests
+// Unit tests
 void loadRecipeTest(void) {
     //load recipes into recipe array and initialize variables
     FILE *file = fopen("src/library/recipes.txt", "r");
@@ -39,14 +39,4 @@ void loadRecipeTest(void) {
                    strcmp(recipes[3].ingredients[9].name, "pepper") == 0);
     assert(recipes[0].ingredients->amount[0] == 500 && recipes[3].ingredients->amount[0] == 500);
     assert(strcmp(recipes[0].ingredients[0].unit, "g") == 0 && strcmp(recipes[3].ingredients[1].unit, "stk") == 0);
-}
-
-int binarySearchRecipes(nameIndex *nameIndexArr, int high, const char *target) {
-
-void *nameIndexArr(void) {
-
-}
-
-void binarySearchRecipes(void) {
-
 }
