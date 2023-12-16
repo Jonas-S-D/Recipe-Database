@@ -147,15 +147,15 @@ int compareFunction(const void *a, const void *b) {
 }
 
 // Finds which store that has the lowest price of an ingredient
-void findLowestPrice(char missingIngredients[][MAX_NAME], int arrLength) {
+void findLowestPrice(char **missingIngredients, int arrLength) {
     /* opens file and returns an error if file pointer points to NULL */
-    FILE *file = fopen("priser.csv", "r");
+    FILE *file = fopen("src/library/prices.txt", "r");
     if (file == NULL) {
         printf("Error opening file\n");
         return;
     }
 
-    Item *item;
+    Item *ingredients;
     char buffer[MAX_LINE];
     int structLength = 0;
 
@@ -168,8 +168,8 @@ void findLowestPrice(char missingIngredients[][MAX_NAME], int arrLength) {
     fseek(file, 0, SEEK_SET);
 
     /* allocates memory for array of structs depending on number of rows in csv file */
-    item = malloc(structLength * sizeof(Item));
-    if (item == NULL) {
+    ingredients = malloc(structLength * sizeof(Item));
+    if (ingredients == NULL) {
         printf("Failed to allocate memory\n");
         fclose(file);
         return;
@@ -178,7 +178,8 @@ void findLowestPrice(char missingIngredients[][MAX_NAME], int arrLength) {
     /* scans data from file into array of structs */
     int count = 0;
     while (!feof(file)) {
-        fscanf(file, "%[^,], %[^,], %lf,\n", item[count].store, item[count].name, &item[count].price);
+        fscanf(file, "%[^,], %[^,], %[^,],%lf,\n", ingredients[count].store, ingredients[count].unit,
+                                                                ingredients[count].name, &ingredients[count].price);
         count++;
     }
     fclose(file);
@@ -186,24 +187,74 @@ void findLowestPrice(char missingIngredients[][MAX_NAME], int arrLength) {
     /* variables used to save each ingredient, the lowest price and the store which it can be bought */
     char storeName[MAX_NAME];
     char itemName[MAX_NAME];
+    char units[MAX_NAME];
     double lowestPrice = 1000;
 
     /* searches for which store has the lowest price for each ingredient */
     for (int i = 0; i < arrLength; i++) {
         lowestPrice = 1000;
         for (int j = 0; j < structLength; j++) {
-            if (strcmp(missingIngredients[i], item[j].name) == 0 && lowestPrice > item[j].price) {
-                lowestPrice = item[j].price;
-                strcpy(storeName, item[j].store);
-                strcpy(itemName, item[j].name);
+            if (strcmp(missingIngredients[i], ingredients[j].name) == 0 && lowestPrice > ingredients[j].price) {
+                lowestPrice = ingredients[j].price;
+                strcpy(storeName, ingredients[j].store);
+                strcpy(itemName, ingredients[j].name);
+                strcpy(units, ingredients[j].unit);
             }
         }
         /* checks if ingredient was found in the struct array */
         if (strcmp(missingIngredients[i], itemName) == 0) {
-            printf("Billigste %s kan kobes i %s for %.2lf kr.\n", itemName, storeName, lowestPrice);
+            printf("%s %s kan kobes billigst i %s for %.2lf kr.\n", units, itemName, storeName, lowestPrice);
         } else {
-            printf("%s kan ikke findes i databasen\n", missingIngredients[i]);
+            printf("%s findes ikke i databasen\n", missingIngredients[i]);
         }
     }
-    free(item);
+
+    /* free memory allocated */
+    for (int i = 0; i < arrLength; i++)
+    {
+        free(missingIngredients[i]);
+    }
+    free(missingIngredients);
+    free(ingredients);
+}
+
+/* creates an array of the missing ingredients needed to complete a recipe */
+char **ingredientsNeeded(Recipe filteredRecipes, int userIngredients, Ingredient *ingredients)
+{
+    /* counts the number of ingredients in the recipe chosen by the user */
+    int recipeIngredients = 0;
+    for (int j = 0; filteredRecipes.ingredients[j].name[0] != '\0'; j++)
+    {
+        recipeIngredients++;
+    }
+
+    /* dynamically allocates memory for array of strings which will contain name of each missing ingredient in recipe */
+    int arrLength = filteredRecipes.missingIngredients;
+    char **missingIngredients = malloc(sizeof(char *) * arrLength);
+
+    int index = 0;
+    int commonIngredients;
+
+    /* runs through each ingredient from the recipe */
+    for (int i = 0; i < recipeIngredients; i++)
+    {
+        commonIngredients = 0;
+        /* runs through each ingredient entered by the user */
+        for (int j = 0; j < userIngredients; j++)
+        {
+            /* checks for common ingredients */
+            if (strcmp(filteredRecipes.ingredients[i].name, ingredients[j].name) == 0 && ingredients[j].amount[0] >= filteredRecipes.ingredients[i].amount[0])
+            {
+                commonIngredients++;
+            }
+        }
+        /* if the nested loop didn't find an ingredient in the recipe that corresponds to the ones entered by the user then add ingredient to array */
+        if (commonIngredients < 1)
+        {
+            missingIngredients[index] = malloc(strlen(ingredients[i].name) + 1);
+            strcpy(missingIngredients[index], filteredRecipes.ingredients[i].name);
+            index++;
+        }
+    }
+    return missingIngredients;
 }

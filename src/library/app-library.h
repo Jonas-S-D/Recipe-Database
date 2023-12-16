@@ -31,6 +31,7 @@ typedef struct
 {
     char name[MAX_NAME];
     char store[MAX_NAME];
+    char unit[MAX_UNIT];
     double price;
 } Item;
 
@@ -46,7 +47,7 @@ void userInputCategories(char ***categories, int *categoryCount, char uniqueCate
 void printCategories(char uniqueCategories[MAX_CAT][MAX_NAME], int uniqueCategoriesCount);
 void freeMemory(char ***array, int count);
 void printProgramExplanation();
-void chooseRecipe(const Recipe* chosenRecipe);
+int chooseRecipe(const Recipe* chosenRecipe);
 
 // Load
 int loadRecipeStruct(FILE *file, Recipe **recipes, char uniqueCategories[MAX_CAT][MAX_NAME], int *uniqueCategoriesCount);
@@ -74,4 +75,5 @@ char* stringToLower(char* str);
 nameIndex *nameIndexArr(Recipe *recipes,int recipeCount);
 
 // Price Compare
-void findLowestPrice(char missingIngredients[][MAX_NAME], int arrLength);
+void findLowestPrice(char **missingIngredients, int arrLength);
+char **ingredientsNeeded(Recipe filteredRecipes, int ingredientCount, Ingredient *ingredients);

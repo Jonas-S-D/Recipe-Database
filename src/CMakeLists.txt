@@ -13,4 +13,3 @@ target_link_libraries(app m)
 target_include_directories(app PUBLIC .)
 
 add_test(NAME test_functions.c COMMAND test)
-
