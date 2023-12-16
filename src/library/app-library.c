@@ -175,6 +175,7 @@ void printCategories(char uniqueCategories[MAX_CAT][MAX_NAME], int uniqueCategor
  * @param array
  * @param count
  */
+
 void freeMemory(char ***array, int count) {
     for (int i = 0; i < count; ++i) {
         free((*array)[i]);

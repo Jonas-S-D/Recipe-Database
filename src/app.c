@@ -39,7 +39,6 @@ int main() {
     // Step 4: Let the user pick their dish and choose the one to see
     chooseRecipe(filteredRecipes);
 
-
     // Free allocated memory for ingredients and categories
     free(ingredients);
     freeMemory(&categories, categoryCount);
