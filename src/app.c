@@ -37,8 +37,13 @@ int main() {
     fclose(file); // close the file
 
     // Step 4: Let the user pick their dish and choose the one to see
-    chooseRecipe(filteredRecipes);
+    int choice = 0;
+    choice = chooseRecipe(filteredRecipes);
 
+    // Step 5: Search for missing ingredients and check where they can be bought cheapest
+    char **missingIngredients = ingredientsNeeded(filteredRecipes[choice - 1], ingredientCount, ingredients);
+    int length = filteredRecipes[choice - 1].missingIngredients;
+    findLowestPrice(missingIngredients, length);
 
     // Free allocated memory for ingredients and categories
     free(ingredients);

@@ -199,7 +199,7 @@ void printProgramExplanation() {
  * and then it gets printet out via a switch
  * @param chosenRecipe Is the struct "Recipe" that has been defined in app-library.h
  */
-void chooseRecipe(const Recipe* chosenRecipe) {
+int chooseRecipe(const Recipe* chosenRecipe) {
     int userChoice = 0;
     /*
      * Koden udskriver de tre opskrifter med færrest manglende ingredienser,
@@ -227,7 +227,7 @@ void chooseRecipe(const Recipe* chosenRecipe) {
                 case (2):
                 case (3):
                     printRecipe(chosenRecipe[userChoice - 1]);
-                    return;
+                    return userChoice;
                 default:
                     printf("\nForkert input. Indtast venligst 1, 2, eller 3.\n");
             }
