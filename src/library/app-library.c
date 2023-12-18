@@ -24,6 +24,10 @@ void userInput(Ingredient **ingredients, int *ingredientCount, char ***categorie
         } else if (strcmp(option, "s") == 0) {
             userInputSearch(recipes, recipeCount);
         } else if (strcmp(option, "f") == 0) {
+            if (*ingredientCount == 0){
+                printf("Du skal minimum indtaste 1 ingrediens for at fortsætte\n");
+                continue;
+            }
             break;
         } else {
             printf("Ugyldigt input!\n");
@@ -225,6 +229,7 @@ int chooseRecipe(const Recipe *chosenRecipe) {
         }
     }
 }
+
 /**
  * Allows the user to search for a specific recipe.
  * @param recipes the recipe struct containing all recipes.
@@ -243,50 +248,57 @@ void userInputSearch(Recipe *recipes, int recipeCount) {
         int innerLoop = 1;
 
         //ask user for recipe or whether to finish search
-        printf("indtast opskrift du oensker at finde og 'f' for at afslutte og gaa tilbage til hovedmenuen\n>");
+        printf("indtast opskrift du oensker at finde, indtast 'l' hvis du vil se en liste af opskrifter i bibliotektet, og 'f' for at afslutte og gaa tilbage til hovedmenuen\n>");
         scanf(" %[^\n]", target);
         if (strcmp(target, "f") == 0) {
             break;
-        }
+        } else if (strcmp(target, "l") == 0) {
+            printf("*******************************************************************\n");
+            for (int i = 0; i < recipeCount; i++) {
+                printf("Opskrift %d: %s\n", i + 1, recipes[i].name);
+            }
+            printf("*******************************************************************\n");
+        } else {
+            //convert input char array to lower case
+            strcpy(target, stringToLower(target));
 
-        //convert input char array to lower case
-        strcpy(target, stringToLower(target));
+            //create a name index array with library recipes
+            nameIndex *recipeNameIndex = nameIndexArr(recipes, recipeCount);
 
-        //create a name index array with library recipes
-        nameIndex *recipeNameIndex = nameIndexArr(recipes, recipeCount);
+            //test whether the user recipe is in the recipe library
+            int targetRecipe = binarySearchRecipes(&recipeNameIndex[0], recipeCount, target); //search for recipe
 
-        //test whether the user recipe is in the recipe library
-        int targetRecipe = binarySearchRecipes(&recipeNameIndex[0], recipeCount, target); //search for recipe
+            //if recipe found, print recipe
+            if (targetRecipe != -1) {
+                printRecipe(recipes[targetRecipe]);
+            }
+                //otherwise tell user not the recipe is not in library
+            else {
+                printf("desvaerre, der er ikke en opskrift med det navn i opskrift biblioteket.\n");
 
-        //if recipe found, print recipe
-        if (targetRecipe != -1) {
-            printRecipe(recipes[targetRecipe]);
-        }
-            //otherwise tell user not the recipe is not in library
-        else {
-            printf("desvaerre, der er ikke en opskrift med det navn i opskrift biblioteket.\n");
+                //inner loop to co ask the user if they want to try again or exit
+                while (innerLoop == 1) {
+                    printf("Tast 'ja' for at proeve igen og 'nej' for at gaa tilbage til hovedmenuen.\n>");
+                    scanf(" %s", breakLoop);
+                    strcpy(breakLoop, stringToLower(breakLoop));
 
-            //inner loop to co ask the user if they want to try again or exit
-            while (innerLoop == 1) {
-                printf("Tast 'ja' for at proeve igen og 'nej' for at gaa tilbage til hovedmenuen.\n>");
-                scanf(" %s", breakLoop);
-                strcpy(breakLoop, stringToLower(breakLoop));
+                    //if statement to break innerLoop or continue if unacceptable input is input
+                    if (strcmp(stringToLower(breakLoop), "ja") == 0) {
+                        outerLoop = 1;
+                        innerLoop = 0;
+                    } else if (strcmp(stringToLower(breakLoop), "nej") == 0) {
+                        outerLoop = 0;
+                        innerLoop = 0;
+                    } else {
+                        printf("Ugyldigt input!\n");
+                    }
 
-                //if statement to break innerLoop or continue if unacceptable input is input
-                if (strcmp(stringToLower(breakLoop), "ja") == 0) {
-                    outerLoop = 1;
-                    innerLoop = 0;
-                } else if (strcmp(stringToLower(breakLoop), "nej") == 0) {
-                    outerLoop = 0;
-                    innerLoop = 0;
-                } else {
-                    printf("Ugyldigt input!\n");
                 }
-
             }
         }
     }
 }
+
 /**
  * Converts a string to lowercase. just in case.
  * @param str is the string
