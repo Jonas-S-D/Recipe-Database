@@ -1,8 +1,8 @@
 /**
  * Binary search function
- * @param *nameIndexArr pointer to the array to be searched.
+ * @param nameIndexArr the array of structs to be searched.
  * @param high variable containing last index of array.
-* @param *target pointer to the string to search for.
+* @param target the string to search for.
  */
 int binarySearchRecipes(nameIndex *nameIndexArr, int high, const char *target) {
     int low = 0;
@@ -32,21 +32,22 @@ int binarySearchRecipes(nameIndex *nameIndexArr, int high, const char *target) {
 
 /**
  * function that converts a string to lower case
- * @param *str pointer to the string to be converted to lower case.
+ * @param str the string to be converted to lower case.
  */
 char *stringToLower(char *str) {
-    for (int i = 0; str[i] != '\0'; i++) {
-        str[i] = (char) tolower(str[i]);
+    char *str1 = str;
+    for (int i = 0; str1[i] != '\0'; i++) {
+        str1[i] = (char) tolower(str1[i]);
     }
-    return str;
+    return str1;
 }
 
 //
 /**
  * function to create an array of structs containing recipe names and their index
- * @param *recipes pointer to the array of recipe to generate a nameIndex array based on.
+ * @param recipes The array of recipes to generate a nameIndex array based on.
  */
-nameIndex *nameIndexArr(Recipe *recipes, int recipeCount) {
+nameIndex *nameIndexArr(const Recipe *recipes, const int recipeCount) {
     nameIndex *nameIndexStructArray;
 
     //allocate memory for the array
