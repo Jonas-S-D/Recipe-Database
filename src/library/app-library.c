@@ -161,6 +161,11 @@ void userInputCategories(char ***categories, int *categoryCount, char uniqueCate
     }
 }
 
+/**
+ * prints all the different categories in the array of recipes
+ * @param uniqueCategories array of all category names in the array of recipes
+ * @param uniqueCategoriesCount The number of categories in the uniqueCategories array
+ */
 void printCategories(char uniqueCategories[MAX_CAT][MAX_NAME], int uniqueCategoriesCount) {
     for (int i = 0; i < uniqueCategoriesCount; i++) {
         printf("%s, ", uniqueCategories[i]);
@@ -181,7 +186,7 @@ void freeMemory(char ***array, int count) {
     *array = NULL;
 }
 
-
+//prints the initial program explanation
 void printProgramExplanation() {
     printf("\nProgramforklaring:\n"
            "Formaalet med dette program er at reducere maengden af madspild i brugerens husstand.\n"
@@ -233,11 +238,11 @@ int chooseRecipe(const Recipe *chosenRecipe) {
 }
 
 /**
- * Allows the user to search for a specific recipe.
+ * Allows the user to search for a recipe in the array of recipes.
  * @param recipes the recipe struct containing all recipes.
  * @param recipeCount the amount of recipes in the struct of recipes.
  */
-void userInputSearch(Recipe *recipes, int recipeCount) {
+void userInputSearch(const Recipe *recipes, const int recipeCount) {
     // initialize loop variable
     int outerLoop = 1;
 
@@ -251,13 +256,13 @@ void userInputSearch(Recipe *recipes, int recipeCount) {
         int targetRecipeSearch = -1;
 
         //ask user for recipe or whether to finish search
-        printf("indtast opskrift du oensker at finde, indtast 'l' hvis du vil se en liste af opskrifter i bibliotektet, og 'f' for at afslutte og gaa tilbage til hovedmenuen\n>");
+        printf("indtast opskrift du oensker at finde, indtast 'l' hvis du vil se en liste af opskrifter i biblioteket, og 'f' for at afslutte og gaa tilbage til hovedmenuen\n>");
         scanf(" %[^\n]", target);
         //perform user choice
         if (strcmp(target, "f") == 0) {
             break;
         } else if (strcmp(target, "l") == 0) {
-            printRecipeLibraryNames(recipes, recipeCount);
+            printRecipeNames(recipes, recipeCount);
         } else {
             targetRecipeSearch = searchRecipe(recipes, recipeCount, target);
             //if recipe found, print recipe
@@ -308,7 +313,7 @@ void clearInputBuffer() {
     while ((c = getchar()) != '\n' && c != EOF);
 }
 
-void printRecipeLibraryNames(Recipe *recipes, int recipeCount) {
+void printRecipeNames(const Recipe *recipes, const int recipeCount) {
     printf("*******************************************************************\n");
     for (int i = 0; i < recipeCount; i++) {
         printf("Opskrift %d: %s\n", i + 1, recipes[i].name);
@@ -316,7 +321,7 @@ void printRecipeLibraryNames(Recipe *recipes, int recipeCount) {
     printf("*******************************************************************\n");
 }
 
-int searchRecipe(Recipe *recipes, int recipeCount, char *target) {
+int searchRecipe(const Recipe *recipes, const int recipeCount, const char *target) {
     //convert input char array to lower case
     strcpy(target, stringToLower(target));
 
