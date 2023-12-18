@@ -48,6 +48,7 @@ void printCategories(char uniqueCategories[MAX_CAT][MAX_NAME], int uniqueCategor
 void freeMemory(char ***array, int count);
 void printProgramExplanation();
 int chooseRecipe(const Recipe* chosenRecipe);
+void printRecipeLibraryNames(Recipe *recipes,int recipeCount);
 
 // Load
 int loadRecipeStruct(FILE *file, Recipe **recipes, char uniqueCategories[MAX_CAT][MAX_NAME], int *uniqueCategoriesCount);
@@ -73,6 +74,8 @@ void clearInputBuffer();
 int binarySearchRecipes(nameIndex *nameIndexArr, int high, const char *target);
 char* stringToLower(char* str);
 nameIndex *nameIndexArr(Recipe *recipes,int recipeCount);
+int searchRecipe(Recipe *recipes,int recipeCount, char *target);
+
 
 // Price Compare
 void findLowestPrice(char **missingIngredients, int arrLength);

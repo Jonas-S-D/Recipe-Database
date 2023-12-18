@@ -7,7 +7,7 @@
 int binarySearchRecipes(nameIndex *nameIndexArr, int high, const char *target) {
     int low = 0;
     while (low <= high) {
-        int mid = low + (high - low) / 2;
+        int mid = (low + high) / 2;
 
         int comparison = strcmp(nameIndexArr[mid].name, target);
 
