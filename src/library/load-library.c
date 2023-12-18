@@ -1,9 +1,10 @@
 /**
  * loads recipes from a txt file into an array of recipe structs.
  * The function returns the number of recipes loaded and directly loads recipes into **recipes
- * @param *file is a pointer to the file that recipes are to be loaded from.
+ * @param file is a pointer to the file that recipes are to be loaded from.
  * @param uniqueCategories are the array the unique categories are loaded into
- * @param *UniqueCategoriesCount is a pointer to the variable holding the number of unique categories.
+ * @param UniqueCategoriesCount is a pointer to the variable holding the number of unique categories.
+ * @return The amount of recipes in the recipe.txt file.
  */
 int loadRecipeStruct(FILE *file, Recipe **recipes, char uniqueCategories[MAX_CAT][MAX_NAME], int *uniqueCategoriesCount) {
     char line[MAX_LINE]; // char array to hold lines
@@ -39,7 +40,7 @@ int loadRecipeStruct(FILE *file, Recipe **recipes, char uniqueCategories[MAX_CAT
 
 /**
  * function to check if file has been loaded
- * @param *file is a pointer to the file that recipes are to be loaded from.
+ * @param file is a pointer to the file that recipes are to be loaded from.
  */
 void checkLoad(FILE *file) {
     if (file == NULL) { //report if it ran into an error
@@ -55,13 +56,14 @@ void checkLoad(FILE *file) {
 void printRecipe(Recipe recipe) {
     printf("**************************************************\n");
     printf("Opskriftens navn: %s\n\n", recipe.name);
+    printf("Opskriftens kategorier: ");
     for (int i = 0; recipe.categories[i][0] != '\0'; i++) {
-        printf("opskrifts kategorier: %s\n", recipe.categories[i]);
+        printf("%s, ", recipe.categories[i]);
     }
-    printf("\n");
+    printf("\n\n");
     printf("Opskrifts beskrivelse: %s\n\n", recipe.explanation);
     for (int j = 0; recipe.ingredients[j].name[0] != '\0'; j++) {
-        printf("Opskrifts ingrediens %d hedder %s, og du skal bruge %.1lf %s\n", j + 1, recipe.ingredients[j].name,
+        printf("Ingredients %d: %s, og du skal bruge %.1lf %s\n", j + 1, recipe.ingredients[j].name,
                *recipe.ingredients[j].amount, recipe.ingredients[j].unit);
     }
     printf("\n");
@@ -69,10 +71,10 @@ void printRecipe(Recipe recipe) {
 
 /**
  * function to parse categories
- * @param *file is a pointer to the file that recpies are to be loaded from.
- * @param *recipe is a pointer to the recipe to add categories to
+ * @param file is a pointer to the file that recpies are to be loaded from.
+ * @param recipe is a pointer to the recipe to add categories to
  * @param uniqueCategories are the array the unique categories are loaded into
- * @param *UniqueCategoriesCount is a pointer to the variable holding the number of unique categories.
+ * @param UniqueCategoriesCount is a pointer to the variable holding the number of unique categories.
  */
 void parseCategories(FILE *file, Recipe *recipe, char uniqueCategories[MAX_CAT][MAX_NAME], int *uniqueCategoriesCount) {
     char line[MAX_LINE];
@@ -106,8 +108,8 @@ void parseCategories(FILE *file, Recipe *recipe, char uniqueCategories[MAX_CAT][
 
 /**
  * function to parse explanation
- * @param *file is a pointer to the file that recpies are to be loaded from.
- * @param *recipe is a pointer to the recipe to add categories to
+ * @param file is a pointer to the file that recpies are to be loaded from.
+ * @param recipe is a pointer to the recipe to add categories to
  */
 void parseExplanation(FILE *file, Recipe *recipe) {
     char line[MAX_LINE];
@@ -120,8 +122,8 @@ void parseExplanation(FILE *file, Recipe *recipe) {
 
 /**
  * function to parse ingredients in recipe
- * @param *file is a pointer to the file that recpies are to be loaded from.
- * @param *recipe is a pointer to the recipe to add categories to
+ * @param file is a pointer to the file that recpies are to be loaded from.
+ * @param recipe is a pointer to the recipe to add categories to
  */
 void parseIngredients(FILE *file, Recipe *recipe) {
     char line[MAX_LINE];

@@ -10,15 +10,12 @@ int main() {
     checkLoad(file);
 
     // User input variables
+    int filteredCount = 0, uniqueCategoriesCount = 0, ingredientCount = 0, categoryCount = 0, choice;
     char uniqueCategories[MAX_CAT][MAX_NAME];
-    int uniqueCategoriesCount = 0;
-    Ingredient *ingredients;
-    int ingredientCount = 0;
     char **categories = NULL;
-    int categoryCount = 0;
+    Ingredient *ingredients;
     Recipe *recipes = NULL; // Array to store recipe structs
     int recipeCount = loadRecipeStruct(file, &recipes, uniqueCategories, &uniqueCategoriesCount);
-    int filteredCount = 0;
 
     // Step 1: Program Explanation
     printProgramExplanation();
@@ -29,15 +26,14 @@ int main() {
     // Step 3: Display dishes based on user input
     Recipe *filteredRecipes = filterRecipes(recipes, categories, categoryCount, recipeCount, &filteredCount);
     if (filteredRecipes == NULL) {
-        printf("filterRecipes returned a NULL pointer. Check for errors inside the function.\n");
+        printf("filterRecipes returnerede en NULL pointer. Tjek for fejl i funktionen.\n");
     }
-    sortFilteredRecipes(filteredRecipes, ingredients, ingredientCount);
-    qsort(filteredRecipes, filteredCount, sizeof(Recipe), compareFunction);
+    missingIngredientsAllRecipes(filteredRecipes, ingredients, ingredientCount);
+    qsort(filteredRecipes, filteredCount, sizeof(Recipe), qsortCompare);
 
     fclose(file); // close the file
 
     // Step 4: Let the user pick their dish and choose the one to see
-    int choice = 0;
     choice = chooseRecipe(filteredRecipes);
 
     // Step 5: Search for missing ingredients and check where they can be bought cheapest

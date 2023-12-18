@@ -25,8 +25,7 @@ void userInput(Ingredient **ingredients, int *ingredientCount, char ***categorie
             userInputSearch(recipes, recipeCount);
         } else if (strcmp(option, "f") == 0) {
             break;
-        }
-        else {
+        } else {
             printf("Ugyldigt input!\n");
         }
     }
@@ -39,21 +38,21 @@ void userInput(Ingredient **ingredients, int *ingredientCount, char ***categorie
  * @param ingredientCount Counts the number of ingredients entered
  */
 void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
-    printf("Indtast de ingredienser du har, indtast 'faerdig' naar du er faerdig:\n");
+    printf("Indtast de ingredienser du har, indtast 'f' naar du er faerdig:\n");
 
     Ingredient ingredient;
     *ingredients = NULL;
 
     while (1) {
         printf("Ingrediens %d > ", *ingredientCount + 1);
-        //scanf("%s", ingredient.name);
+
         clearInputBuffer();
         fscanf(stdin, "%99[^\n]", ingredient.name);
 
         // Convert user input to lowercase.
         convertTolower(ingredient.name);
 
-        if (strcmp(ingredient.name, "faerdig") == 0) {
+        if (strcmp(ingredient.name, "f") == 0) {
             return;
         }
 
@@ -63,11 +62,10 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
             // Checks if the user inputs 2 inputs that are valid a double and a char.
 
             if (scanf("%lf %s", ingredient.amount, ingredient.unit) != 2) {
-                printf("Ugyldigt input. Indtast venligts baade maengde og enhed.\n");
+                printf("Ugyldigt input. Indtast venligst baade maengde og enhed.\n");
                 clearInputBuffer();
                 continue; // Ask the user to enter the values again
             }
-
 
             // Convert user input to lowercase for comparison
             convertTolower(ingredient.unit);
@@ -76,7 +74,7 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
             if (strstr(ACCEPTABLE_UNITS, ingredient.unit) != NULL) {
                 break; // Exit the loop when a valid unit is entered
             } else {
-                printf("Ugyldig enhed. Proev igen\n");
+                printf("%s: Ugyldig enhed. Gyldige enheder er: g, kg, stk, dl, ml, l\n", ingredient.unit);
             }
 
         } while (1); // Infinite loop until a valid unit is entered
@@ -97,28 +95,22 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
     }
 }
 
-void convertToLowerCase(char *string) {
-    for (int i = 0; string[i] != '\0'; i++) {
-        string[i] = (char)tolower(string[i]);
-    }
-}
-
-
 /**
  * Gets user input for categories
  * here the user can enter categories as they want and type 'done' when they are finished
  * @param categories The category of food that the user wants
  * @param categoryCount Counts the number of categories entered
  */
-void userInputCategories(char ***categories, int *categoryCount, char uniqueCategories[MAX_CAT][MAX_NAME], int uniqueCategoriesCount) {
+void userInputCategories(char ***categories, int *categoryCount, char uniqueCategories[MAX_CAT][MAX_NAME],
+                         int uniqueCategoriesCount) {
     char category[MAX_NAME];
-    printf("Indtast kategorier, du er interesseret i, indtast 'i' for information om tilgengelige kategorier, indtast 'faerdig', naar du er faerdig\n");
+    printf("Indtast kategorier, du er interesseret i, indtast 'i' for information om tilgaengelige kategorier, indtast 'f', naar du er faerdig\n");
 
     while (1) {
         printf(">");
         // Use fgets to read the entire line, including spaces
         if (fgets(category, sizeof(category), stdin) == NULL) {
-            printf("Error reading input. Exiting...\n");
+            printf("Fejl ved indlaesning. Afslutter...\n");
             exit(EXIT_FAILURE);
         }
         category[strcspn(category, "\n")] = '\0';
@@ -126,40 +118,40 @@ void userInputCategories(char ***categories, int *categoryCount, char uniqueCate
         // Convert user category input to lowercase.
         convertTolower(category);
 
-        if (strcmp(category, "faerdig") == 0) {
+        if (strcmp(category, "f") == 0) {
             return;  // Return to the menu
         } else if (strcmp(category, "i") == 0) {
             printCategories(uniqueCategories, uniqueCategoriesCount);
         } else {
 
-        int validCategory = 0;
+            int validCategory = 0;
 
-        for (int i = 0; i < MAX_CAT; i++) {
-            if (strcmp(uniqueCategories[i], category) == 0) {
-                validCategory = 1;
-                break; // Exit the loop when a valid category is entered
-            }
-        }
-
-        // Process the entered category
-        if (validCategory) {
-            // Dynamically allocate memory for the new category
-            *categories = realloc(*categories, (*categoryCount + 1) * sizeof(char *));
-
-            // Memory allocation failed
-            if (*categories == NULL) {
-                printf("Hukommelsestildeling mislykkedes. Afslutter.\n");
-                free(*categories);
-                exit(EXIT_FAILURE);
+            for (int i = 0; i < MAX_CAT; i++) {
+                if (strcmp(uniqueCategories[i], category) == 0) {
+                    validCategory = 1;
+                    break; // Exit the loop when a valid category is entered
+                }
             }
 
-            (*categories)[*categoryCount] = strdup(category);
+            // Process the entered category
+            if (validCategory) {
+                // Dynamically allocate memory for the new category
+                *categories = realloc(*categories, (*categoryCount + 1) * sizeof(char *));
 
-            (*categoryCount)++;
-        } else {
-            printf("Ugyldig kategori. Proev igen\n");
+                // Memory allocation failed
+                if (*categories == NULL) {
+                    printf("Hukommelsestildeling mislykkedes. Afslutter.\n");
+                    free(*categories);
+                    exit(EXIT_FAILURE);
+                }
+
+                (*categories)[*categoryCount] = strdup(category);
+
+                (*categoryCount)++;
+            } else {
+                printf("Ugyldig kategori. Proev igen\n");
+            }
         }
-      }
     }
 }
 
@@ -172,8 +164,8 @@ void printCategories(char uniqueCategories[MAX_CAT][MAX_NAME], int uniqueCategor
 
 /**
  * Releases memory blocks from the allocated "realloc function" in "userInputIngredients" and "userInputCategories"
- * @param array
- * @param count
+ * @param array is the location to free
+ * @param count is the size which is being freed from the array
  */
 void freeMemory(char ***array, int count) {
     for (int i = 0; i < count; ++i) {
@@ -199,14 +191,14 @@ void printProgramExplanation() {
  * and then it gets printet out via a switch
  * @param chosenRecipe Is the struct "Recipe" that has been defined in app-library.h
  */
-int chooseRecipe(const Recipe* chosenRecipe) {
+int chooseRecipe(const Recipe *chosenRecipe) {
     int userChoice = 0;
     /*
      * Koden udskriver de tre opskrifter med færrest manglende ingredienser,
      * ved samme på antal manglende ingredienser, vælger den de første i sorteringen.
      */
     for (int i = 0; i < 3; ++i) {
-        printf("\nOpskrift %d %s (Manglende Ingredienser: %d)", i + 1, chosenRecipe[i].name,
+        printf("\nOpskrift %d %s (Manglende ingredienser: %d)", i + 1, chosenRecipe[i].name,
                chosenRecipe[i].missingIngredients);
     }
     printf("\n\n");
@@ -222,18 +214,22 @@ int chooseRecipe(const Recipe* chosenRecipe) {
             continue;
         }
         // Switch case der fungere til 1, 2, og 3, hvis ikke forkert input og prøv igen.
-            switch (userChoice) {
-                case (1):
-                case (2):
-                case (3):
-                    printRecipe(chosenRecipe[userChoice - 1]);
-                    return userChoice;
-                default:
-                    printf("\nForkert input. Indtast venligst 1, 2, eller 3.\n");
-            }
+        switch (userChoice) {
+            case (1):
+            case (2):
+            case (3):
+                printRecipe(chosenRecipe[userChoice - 1]);
+                return userChoice;
+            default:
+                printf("\nForkert input. Indtast venligst 1, 2, eller 3.\n");
         }
     }
-
+}
+/**
+ * Allows the user to search for a specific recipe.
+ * @param recipes the recipe struct containing all recipes.
+ * @param recipeCount the amount of recipes in the struct of recipes.
+ */
 void userInputSearch(Recipe *recipes, int recipeCount) {
     // initialize loop variable
     int outerLoop = 1;
@@ -266,13 +262,13 @@ void userInputSearch(Recipe *recipes, int recipeCount) {
         if (targetRecipe != -1) {
             printRecipe(recipes[targetRecipe]);
         }
-        //otherwise tell user not the recipe is not in library
+            //otherwise tell user not the recipe is not in library
         else {
             printf("desvaerre, der er ikke en opskrift med det navn i opskrift biblioteket.\n");
 
             //inner loop to co ask the user if they want to try again or exit
             while (innerLoop == 1) {
-                printf("Tast ja for at proeve igen og nej for at gaa tilbage til hovedmenuen.\n>");
+                printf("Tast 'ja' for at proeve igen og 'nej' for at gaa tilbage til hovedmenuen.\n>");
                 scanf(" %s", breakLoop);
                 strcpy(breakLoop, stringToLower(breakLoop));
 
@@ -283,8 +279,7 @@ void userInputSearch(Recipe *recipes, int recipeCount) {
                 } else if (strcmp(stringToLower(breakLoop), "nej") == 0) {
                     outerLoop = 0;
                     innerLoop = 0;
-                }
-                else{
+                } else {
                     printf("Ugyldigt input!\n");
                 }
 
@@ -292,13 +287,19 @@ void userInputSearch(Recipe *recipes, int recipeCount) {
         }
     }
 }
-
-void convertTolower(char* str) {
+/**
+ * Converts a string to lowercase. just in case.
+ * @param str is the string
+ */
+void convertTolower(char *str) {
     for (int i = 0; str[i] != '\0'; i++) {
         str[i] = (char) tolower(str[i]);
     }
 }
 
+/**
+ * Clears the buffer for standard input stream.
+ */
 void clearInputBuffer() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);

@@ -61,9 +61,9 @@ void parseIngredients(FILE *file, Recipe *recipe);
 Recipe* filterRecipe(const Recipe* recipe, char** categories, int categoryCount);
 void filterRecipeCategories(const Recipe *recipe, char **categories, Recipe *filteredRecipe, int i);
 Recipe* filterRecipes(const Recipe* recipes, char** categories, int categoryCount, int recipeCount, int *filteredCount);
-void sortFilteredRecipes(Recipe *filteredRecipes, Ingredient *ingredients, int ingredientCount);
-void sortRecipes(Recipe* filteredRecipe, Ingredient* ingredients, int ingredientCount);
-int compareFunction(const void *a, const void *b);
+void missingIngredientsAllRecipes(Recipe *filteredRecipes, Ingredient *ingredients, int ingredientCount);
+void countMissingIngredients(Recipe* filteredRecipe, Ingredient* ingredients, int ingredientCount);
+int qsortCompare(const void *a, const void *b);
 void userInputSearch(Recipe *recipes, int recipeCount);
 int unitCompare(Recipe* filteredRecipe, Ingredient *ingredients, int recipe, int userInput);
 void unitConvert(char *unit, double *amount);
@@ -76,4 +76,4 @@ nameIndex *nameIndexArr(Recipe *recipes,int recipeCount);
 
 // Price Compare
 void findLowestPrice(char **missingIngredients, int arrLength);
-char **ingredientsNeeded(Recipe filteredRecipes, int ingredientCount, Ingredient *ingredients);
+char **ingredientsNeeded(Recipe userChosenRecipe, int ingredientCount, Ingredient *ingredients);
