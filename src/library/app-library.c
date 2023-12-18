@@ -14,17 +14,19 @@ void userInput(Ingredient **ingredients, int *ingredientCount, char ***categorie
     printf("Hvad vil du gerne goere?\n");
 
     while (1) {
-        printf("Indtast 'i' for ingredienser, 'k' for kategorier, 's' for at soege efter specifikke opskrifter, og 'f' naar du er faerdig>");
+        printf("Indtast 'i' for ingredienser, 'k' for kategorier, 'f' naar du er faerdig, 's' for at soege efter specifikke opskrifter, og 'q' hvis du helt vil afslutte programmet>");
         scanf("%s", option);
 
-        if (strcmp(option, "i") == 0) {
+        if (strcmp(option, "q") == 0) {
+            exit(0);
+        }else if (strcmp(option, "i") == 0) {
             userInputIngredients(ingredients, ingredientCount);
         } else if (strcmp(option, "k") == 0) {
             userInputCategories(categories, categoryCount, uniqueCategories, uniqueCategoriesCount);
         } else if (strcmp(option, "s") == 0) {
             userInputSearch(recipes, recipeCount);
         } else if (strcmp(option, "f") == 0) {
-            if (*ingredientCount == 0){
+            if (*ingredientCount == 0) {
                 printf("Du skal minimum indtaste 1 ingrediens for at fortsaette\n");
                 continue;
             }
@@ -246,31 +248,21 @@ void userInputSearch(Recipe *recipes, int recipeCount) {
         char target[MAX_NAME];
         char breakLoop[1];
         int innerLoop = 1;
+        int targetRecipeSearch = -1;
 
         //ask user for recipe or whether to finish search
         printf("indtast opskrift du oensker at finde, indtast 'l' hvis du vil se en liste af opskrifter i bibliotektet, og 'f' for at afslutte og gaa tilbage til hovedmenuen\n>");
         scanf(" %[^\n]", target);
+        //perform user choice
         if (strcmp(target, "f") == 0) {
             break;
         } else if (strcmp(target, "l") == 0) {
-            printf("*******************************************************************\n");
-            for (int i = 0; i < recipeCount; i++) {
-                printf("Opskrift %d: %s\n", i + 1, recipes[i].name);
-            }
-            printf("*******************************************************************\n");
+            printRecipeLibraryNames(recipes, recipeCount);
         } else {
-            //convert input char array to lower case
-            strcpy(target, stringToLower(target));
-
-            //create a name index array with library recipes
-            nameIndex *recipeNameIndex = nameIndexArr(recipes, recipeCount);
-
-            //test whether the user recipe is in the recipe library
-            int targetRecipe = binarySearchRecipes(&recipeNameIndex[0], recipeCount, target); //search for recipe
-
+            targetRecipeSearch = searchRecipe(recipes, recipeCount, target);
             //if recipe found, print recipe
-            if (targetRecipe != -1) {
-                printRecipe(recipes[targetRecipe]);
+            if (targetRecipeSearch != -1) {
+                printRecipe(recipes[targetRecipeSearch]);
             }
                 //otherwise tell user not the recipe is not in library
             else {
@@ -292,7 +284,6 @@ void userInputSearch(Recipe *recipes, int recipeCount) {
                     } else {
                         printf("Ugyldigt input!\n");
                     }
-
                 }
             }
         }
@@ -315,4 +306,24 @@ void convertTolower(char *str) {
 void clearInputBuffer() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
+}
+
+void printRecipeLibraryNames(Recipe *recipes, int recipeCount) {
+    printf("*******************************************************************\n");
+    for (int i = 0; i < recipeCount; i++) {
+        printf("Opskrift %d: %s\n", i + 1, recipes[i].name);
+    }
+    printf("*******************************************************************\n");
+}
+
+int searchRecipe(Recipe *recipes, int recipeCount, char *target) {
+    //convert input char array to lower case
+    strcpy(target, stringToLower(target));
+
+    //create a name index array with library recipes
+    nameIndex *recipeNameIndex = nameIndexArr(recipes, recipeCount);
+
+    //test whether the user recipe is in the recipe library
+    int targetRecipe = binarySearchRecipes(&recipeNameIndex[0], recipeCount, target); //search for recipe
+    return targetRecipe;
 }
