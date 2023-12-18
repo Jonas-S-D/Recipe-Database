@@ -25,7 +25,7 @@ void userInput(Ingredient **ingredients, int *ingredientCount, char ***categorie
             userInputSearch(recipes, recipeCount);
         } else if (strcmp(option, "f") == 0) {
             if (*ingredientCount == 0){
-                printf("Du skal minimum indtaste 1 ingrediens for at fortsætte\n");
+                printf("Du skal minimum indtaste 1 ingrediens for at fortsaette\n");
                 continue;
             }
             break;
@@ -244,7 +244,7 @@ void userInputSearch(Recipe *recipes, int recipeCount) {
 
         //initialize char arrays and inner loop variable
         char target[MAX_NAME];
-        char breakLoop[MAX_NAME];
+        char breakLoop[1];
         int innerLoop = 1;
 
         //ask user for recipe or whether to finish search
@@ -278,15 +278,15 @@ void userInputSearch(Recipe *recipes, int recipeCount) {
 
                 //inner loop to co ask the user if they want to try again or exit
                 while (innerLoop == 1) {
-                    printf("Tast 'ja' for at proeve igen og 'nej' for at gaa tilbage til hovedmenuen.\n>");
+                    printf("Tast 'j' for at proeve igen og 'f' for at gaa tilbage til hovedmenuen.\n>");
                     scanf(" %s", breakLoop);
                     strcpy(breakLoop, stringToLower(breakLoop));
 
                     //if statement to break innerLoop or continue if unacceptable input is input
-                    if (strcmp(stringToLower(breakLoop), "ja") == 0) {
+                    if (strcmp(stringToLower(breakLoop), "j") == 0) {
                         outerLoop = 1;
                         innerLoop = 0;
-                    } else if (strcmp(stringToLower(breakLoop), "nej") == 0) {
+                    } else if (strcmp(stringToLower(breakLoop), "f") == 0) {
                         outerLoop = 0;
                         innerLoop = 0;
                     } else {
