@@ -105,7 +105,7 @@ roedloeg, 1 stk
 forårsloeg, 60g
 frisk persille, 60g
 fetaost, 100g
-hvidloeg, 1 fed
+hvidloeg, 1 stk
 olivenolie, 0.2dl
 oregano, 3g
 citron, 0.5 stk
@@ -181,7 +181,7 @@ Drys baconblandingen, purloeg og basilikum paa, og server straks, evt. med flute
 >jordskokker, 350g
 kartofler, 2 stk
 loeg, 1 stk
-hvidloeg, 2 fed
+hvidloeg, 2 stk
 hønsebouillon, 0,5l
 piskefløde, 1dl
 gulerødder, 1 stk
@@ -201,7 +201,7 @@ Serveres med ris og et lille drys timian
 >koteletter, 4 stk
 bacon skiver, 3 stk
 roedloeg, 2 stk
-hvidloeg, 2 fed
+hvidloeg, 2 stk
 champignon, 500g
 hakkede tomater, 400g
 psikefloede, 0.25l
@@ -277,7 +277,7 @@ foraarsloeg, 30g
 bacon i tern, 150g
 kyllingebryst, 450g
 paprika, 6g
-hvidloeg, 2 fed
+hvidloeg, 2 stk
 salt, 6g
 peber, 6g
 creme fraiche, 100g
@@ -313,7 +313,7 @@ cherrytomater, 300g
 salt, 3g
 peber, 3g
 loeg, 1 stk
-hvidloeg, 1 fed
+hvidloeg, 1 stk
 risotto ris, 400g
 hvidvin, 1dl
 groensagsbouillon, 5dl
@@ -329,7 +329,7 @@ Kom tortellini i gryden og roer rundt og smag til med salt og peber.
 Kom retten i et smurt ovnfast fad, drys med parmesan – eller anden haard ost – pluk den friske mozzarella og fordel over.
 Drys med rasp og gratiner i en forvarmet ovn ved 180 grader varmluft i cirka 20 minutter.
 >loeg, 1 stk
-hvidloeg, 3 fed
+hvidloeg, 3 stk
 soltoerrede tomater i olie, 50g
 frisk basilikum, 10g
 squash, 200g
@@ -355,7 +355,7 @@ Server retten i dybe tallerkener sammen med ris og drys med resten af mandlerne 
 garam masala, 18g
 chiliflager, 1.5g
 stoedt gurkemeje, 1.5g
-hvidloeg, 4 fed
+hvidloeg, 4 stk
 ingefaer, 18g
 lime, 1 stk
 kokosmaelk, 4dl

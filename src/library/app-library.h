@@ -9,7 +9,7 @@
 #define MAX_AMOUNT 20
 #define MAX_LINE 1000
 #define MAX_UNIT 5
-#define ACCEPTABLE_UNITS "g stk dl ml l kg fed"
+#define ACCEPTABLE_UNITS "g stk dl ml l kg"
 
 // Define the struct for ingredients
 typedef struct {
