@@ -80,3 +80,4 @@ int searchRecipe(const Recipe *recipes, const int recipeCount, const char *targe
 // Price Compare
 void findLowestPrice(char **missingIngredients, int arrLength);
 char **ingredientsNeeded(Recipe userChosenRecipe, int ingredientCount, Ingredient *ingredients);
+void convertToGramsOrMl(char *unit, double *amount);

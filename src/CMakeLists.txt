@@ -4,6 +4,7 @@ add_executable(food_app
         app.c
         library/app-library.c
         library/load-library.c
+        library/compare_prices-library.c
 )
 
 target_include_directories(food_app PRIVATE "Compare ingredients")

@@ -158,8 +158,8 @@ int unitCompare(Recipe *filteredRecipe, Ingredient *ingredients, int recipe, int
     strcpy(recipeUnit, filteredRecipe->ingredients[recipe].unit);
     strcpy(userUnit, ingredients[userInput].unit);
 
-    unitConvert(recipeUnit, &recipeAmount);;
-    unitConvert(userUnit, &userAmount);;
+    unitConvert(recipeUnit, &recipeAmount);
+    unitConvert(userUnit, &userAmount);
 
     if (strcmp(recipeUnit, userUnit) != 0) {
         return 0;
@@ -298,6 +298,7 @@ char **ingredientsNeeded(Recipe userChosenRecipe, int userIngredients, Ingredien
         commonIngredients = 0;
         /* runs through each ingredient entered by the user */
         for (int j = 0; j < userIngredients; j++) {
+            convertToGramsOrMl(ingredients[j].unit, ingredients[j].amount);
             /* checks for common ingredients */
             if (strcmp(userChosenRecipe.ingredients[i].name, ingredients[j].name) == 0 &&
                 ingredients[j].amount[0] >= userChosenRecipe.ingredients[i].amount[0]) {
@@ -313,4 +314,22 @@ char **ingredientsNeeded(Recipe userChosenRecipe, int userIngredients, Ingredien
     }
     // Allocated memory for missingIngredients is being freed in the findLowestPrice function
     return missingIngredients;
+}
+
+void convertToGramsOrMl(char *unit, double *amount) {
+    if (strcmp(unit, "kg") == 0) {
+        strcpy(unit, "g");
+        *amount *= 1000;
+        return;
+    }
+    else if (strcmp(unit, "l") == 0) {
+        strcpy(unit, "ml");
+        *amount *= 1000;
+        return;
+    }
+    else if (strcmp(unit, "dl") == 0) {
+        strcpy(unit, "ml");
+        *amount *= 100;
+        return;
+    }
 }
