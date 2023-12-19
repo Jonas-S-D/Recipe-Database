@@ -53,7 +53,7 @@ void checkLoad(FILE *file) {
  * function to print a recipe
  * @param recipe is the recipe to be printed
  */
-void printRecipe(const Recipe recipe) {
+void printRecipe(Recipe recipe) {
     printf("**************************************************\n");
     printf("Opskriftens navn: %s\n\n", recipe.name);
     printf("Opskriftens kategorier: ");
