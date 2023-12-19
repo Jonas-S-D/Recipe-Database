@@ -43,7 +43,7 @@ smoer, 50g
 syltede roedbeder, 100g
 
 >Forloren hare
->varm aftensmad,koedret
+>test,koedret
 >Roer det hakkede koed godt med salt og peber. Tilsaet havregryn, ½ dl maelk og aeg og roer farsen glat.
 Kom farsen i et lille ovnfast fad (ca. 16 x 22 cm) og form den til et farsbroed.
 Del baconskiverne på midten. Laeg dem taet på farsbroedet og brun det midt i ovnen.

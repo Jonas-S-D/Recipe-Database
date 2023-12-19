@@ -6,7 +6,7 @@
 
 int main() {
     // Open the text file for reading
-    FILE *file = fopen("src/library/recipes.txt", "r"); // load file into the location of the file pointer
+    FILE *file = fopen("Recipe-library.txt", "r"); // load file into the location of the file pointer
     checkLoad(file);
 
     // User input variables
@@ -23,11 +23,10 @@ int main() {
     // Step 2: Get user input
     userInput(&ingredients, &ingredientCount, &categories, &categoryCount, recipes, recipeCount, uniqueCategories, uniqueCategoriesCount);
 
+
     // Step 3: Display dishes based on user input
     Recipe *filteredRecipes = filterRecipes(recipes, categories, categoryCount, recipeCount, &filteredCount);
-    if (filteredRecipes == NULL) {
-        printf("filterRecipes returnerede en NULL pointer. Tjek for fejl i funktionen.\n");
-    }
+
     missingIngredientsAllRecipes(filteredRecipes, ingredients, ingredientCount);
     qsort(filteredRecipes, filteredCount, sizeof(Recipe), qsortCompare);
 
