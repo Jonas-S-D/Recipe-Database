@@ -1,6 +1,6 @@
 >Biksemad
->rester,koed,varm aftensmad
->skrael og skaer kartofler I mindre tern og kog kartoflerne. steg bacon paa pande. skaer loeg I mindre stykker. bland alle ingredienser I en wok og svits.
+>koedret,varm aftensmad
+>skrael og skaer kartofler I mindre tern og kog kartoflerne. Steg bacon paa pande. Skaer loeg I mindre stykker. Bland alle ingredienser I en wok og svits.
 >kartofler, 500g
 loeg, 2 stk
 bacon, 100g
@@ -8,46 +8,362 @@ skinke, 100g
 salt, 0.5g
 pepper, 0.5g
 
-
 >boller i karry
 >koedret,varm aftensmad
 >Kog risene. Bring en stor gryde med vand i og tilsaet bouillon. Skaer loegene i smaa stykker. Bland loeg med svinefarsen, maelken, aegget, og lidt salt. Brug en teske til at lave smaa boller med koedfars og kog dem i vandet.
- Goer af flere omgange hvis meget fars (ikke mere end 1 lag boller per gang). Overfoer de kogte boller til en ny skaal og gem vandet fra gryden.
- I en ny gryde, varm smoer/olie op og rist karry’en i en 5-30 sekunder, begynd forfra hvis den braender paa. Tilsaet mel og form en tyk flydende masse, tynd op med floeden og vand derefter.
-  Smag til med bouillon og resten af vandet fra gryden med koedbollerne. Vend derefter koedbollerne ned i sovsen. Server sammen med risene.
+Goer af flere omgange hvis meget fars (ikke mere end 1 lag boller per gang). Overfoer de kogte boller til en ny skaal og gem vandet fra gryden.
+I en ny gryde, varm smoer/olie op og rist karry’en i en 5-30 sekunder, begynd forfra hvis den braender paa. Tilsaet mel og form en tyk flydende masse, tynd op med floeden og vand derefter.
+Smag til med bouillon og resten af vandet fra gryden med koedbollerne. Vend derefter koedbollerne ned i sovsen. Server sammen med risene.
 >ris, 100g
 svinefars, 500g
 loeg, 1 stk
 aeg, 2 stk
 maelk, 150ml
-floede, 100ml
+floede, 100mL
 mel, 2g
 smoer, 5g
 
+>Braendende kaerlighed
+>varm aftensmad,koedret
+>Kog kartoflerne i rigeligt vand uden salt, til de er moere. Haeld vandet fra og pisk de moere kartofler med smoer, tilsat i smaa tern.
+Pisk med en haandmikser, til kartoffelmosen er laekker og luftig og pisk derefter maelk i til den rette konsistens. Smag til med salt, peber og muskatnoed.
+Steg bacon sproed paa en pande ved middelvarme, tag det af og laeg det paa et stykke koekkenrulle. Sauter loegene i baconfedtet og lidt smoer, til de er bloede og klare.
+Tilsaet lidt finthakket roed chili, hvis du synes om det. Det giver lidt bid til retten og lidt ekstra varme.
+Smag til med friskkvaernet peber. Server med syltede roedbeder og friske krydderuter.
+>kartoffel 1.50kg
+smoer, 100g
+maelk, 1dl
+salt, 3g
+peber, 6g
+muskatnoed, 1g
+bacon, 350g
+loeg, 3 stk
+roed chili, 1g
+smoer, 50g
+syltede roedbeder, 100g
+
+>Forloren hare
+>varm aftensmad,koedret
+>Roer det hakkede koed godt med salt og peber. Tilsaet havregryn, 0.5 dl maelk og aeg og roer farsen glat.
+Kom farsen i et lille ovnfast fad (ca. 16 x 22 cm) og form den til et farsbroed.
+Del baconskiverne paa midten. Laeg dem taet paa farsbroedet og brun det midt i ovnen.
+Skru ned for ovnen, haeld 2,5 dl letmaelk omkring farsbroedet og bag det faerdigt. Tag farsbroedet ud og hold det varmt.
+Fjern maelkeskindet og si maelken over i en tykbundet gryde.
+Tilsaet floeden sammen med gele, salt og peber. Bring saucen i kog, tag gryden af varmen og roer saucejaevner i.
+Kog saucen ved svag varme og under omroering i ca. 1 min. Smag til.
+Skaer den forlorne hare i skiver i fadet. Haeld lidt sauce i bunden af fadet og server resten ved siden af sammen med kartofler, groentsager og ribsgele.
+>hakket kalv og flaesk, 400g
+groft salt, 6g
+peber, 6g
+finvalse havregryn, 40g
+maelk, 0.5dl
+aeg, 1 stk
+bacon, 125g
+maelk, 2.5dl
+floede, 0.5l
+ribsgele, 18g
+lys saucejaevner, 18g
+kuloer, 1g
+kartofler, 1kg
+
+>Frikadeller med kartoffelsalat
+>koedret
+>Hakket kalv og flaesk roeres sejt med salt. Tilsaet mel og aeg roer farsen jaevn mens maelken haeldes i lidt af gangen.
+Riv loeget of roer det i farsen og krydr med peber og evt. revet muskat.
+Obs! Hvis tiden tillader det, kan farsen med fordel saettes i koeleskabet og hvile en halv time foer stegning. Form ca. 16 frikadeller.
+Steg dem gyldne i rapsolie i ca. 8 min. paa hver side til de er gennemstegte. Frikadellerne kan ogsaa steges 3 min. paa hver side.
+De laves faerdige i ovnen ved 185 grader i ca. 10 min. Kartoflerne koges, pilles, afkoeles og skaeres i grove stykker.
+Roer dressingen af mayonnaise, graesk yoghurt, dijonsennep, paprika, citronsaft, roedloeg, salt og peber og evt. hvidloeg.
+Vend kartoflerne i dressingen og drys med hakket purloeg. Server frikadellerne med kartoffelsalat og groft broed.
+>Hakket kalv og flaesk, 500g
+salt, 6g
+mel, 45g
+aeg, 2 stk
+loeg, 1 stk
+kartofler, 700g
+mayonnaise, 54g
+graesk yoghurt, 2dl
+dijonsennep, 18g
+roedloeg, 54g
+purloeg, 72g
+broed, 200g
+
+>Graesk bulgursalat
+vegatar,salat,klod aftensmad
+>Kog bulgur efter pakkens anvisning. Den vaegt vi har angivet er i toer vaegt. Vi kommer ogsaa lige en bouillonterning ned i kogevandet. Det giver saadan en dejlig smag (det kan ogsaa sagtens udelades).
+Naar det er kogt, saa draenes bulgur og skylles i koldt vand. Saet det til side. Skaer tomater i kvarte og fjern kernerne. Skaer ud i smaa tern.
+Halver agurk og skrab de vaade kerner ud. Skaer ud i smaa tern. Skaer peberfrugt og roedloeg i smaa tern. Hak persille og foraarsloeg fint.
+Nu skal dressingen roeres sammen. Pres hvidloeg i en hvidloegspresser eller hak fint. Bland hvidloeg med olivenolie, saft fra citron, toerret oregano samt salt/peber.
+Kom kogt (afkoelet) bulgur op i en skaal sammen med alle de finthakkede groentsager og kom dressingen over. Vend det godt sammen. Tilsaet evt. lidt ekstra olivenolie, hvis den virker lidt ‘toer’.
+Smuldr feta og kom det i. Vend godt rundt. Anret i et fad. Top evt. med lidt ekstra feta samt krydderurter paa toppen. Server med det samme.
+>bulgur, 130g
+groentsagsbouillon, 1 stk
+tomat, 3 stk
+agurk, 1 stk
+roed peberfrugt, 1 stk
+roedloeg, 1 stk
+foraarsloeg, 60g
+frisk persille, 60g
+fetaost, 100g
+hvidloeg, 1 stk
+olivenolie, 0.2dl
+oregano, 3g
+citron, 0.5 stk
+
+>Hotdogs og poelsebroed
+>varm aftensmad,koedret
+>Roer gaeren ud lunkent vand, tilsaet maelk, olie og aeg. Roer grahamsmel, salt, kardemomme og sukker sammen og roer det i gaer- blandingen. Roer hvedemel i
+og aelt, til dejen er smidig. Lad dejen haeve i en skaal i 40 minutter. Form 12 aflange poelsebroed.
+Brug lidt olie paa bordpladen og haenderne i stedet for mel til aeltning, saa broedene ikke bliver toerre.
+Lad poelsebroedene haeve paa en bageplade med bagepapir i 30 minutter, pensl med sammenpisket aeg og drys til sidst med sesamfroe.
+Bag broedene i en forvarmet ovn ved 175 grader varmluft i 15-18 minutter.
+>vand, 3dl
+maelk, 1dl
+gaer, 50g
+olivenolie, 0.5dl
+aeg, 2 stk
+grahamsmel, 200g
+salt, 3g
+kardemomme, 1.5g
+sukker, 18g
+hvedemel, 450g
+sesamfroe, 3g
+wienerpoelser, 12 stk
+ketchup, 150g
+remoulade, 100g
+roedloeg, 2 stk
+agurk, 1 stk
+loeg, 2 stk
+aeblecidereddike, 3dl
 
 >Indbagte loegringe
->varm aftensmad,appetizer,vegetar
+>varm aftensmad,vegetar
 >Skaer loeg i passende skiver og skil dem ad til en masse loegringe. Bland derefter beignetdejen ved at piske ingredienserne sammen til en tynd dej. Varm olie stille og roligt op.
 Olien er klar naar lidt rasp giver bobler naar det rammer overfladen. Kom loegringene i beignetdejen og put dem i olien en ad gangen. Pas paa med at lave for mange paa en gang.
 Naar de er gyldne tages de op af olien og placeres paa noget koekkenrulle indtil de spises. Drys evt. med lidt salt.
 >loeg, 2 stk
 mel, 175g
 bagepulver, 5g
-olie, 300ml
+olie, 3dl
 
+>Italiensk pastasalat med skinke
+>kold aftensmad,italiensk,salat
+>Pres hvidloeg i en hvidloegspresser eller hak fint. Bland alle ingredienserne sammen. Pisk det godt sammen med en gaffel eller piskeris.
+Smag til med salt. Saet paa koel indtil brug.
+Saet en gryde med vand op at koge. Vej 200 g. pasta af. Kog pasta efter pakkens anvisning. Saet pasta til afkoeling.
+Hak foraarsloeg groft. Draen mozzarellakugler og semitoerrede tomater. Skyl salat.
+Bland pasta med mozzarellakugler, semitoerrede tomater, skinketern og salat. Hak lidt frisk persille og purloeg og bland det i.
+Vend nu dressingen rundt i pastasalaten. Smag det hele til med salt og peber. Anret det i en skaal.
+Pynt evt. til sidst med lidt foraarsloeg. Server med det samme eller saet paa koel indtil servering.
+>hvidloeg, 1 stk
+olivenolie, 0.2dl
+akaciehonning, 0.1dl
+aeblecidereddike, 0.1dl
+basilikum, 3g
+salt, 6g
+pastaskruer, 200g
+skinketern, 125g
+rucola, 35g
+foraarsloeg, 40g
+soltoerrede tomater, 150g
+mozarella, 125g
+frisk purloeg, 30g
+frisk persille, 30g
+peber, 3g
+
+>Jordskokkesuppe
+>varm aftensmad,koedret
+>Skrael jordskokker og kartofler, og skaer dem i mindre stykker. Pil og hak loeg. Sauter groentsagerne i olie i ca. 5 minutter.
+Pil og hak hvidloeg, haeld det i gryden, og sauter yderligere 20 sekunder. Haeld bouillon ved, og lad det simre under laag i 20 minutter.
+Blend suppen glat. Tilsaet floede, og varm den op paa ny. Smag til med citronsaft, salt og godt med peber.
+Skrael guleroden, skaer den i smaa tern, og steg den moer sammen med bacon paa en pande. Fordel suppen i tallerkener.
+Drys baconblandingen, purloeg og basilikum paa, og server straks, evt. med flute til.
+>jordskokker, 350g
+kartofler, 2 stk
+loeg, 1 stk
+hvidloeg, 2 stk
+hoensebouillon, 0,5l
+piskefloede, 1dl
+guleroedder, 1 stk
+bacon i tern, 150g
+purloeg, 20g
+basilikum, 10g
+fuldkornsflute, 2 stk
+
+>Koteletter i fad
+varm aftensmad,koedret
+>Start med at stege baconskiverne sproede paa en pande og saet dem derefter til side.
+Krydder koteletterne med salt og peber, kom nu smoer paa panden og steg koteletterne et halvt til et helt minuts tid paa begge sider. Saet koteletterne til side sammen med bacon.
+Steg champignon, timian og loeg sammen paa panden ved hoej varme, brug lidt ekstra smoer, hvis det er noedvendigt.
+Tilsaet hvidloeg og paprika og derefter bacon (som lige skal skoeres i smaa stykker inden) hakkede tomater og floede. Lad saucen koge i 10 minutter,
+Hvorefter den smages til med salt og peber og derefter haeldes i et smurt ovnfast fad med koteletter og bages i en forvarmet ovn ved 175 grader i 15-20minutter eller til koteletterne er gennembagte (det kan variere alt efter tykkelse)
+Serveres med ris og et lille drys timian
+>koteletter, 4 stk
+bacon skiver, 3 stk
+roedloeg, 2 stk
+hvidloeg, 2 stk
+champignon, 500g
+hakkede tomater, 400g
+psikefloede, 0.25l
+paprika, 3g
+timian, 6g
+salt, 3g
+peber, 3g
+ris, 3dl
+
+>Marineret kartofelsalat
+>kold aftensmad,salat
+>Start med at saette kartoflerne over for at koge. Hvis de er meget store, saa kan du skaere dem i mindre stykker.
+Skrael dem evt. eller lad skraellen blive paa, alt efter hvordan du bedst kan lide dem.
+Kom kartoflerne op i en gryde og daek med vand og kom salt i. Bring gryden i kog. Naar vandet koger, som skrues der lidt ned og kartoflerne smaakoger til de er moere.
+Det tager ca. 20-25 minutter. Herefter haeldes vandet fra og de koeler af. Hak persille og roedloeg fint og saet til side.
+Roer dressingen sammen og smag til med salt/peber. Juster evt. med mere eddike eller honning, alt efter hvordan du vil have soedme-syre balancen.
+Skaer kartofler ud i mindre stykker. Vend dem sammen med persille, roedloeg og dressingen. Anret paa et fad og server med det samme eller soet paa koel, saa den kan faa lov til at traekke.
+>kartofel, 1kg
+roedloeg, 1 stk
+frisk persille, 60g
+olivenolie, 0.5dl
+akaciehonning, 0.25dl
+hvidvinseddike, 0.25dl
+salt, 3g
+peber, 3g
 
 >Oksekoeds lasagne
->varm aftensmad,italiansk,koed
+>varm aftensmad,italiensk,koedret
 >Skaer loegene i smaa stykker og steg dem i en gryde med olie indtil de er gyldenbrune. Tilfoej derefter oksekoedet til gryden og steg indtil koedet er gennemstegt. Tilsaet daase tomaten og hoensebouillon og smag til med krydderier.
  Daek bunden af et fad med lasagneplader og smoer med mornay sovs. Put ogsaa lidt mozzarellaost paa. Tilfoej derefter et lag koedsovs og gentag processen indtil at sovs er brugt. Daek sidste lag plader med mozzarellaost i stedet for koedsovs.
  Kan lade den staa og traekke lidt for bloedere plader men for lang tid giver haarde plader. Varm i ovnen ved 200 grader indtil osten er gyldenbrun.
 >oksekoed, 500g
 loeg, 2 stk
 tomat i daase, 400g
-mornay sovs, 500ml
+mornay sovs, 5dl
 mozzarella ost, 200g
 lasagneplader, 100g
-olie, 10ml
+olie, 0.1dl
 hoensebouillon, 1 stk
 salt, 1g
 pepper, 1g
+
+>Pastasalat med groen pesto og parmesan
+>vegetar,salat,kold aftensmad
+>Kog pasta i letsaltet vand efter pakkens anvisning. Lige inden de er faerdigkogte, saa tilsaettes de frosne groenne boenner og de koger med i 1-2 minutter.
+Herefter haeldes vandet fra og det faar lov til at koele lidt af. Vend herefter pasta og boenner med pesto. Skyl rucola. Hak saltmandler groft. Skaer parmesan i tynde flager.
+Vend pasta og baenner med rucola, saltmandler, parmesan og syltede roedloeg. Anret i et fad og top evt. med lidt ekstra syltede roedloeg, mandler og parmesan.
+Server med det samme eller saet paa koel indtil servering.
+>pasta, 220g
+frosne groenne boenner, 200g
+groen pesto, 140g
+rucola, 30g
+saltmandler, 100g
+parmesan, 60g
+syltede roedloeg, 80g
+
+>Pastasalat med kylling, bacon og karrydressing
+>kold aftensmad,koedret,salat
+>Roer dressingen sammen som det foerste, saa den kan faa lov til at staa og traekke.
+Pisk alle ingredienserne sammen og smag til med saft fra appelsin, salt/peber (og evt. mere karry). Rens broccoli og skaer i smaa buketter.
+Rens kylling og skaer i tern eller strimler. Hak hvidloeg fint eller pres i en hvidloegspresser.
+Kog pastaskruer efter pakkens anvisning. Lige inden pasta er faerdig, saa tilsaetter du broccoli.
+Lad dem koge med i vandet i 30-60 sekunder, saa de lige bliver en anelse bloede (de maa gerne stadig have bid). Draen pasta og broccoli og lad det afkoele.
+Varm en pande op uden fedtstof. Tilsaet bacontern til den varme pande. Lad det stege indtil det har faaet godt med farve og er blevet sproedt.
+Goer en tallerken klar med et stykke koekkenrulle paa. Haeld det faerdige bacon over paa tallerkenen (papiret suger noget af fedtet).
+Saet panden tilbage paa blusset. Tilsaet kylling, hvidloeg og paprika. Lad det stege, indtil kyllingen har faaet farve over det hele og er faerdigstegt. Smag til med salt og peber.
+Skyl spinat og hak foraarsloeg fint. Anret spinat paa bunden af et fad. Placer saa pasta, broccoli, foraarsloeg, kylling og bacon ovenpaa.
+Slut til sidst af med lidt foraarsloeg paa toppen. Server din pastasalat med karrydressingen.
+>pastaskruer, 200g
+broccoli, 200g
+frisk spinat, 80g
+foraarsloeg, 30g
+bacon i tern, 150g
+kyllingebryst, 450g
+paprika, 6g
+hvidloeg, 2 stk
+salt, 6g
+peber, 6g
+creme fraiche, 100g
+mayonnaise, 54g
+karry, 6g
+flormelis, 1.5g
+appelsin, 0.5 stk
+
+>Pepperoni pizza
+>varm aftensmad,italiensk
+>Saet 2 bageplader til opvarmning i ovnen. Rul dejen tyndt ud til 2 runde pizzabunde (ca. 30 cm i diameter).
+Laeg pizzabundene paa 2 stykker bagepapir og fordel tomatsauce herpaa. Fordel revet ost, pepperoni og loeg paa pizzaerne og drys med oregano.
+Traek pizzaerne med bagepapiret over paa de varme bageplader og bag pizzaerne i ovnen. Server straks.
+>pizzadeje, 2 stk
+tomatsauce, 2dl
+revet mozzarellaost, 200g
+pepperoni i skiver, 200g
+roedloeg, 2 stk
+oregano, 18g
+
+>Risotto med kylling
+>varm aftensmad,koedret,italiensk
+>Sauter loeg og hvidloeg i en gryde med olie, til loegene er klare og bloede. Tilsaet ris og roer det godt igennem ved hoej varme i et halvt minut.
+Kom hvidvin i gryden og kog det ind. Haeld straks derefter groentsagsbouillon og hoensefond i gryden og skrue ned for varmen til det simrer let.
+Laeg laag paa gryden og lad det simre sagte under laag i cirka 30 minutter, eller til risene er lige akkurat moere.
+Vend parmesan og frisk timian i risottoen, og smag til med salt og peber.
+Mens risottoen simrer, saa drys kyllingebryst med timian, salt og peber og kom i et ovnfast fad med bagepapir, sammen med cherrytomater skaaret i halve.
+Bag i en forvarmet ovn ved 225 grader i cirka 20-25 minutter, til skindet er sproedt og kyllingen gennemstegt.
+Skaer kyllingebrystet i skiver og server paa risotto med tomaterne, revet parmesan og persille.
+>kyllingbryst, 500g
+timian, 3g
+cherrytomater, 300g
+salt, 3g
+peber, 3g
+loeg, 1 stk
+hvidloeg, 1 stk
+risotto ris, 400g
+hvidvin, 1dl
+groensagsbouillon, 5dl
+kyllingefond, 5dl
+parmesan, 50g
+olivenolie, 0.2dl
+
+>Tortellini i fad
+>varm aftensmad,vegetar,italiensk
+>Sauter loegene i en gryde med olie, til de bliver klare og bloede.
+Tilsaet hvidloeg, soltoerrede tomater, basilikum, groftrevet squash, chiliflager, groentsagsboullion, hakkede tomater og floede og kog retten op.
+Kom tortellini i gryden og roer rundt og smag til med salt og peber.
+Kom retten i et smurt ovnfast fad, drys med parmesan – eller anden haard ost – pluk den friske mozzarella og fordel over.
+Drys med rasp og gratiner i en forvarmet ovn ved 180 grader varmluft i cirka 20 minutter.
+>loeg, 1 stk
+hvidloeg, 3 stk
+soltoerrede tomater i olie, 50g
+frisk basilikum, 10g
+squash, 200g
+chiliflager, 1.5g
+groentsagsbouillon, 4dl
+hakkede tomater, 400g
+piskefloede, 1dl
+frisk tortellini, 500g
+parmesan, 75g
+mozzarella, 125g
+rasp, 30g
+olivenolie, 0.1dl
+salt, 3g
+peber, 3g
+
+>Vegetar Korma med blomkaal og kikaerter
+>vegetar,varm aftensmad
+>Kog risene efter anvisning paa emballagen.
+Kom olie paa en pande og sauter loegene heri, til de er blevet bloede og klare. Tilsaet garam masala, chiliflager, gurkemeje, hvidloeg, ingefoer og limesaft. Roer det godt igennem og tilsaet derefter kokosmaelken.
+Varm op til kogepunktet og kom blomkaal, kikaerter og tomatpure i gryden. Laeg laag paa og lad det simre i 10-15 minutter, til blomkaalen er moer. Roer graesk yoghurt og halvdelen af de hakkede mandler i gryden inden servering og smag til med salt og friskkvaernet peber.
+Server retten i dybe tallerkener sammen med ris og drys med resten af mandlerne og grofthakket koriander.
+>loeg, 2 stk
+garam masala, 18g
+chiliflager, 1.5g
+stoedt gurkemeje, 1.5g
+hvidloeg, 4 stk
+ingefaer, 18g
+lime, 1 stk
+kokosmaelk, 4dl
+blomkaal, 1 stk
+kikaeter, 240g
+tomatpure, 75g
+graesk yoghurt, 1dl
+mandler, 75g
+olivenolie, 0.1dl
+ris, 3dl
+koriander, 10g
