@@ -89,7 +89,7 @@ purloeg, 72g
 broed, 200g
 
 >Græsk bulgursalat
-vegatar,salat,klod aftensmad
+>vegatar,salat,klod aftensmad
 >Kog bulgur efter pakkens anvisning. Den vaegt vi har angivet er i toer vaegt. Vi kommer også lige en bouillonterning ned i kogevandet. Det giver saadan en dejlig smag (det kan også sagtens udelades).
 Naar det er kogt, saa draenes bulgur og skylles i koldt vand. Saet det til side. Skaer tomater i kvarte og fjern kernerne. Skaer ud i smaa tern.
 Halver agurk og skrab de vaade kerner ud. Skaer ud i smaa tern. Skaer peberfrugt og roedloeg i smaa tern. Hak persille og foraarsloeg fint.
@@ -191,7 +191,7 @@ basilikum, 10g
 fuldkornsflute, 2 stk
 
 >Koteletter i fad
-varm aftensmad,koedret
+>varm aftensmad,koedret
 >Start med at stege baconskiverne sproede på en pande og saet dem derefter til side.
 Krydder koteletterne med salt og peber, kom nu smoer på panden og steg koteletterne et halvt til et helt minuts tid på begge sider. Saet koteletterne til side sammen med bacon.
 Steg champignon, timian og loeg sammen paa panden ved hoej varme, brug lidt ekstra smoer, hvis det er noedvendigt.

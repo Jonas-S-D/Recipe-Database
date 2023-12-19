@@ -6,7 +6,7 @@
 
 int main() {
     // Open the text file for reading
-    FILE *file = fopen("Recipe-library.txt", "r"); // load file into the location of the file pointer
+    FILE *file = fopen("src/library/Recipe-library.txt", "r"); // load file into the location of the file pointer
     checkLoad(file);
 
     // User input variables

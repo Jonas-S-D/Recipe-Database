@@ -15,7 +15,7 @@ int main(void) {
 // Unit tests
 void loadRecipeTest(void) {
     //load recipes into recipe array and initialize variables
-    FILE *file = fopen("src/library/recipes.txt", "r");
+    FILE *file = fopen("src/library/recipes-test.txt", "r");
     checkLoad(file);
     Recipe *recipes = NULL;
     char uniqueCategories[MAX_CAT][MAX_NAME];
