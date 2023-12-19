@@ -87,6 +87,8 @@ filterRecipes(const Recipe *recipes, char **categories, int categoryCount, int r
         }
     }
 
+    printf("\n");
+
     return filteredRecipes;
 }
 
