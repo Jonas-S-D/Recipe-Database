@@ -6,17 +6,28 @@
  * @return Returns the filteres recipes, in a Recipe struct.
  */
 Recipe *filterRecipe(const Recipe *recipe, char **categories, int categoryCount) {
-    Recipe *filteredRecipe = malloc(sizeof(Recipe)); // Dynamically allocates FilteredRecipe
-    if (filteredRecipe == NULL) {
-        printf("Hukommelses allokeringen fejlede for 'filteredRecipe'. Afslutter programmet...\n");
-        exit(EXIT_FAILURE);
-    }
+    Recipe *filteredRecipe = NULL; // Initialize to NULL
 
     if (categories != NULL && categoryCount > 0) { // At least one category chosen
-        for (int i = 0; i < categoryCount; ++i) { // Checks through the users categories
-            filterRecipeCategories(recipe, categories, filteredRecipe, i);
+        for (int i = 0; i < categoryCount; ++i) { // Checks through the user's categories
+            if (recipeHasCategory(recipe, categories[i])) {
+                // Allocate memory for filteredRecipe only if a category is found
+                if (filteredRecipe == NULL) {
+                    filteredRecipe = malloc(sizeof(Recipe));
+                    if (filteredRecipe == NULL) {
+                        printf("Memory allocation failed for 'filteredRecipe'. Exiting program...\n");
+                        exit(EXIT_FAILURE);
+                    }
+                    *filteredRecipe = *recipe;
+                }
+            }
         }
     } else { // No categories chosen
+        filteredRecipe = malloc(sizeof(Recipe));
+        if (filteredRecipe == NULL) {
+            printf("Memory allocation failed for 'filteredRecipe'. Exiting program...\n");
+            exit(EXIT_FAILURE);
+        }
         *filteredRecipe = *recipe;
     }
 
@@ -24,68 +35,56 @@ Recipe *filterRecipe(const Recipe *recipe, char **categories, int categoryCount)
 }
 
 /**
- * Auxiliary function for filterRecipe.
- * @param recipe All recipes
- * @param categories User chosen categories
- * @param filteredRecipe Recipes with matching with user categories
- * @param i Index of user categories
+ * Checks if a recipe has a specific category.
+ * @param recipe Pointer to the recipe to check.
+ * @param category The category to check for in the recipe.
+ * @return 1 if the category is found in the recipe's categories, 0 otherwise.
  */
-void filterRecipeCategories(const Recipe *recipe, char **categories, Recipe *filteredRecipe, int i) {
-    for (int j = 0; recipe->categories[j][0] != '\0'; ++j) { // Checks through the recipes categories
-        if (strcmp(categories[i], recipe->categories[j]) == 0) {
-            *filteredRecipe = *recipe;
-            break;
+// Check if the recipe has a specific category
+int recipeHasCategory(const Recipe *recipe, const char *category) {
+    for (int j = 0; recipe->categories[j][0] != '\0'; ++j) { // Checks through the recipe's categories
+        if (strcmp(category, recipe->categories[j]) == 0) {
+            return 1; // Category found
         }
     }
+    return 0; // Category not found
 }
 
 /**
- * Filters all recipes in the recipe library, to match the user input
- * @param recipes All recipes
- * @param categories User categories
- * @param categoryCount User category count
- * @param recipeCount All recipe count
- * @param filteredCount Filtered recipe count
- * @returns the filtered list of recipes, matching the user input of categories.
+ * Filters recipes based on specified categories.
+ * @param recipes An array of all recipes.
+ * @param categories An array of user-chosen categories.
+ * @param categoryCount The number of user-chosen categories.
+ * @param recipeCount The total number of recipes in the 'recipes' array.
+ * @param filteredCount A pointer to an integer that will be updated with the count of filtered recipes.
+ * @return An array of filtered recipes matching the user-input categories.
  */
-Recipe *
-filterRecipes(const Recipe *recipes, char **categories, int categoryCount, int recipeCount, int *filteredCount) {
+Recipe *filterRecipes(const Recipe *recipes, char **categories, int categoryCount, int recipeCount, int *filteredCount) {
     if (recipes == NULL || recipeCount <= 0) { // Check if the input parameters are valid
-        printf("Ugyldig input parameter 'filterRecipes'.\n");
+        printf("Invalid input parameter 'filterRecipes'.\n");
         return NULL;
     }
 
-    // Checks if the allocation worked.
     Recipe *filteredRecipes = malloc(sizeof(Recipe) * recipeCount);
     if (filteredRecipes == NULL) {
-        printf("Hukommelses allokeringen fejlede for 'filteredRecipes'. Afslutter programmet...\n");
+        printf("Memory allocation failed for 'filteredRecipes'. Exiting program...\n");
         exit(EXIT_FAILURE);
     }
 
-    // Filters the number of recipes, using. the filterRecipes function
+    *filteredCount = 0;
+
+    // Filters the number of recipes using the filterRecipes function
     for (int i = 0; i < recipeCount; i++) {
         Recipe *filtered = filterRecipe(&recipes[i], categories, categoryCount);
-        (*filteredCount)++;
-        if (filtered == NULL) {
-            printf("'filterRecipe' returnerede NULL for opskrift %d (%s).\n", i, recipes[i].name);
-        } else {
-            filteredRecipes[i] = *filtered;
+        if (filtered != NULL) {
+            filteredRecipes[*filteredCount] = *filtered;
+            (*filteredCount)++;
+            free(filtered); // Free memory allocated in filterRecipe
         }
     }
-    filteredRecipes[recipeCount].name[0] = '\0';
 
-    // Moves valid recipes to the left.
-    for (int i = 0; i < recipeCount; ++i) {
-        if (filteredRecipes[i].name[0] == '\0') {
-            for (int j = i; j < recipeCount - 1; ++j) {
-                filteredRecipes[j] = filteredRecipes[j + 1];
-            }
-            filteredRecipes[recipeCount - 1].name[0] = '\0';
-            recipeCount--;
-            (*filteredCount)--;
-            --i;
-        }
-    }
+    // Resize the array to match the number of filtered recipes
+    filteredRecipes = realloc(filteredRecipes, sizeof(Recipe) * (*filteredCount));
 
     printf("\n");
 
@@ -146,11 +145,11 @@ void countMissingIngredients(Recipe *filteredRecipe, Ingredient *ingredients, in
 
 /**
  * Compares different units.
- * @param filteredRecipe All filtered recipes.
- * @param ingredients All ingredients entered by the user
- * @param recipe The index of filtered recipes, that are tested.
- * @param userInput The index of a user ingredient -> JONAS FIX!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
- * @return Returns 1 if the user has enough of that ingredient. and the unit matches.
+  * @param filteredRecipe The filtered recipe being tested.
+ * @param ingredients All ingredients entered by the user.
+ * @param recipe The index of the filtered recipe's ingredient being tested.
+ * @param userInput The index of a user ingredient being compared.
+ * @return Returns 1 if the user has enough of that ingredient and the unit matches, 0 otherwise.
  */
 int unitCompare(Recipe *filteredRecipe, Ingredient *ingredients, int recipe, int userInput) {
     double recipeAmount = filteredRecipe->ingredients[recipe].amount[0];
@@ -174,8 +173,8 @@ int unitCompare(Recipe *filteredRecipe, Ingredient *ingredients, int recipe, int
 
 /**
  * Converts different units.
- * @param unit The user input of unit
- * @param amount The user input of amount corresponding to the unit.
+ * @param unit Pointer to the user input of unit to be converted.
+ * @param amount Pointer to the user input of amount corresponding to the unit.
  */
 void unitConvert(char *unit, double *amount) {
     if (strcmp(unit, "ml") == 0) {
@@ -189,8 +188,13 @@ void unitConvert(char *unit, double *amount) {
         *amount *= 1000;
     }
 }
-
-// Auxiliary function for qsort
+/**Auxiliary function for qsort
+ * @param a Pointer to the first recipe
+ * @param b Pointer to the second recipe
+* @return Negative value if recipe A has fewer missing ingredients than recipe B,
+ *         0 if both recipes have the same number of missing ingredients,
+ *         Positive value if recipe A has more missing ingredients than recipe B.
+ */
 int qsortCompare(const void *a, const void *b) {
     Recipe *recipeA = (Recipe *) a;
     Recipe *recipeB = (Recipe *) b;
