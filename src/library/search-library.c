@@ -61,3 +61,7 @@ nameIndex *nameIndexArr(const Recipe *recipes, const int recipeCount) {
 
     return nameIndexStructArray;
 }
+
+void freeNameIndexArr(nameIndex *nameIndexStructArray) {
+    free(nameIndexStructArray);
+}

@@ -330,5 +330,6 @@ int searchRecipe(const Recipe *recipes, const int recipeCount, const char *targe
 
     //test whether the user recipe is in the recipe library
     int targetRecipe = binarySearchRecipes(&recipeNameIndex[0], recipeCount, target); //search for recipe
+    freeNameIndexArr(recipeNameIndex);
     return targetRecipe;
 }
