@@ -5,10 +5,12 @@
 
 // Prototypes for the test functions
 void loadRecipeTest(void);
+void SearchTest(void);
 
 int main(void) {
     //run all test functions
     loadRecipeTest();
+    SearchTest();
     printf("Great succes!!!");
 }
 
@@ -39,4 +41,24 @@ void loadRecipeTest(void) {
                    strcmp(recipes[3].ingredients[9].name, "pepper") == 0);
     assert(recipes[0].ingredients->amount[0] == 500 && recipes[3].ingredients->amount[0] == 500);
     assert(strcmp(recipes[0].ingredients[0].unit, "g") == 0 && strcmp(recipes[3].ingredients[1].unit, "stk") == 0);
+}
+
+void SearchTest(void){
+    //load recipes into recipe array and initialize variables
+    FILE *file = fopen("src/library/recipes-test.txt", "r");
+    checkLoad(file);
+    Recipe *recipes = NULL;
+    char uniqueCategories[MAX_CAT][MAX_NAME];
+    int uniqueCategoriesCount = 0;
+    int recipeCount = loadRecipeStruct(file, &recipes,uniqueCategories,&uniqueCategoriesCount);
+
+    //check that searchRecipe can find a recipe even if it isnt writen in the same case as the array recipe
+    char target[MAX_NAME];
+    strcpy(target, "BolLer I KarRy");
+    assert(searchRecipe(recipes,recipeCount,target) == 1);
+
+    //check that searchRecipe will not find a random string
+    char target1[MAX_NAME];
+    strcpy(target, "Jeg ELsker kage");
+    assert(searchRecipe(recipes,recipeCount,target1) == -1);
 }
