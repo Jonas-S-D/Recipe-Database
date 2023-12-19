@@ -43,7 +43,7 @@ smoer, 50g
 syltede roedbeder, 100g
 
 >Forloren hare
->test,koedret
+>koedret
 >Roer det hakkede koed godt med salt og peber. Tilsaet havregryn, ½ dl maelk og aeg og roer farsen glat.
 Kom farsen i et lille ovnfast fad (ca. 16 x 22 cm) og form den til et farsbroed.
 Del baconskiverne på midten. Laeg dem taet på farsbroedet og brun det midt i ovnen.
@@ -89,7 +89,7 @@ purloeg, 72g
 broed, 200g
 
 >Græsk bulgursalat
->vegatar,salat,klod aftensmad
+>vegetar,salat,kold aftensmad
 >Kog bulgur efter pakkens anvisning. Den vaegt vi har angivet er i toer vaegt. Vi kommer også lige en bouillonterning ned i kogevandet. Det giver saadan en dejlig smag (det kan også sagtens udelades).
 Naar det er kogt, saa draenes bulgur og skylles i koldt vand. Saet det til side. Skaer tomater i kvarte og fjern kernerne. Skaer ud i smaa tern.
 Halver agurk og skrab de vaade kerner ud. Skaer ud i smaa tern. Skaer peberfrugt og roedloeg i smaa tern. Hak persille og foraarsloeg fint.
