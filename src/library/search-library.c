@@ -4,7 +4,7 @@
  * @param high variable containing last index of array.
 * @param target the string to search for.
  */
-int binarySearchRecipes(nameIndex *nameIndexArr, int high, const char *target) {
+int binarySearchRecipes(nameIndex *nameIndexArr, int high, char *target) {
     int low = 0;
     while (low <= high) {
         int mid = (low + high) / 2;
@@ -47,7 +47,7 @@ char *stringToLower(char *str) {
  * function to create an array of structs containing recipe names and their index
  * @param recipes The array of recipes to generate a nameIndex array based on.
  */
-nameIndex *nameIndexArr(const Recipe *recipes, const int recipeCount) {
+nameIndex *nameIndexArr(Recipe *recipes, int recipeCount) {
     nameIndex *nameIndexStructArray;
 
     //allocate memory for the array

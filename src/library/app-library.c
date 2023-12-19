@@ -242,7 +242,7 @@ int chooseRecipe(const Recipe *chosenRecipe) {
  * @param recipes the recipe struct containing all recipes.
  * @param recipeCount the amount of recipes in the struct of recipes.
  */
-void userInputSearch(const Recipe *recipes, const int recipeCount) {
+void userInputSearch(Recipe *recipes, int recipeCount) {
     // initialize loop variable
     int outerLoop = 1;
 
@@ -313,7 +313,7 @@ void clearInputBuffer() {
     while ((c = getchar()) != '\n' && c != EOF);
 }
 
-void printRecipeNames(const Recipe *recipes, const int recipeCount) {
+void printRecipeNames(Recipe *recipes, int recipeCount) {
     printf("*******************************************************************\n");
     for (int i = 0; i < recipeCount; i++) {
         printf("Opskrift %d: %s\n", i + 1, recipes[i].name);
@@ -321,7 +321,7 @@ void printRecipeNames(const Recipe *recipes, const int recipeCount) {
     printf("*******************************************************************\n");
 }
 
-int searchRecipe(const Recipe *recipes, const int recipeCount, const char *target) {
+int searchRecipe(Recipe *recipes, int recipeCount, char *target) {
     //convert input char array to lower case
     strcpy(target, stringToLower(target));
 
