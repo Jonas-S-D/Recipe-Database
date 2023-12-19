@@ -60,6 +60,6 @@ void SearchTest(void){
 
     //check that searchRecipe will not find a random string
     char target1[MAX_NAME];
-    strcpy(target, "Jeg ELsker kage");
+    strcpy(target1, "Jeg ELsker kage");
     assert(searchRecipe(recipes,recipeCount,target1) == -1);
 }
