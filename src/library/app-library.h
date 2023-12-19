@@ -75,6 +75,7 @@ int binarySearchRecipes(nameIndex *nameIndexArr, int high, const char *target);
 char* stringToLower(char* str);
 nameIndex *nameIndexArr(const Recipe *recipes, const int recipeCount);
 int searchRecipe(const Recipe *recipes, const int recipeCount, const char *target);
+void freeNameIndexArr(nameIndex *nameIndexStructArray);
 
 
 // Price Compare
