@@ -53,9 +53,10 @@ void SearchTest(void){
     int recipeCount = loadRecipeStruct(file, &recipes,uniqueCategories,&uniqueCategoriesCount);
 
     //check that searchRecipe can find a recipe even if it isnt writen in the same case as the array recipe
-    char target[MAX_NAME];
-    strcpy(target, "BolLer I KarRy");
-    assert(searchRecipe(recipes,recipeCount,target) == 1);
+    char target[4][MAX_NAME] = {"BiKseMad","BolLer I KaRRy","Indbagte loeGRinge","Oksekoeds lasagne",};
+    for (int i = 0; i < 3;i++){
+        assert(searchRecipe(recipes,recipeCount,target[i]) == i);
+    }
 
     //check that searchRecipe will not find a random string
     char target1[MAX_NAME];
