@@ -1,22 +1,10 @@
 # Recipe-Database
 
 ### Sådan køre du programmet
-For at køre programmet skal du execute filen [app.c](src/app.c)
-
-### Pakker du skal hente
-For at køre programmet skal du bruge pakkerne:
-<br>
-1: stdio.h
-<br>
-2: string.h
-<br>
-3: stdlib.h
-<br>
-4: ctype.h
-
+For at køre programmet skal du køre filen [app.c](src/app.c)
 
 ### Kompiler
-GCC
+Nyeste version af GCC (Gnu Compiler Collection)
 
 ### Brugs instruktioner
 Efter du har startet programmet vil du blive mødt af en introduktion
