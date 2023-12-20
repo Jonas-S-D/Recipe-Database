@@ -15,7 +15,7 @@ Recipe *filterRecipe(const Recipe *recipe, char **categories, int categoryCount)
                 if (filteredRecipe == NULL) {
                     filteredRecipe = malloc(sizeof(Recipe));
                     if (filteredRecipe == NULL) {
-                        printf("Memory allocation failed for 'filteredRecipe'. Exiting program...\n");
+                        printf("Hukommelses allokering for 'filteredRecipe' fejlede. Lukker programmet...\n");
                         exit(EXIT_FAILURE);
                     }
                     *filteredRecipe = *recipe;
@@ -25,7 +25,7 @@ Recipe *filterRecipe(const Recipe *recipe, char **categories, int categoryCount)
     } else { // No categories chosen
         filteredRecipe = malloc(sizeof(Recipe));
         if (filteredRecipe == NULL) {
-            printf("Memory allocation failed for 'filteredRecipe'. Exiting program...\n");
+            printf("Hukommelses allokering for 'filteredRecipe' fejlede. Lukker programmet...\n");
             exit(EXIT_FAILURE);
         }
         *filteredRecipe = *recipe;

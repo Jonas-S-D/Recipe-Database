@@ -24,7 +24,7 @@ void userInput(Ingredient **ingredients, int *ingredientCount, char ***categorie
 
         if (strcmp(option, "q") == 0) {
             exit(0);
-        }else if (strcmp(option, "i") == 0) {
+        } else if (strcmp(option, "i") == 0) {
             userInputIngredients(ingredients, ingredientCount);
         } else if (strcmp(option, "k") == 0) {
             userInputCategories(categories, categoryCount, uniqueCategories, uniqueCategoriesCount);
