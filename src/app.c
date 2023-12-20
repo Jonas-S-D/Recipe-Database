@@ -42,9 +42,7 @@ int main() {
     findLowestPrice(missingIngredients, length);
 
     // Free allocated memory for ingredients and categories
-    if (ingredientCount != 0) {
-        free(ingredients);
-    }
+    free(ingredients);
     freeMemory(&categories, categoryCount);
     for (int i = 0; i < recipeCount; i++) {
         free(recipes[i].ingredients);
