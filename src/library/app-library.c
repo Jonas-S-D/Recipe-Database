@@ -31,10 +31,6 @@ void userInput(Ingredient **ingredients, int *ingredientCount, char ***categorie
         } else if (strcmp(option, "s") == 0) {
             userInputSearch(recipes, recipeCount);
         } else if (strcmp(option, "f") == 0) {
-            if (*ingredientCount == 0) {
-                printf("Du skal minimum indtaste 1 ingrediens for at fortsaette\n");
-                continue;
-            }
             break;
         } else {
             printf("Ugyldigt input!\n");
