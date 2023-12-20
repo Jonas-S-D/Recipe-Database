@@ -2,11 +2,16 @@
 
 /**
  * Gets user input for what they would like to do.
- * The user can chose to enter "i" for ingredients or "c" for categories or "d" for done
+ * The user can chose to enter "i" for ingredients or "k" for categories or "s" for search,
+ * "f" for done and "q" to shut down the program
  * @param ingredients Is the struct "Ingredient" that has been defined in "app-library.h"
- * @param ingredientCount Counts how many ingredients have been entered
- * @param categories The category of food that the user wants
- * @param categoryCount Counts how many categories have been entered
+ * @param ingredientCount Counts how many ingredients have been entered.
+ * @param categories The category of food that the user wants.
+ * @param categoryCount Counts how many categories have been entered.
+ * @param recipes Array of recipes.
+ * @param recipeCount Number of recipes in the array.
+ * @param uniqueCategories Array containing unique categories.
+ * @param uniqueCategoriesCount Number of unique categories.
  */
 void userInput(Ingredient **ingredients, int *ingredientCount, char ***categories, int *categoryCount, Recipe *recipes,
                int recipeCount, char uniqueCategories[MAX_CAT][MAX_NAME], int uniqueCategoriesCount) {
@@ -39,9 +44,9 @@ void userInput(Ingredient **ingredients, int *ingredientCount, char ***categorie
 
 /**
  * Gets user input for ingredients
- * here the user can enter as many ingredients as they want and type 'done' when they are finished
- * @param ingredients Is the struct "Ingredient" that has been defined in "app-library.h"
- * @param ingredientCount Counts the number of ingredients entered
+ * here the user can enter as many ingredients as they want and type 'f' when they are finished
+ * @param ingredients Pointer to the struct "Ingredient" that has been defined in "app-library.h".
+ * @param ingredientCount Pointer to the variable counting the number of ingredients entered.
  */
 void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
     printf("Indtast de ingredienser du har, indtast 'f' naar du er faerdig:\n");
@@ -102,10 +107,12 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
 }
 
 /**
- * Gets user input for categories
- * here the user can enter categories as they want and type 'done' when they are finished
- * @param categories The category of food that the user wants
- * @param categoryCount Counts the number of categories entered
+ * Gets user input for categories.
+ * The user can enter categories as they want and type 'f' when they are finished.
+ * @param categories Pointer to the category of food that the user wants.
+ * @param categoryCount Pointer to the variable counting the number of categories entered.
+ * @param uniqueCategories Array containing unique categories.
+ * @param uniqueCategoriesCount Number of unique categories.
  */
 void userInputCategories(char ***categories, int *categoryCount, char uniqueCategories[MAX_CAT][MAX_NAME],
                          int uniqueCategoriesCount) {
@@ -162,9 +169,9 @@ void userInputCategories(char ***categories, int *categoryCount, char uniqueCate
 }
 
 /**
- * prints all the different categories in the array of recipes
- * @param uniqueCategories array of all category names in the array of recipes
- * @param uniqueCategoriesCount The number of categories in the uniqueCategories array
+ * Prints all the different categories in the array of recipes.
+ * @param uniqueCategories Array of all category names in the array of recipes.
+ * @param uniqueCategoriesCount The number of categories in the uniqueCategories array.
  */
 void printCategories(char uniqueCategories[MAX_CAT][MAX_NAME], int uniqueCategoriesCount) {
     for (int i = 0; i < uniqueCategoriesCount; i++) {
@@ -198,9 +205,10 @@ void printProgramExplanation() {
 }
 
 /**
- * chooseRecipe allows the user to choose which of the three best recipes they want to make,
- * and then it gets printet out via a switch
- * @param chosenRecipe Is the struct "Recipe" that has been defined in app-library.h
+ * Allows the user to choose which of the three best recipes they want to see,
+ * and then prints it out via a switch statement.
+ * @param chosenRecipe The array of Recipe structs from which the user can choose.
+ * @return The user's choice (1, 2, or 3).
  */
 int chooseRecipe(const Recipe *chosenRecipe) {
     int userChoice = 0;
@@ -239,8 +247,8 @@ int chooseRecipe(const Recipe *chosenRecipe) {
 
 /**
  * Allows the user to search for a recipe in the array of recipes.
- * @param recipes the recipe struct containing all recipes.
- * @param recipeCount the amount of recipes in the struct of recipes.
+ * @param recipes The array of Recipe structs containing all recipes.
+ * @param recipeCount The number of recipes in the array of recipes.
  */
 void userInputSearch(Recipe *recipes, int recipeCount) {
     // initialize loop variable
@@ -256,7 +264,8 @@ void userInputSearch(Recipe *recipes, int recipeCount) {
         int targetRecipeSearch = -1;
 
         //ask user for recipe or whether to finish search
-        printf("indtast opskrift du oensker at finde, indtast 'l' hvis du vil se en liste af opskrifter i biblioteket, og 'f' for at afslutte og gaa tilbage til hovedmenuen\n>");
+        printf("indtast opskrift du oensker at finde, indtast 'l' hvis du vil se en liste af opskrifter i"
+               " biblioteket, og 'f' for at afslutte og gaa tilbage til hovedmenuen\n>");
         scanf(" %[^\n]", target);
         //perform user choice
         if (strcmp(target, "f") == 0) {
@@ -296,8 +305,8 @@ void userInputSearch(Recipe *recipes, int recipeCount) {
 }
 
 /**
- * Converts a string to lowercase. just in case.
- * @param str is the string
+ * Converts each character in a string to lowercase.
+ * @param str The string to be converted to lowercase.
  */
 void convertTolower(char *str) {
     for (int i = 0; str[i] != '\0'; i++) {
@@ -313,6 +322,11 @@ void clearInputBuffer() {
     while ((c = getchar()) != '\n' && c != EOF);
 }
 
+/**
+ * Prints the names of recipes.
+ * @param recipes The array of recipes to extract names from.
+ * @param recipeCount The number of recipes in the array.
+ */
 void printRecipeNames(Recipe *recipes, int recipeCount) {
     printf("*******************************************************************\n");
     for (int i = 0; i < recipeCount; i++) {
@@ -321,6 +335,13 @@ void printRecipeNames(Recipe *recipes, int recipeCount) {
     printf("*******************************************************************\n");
 }
 
+/**
+ * Searches for a recipe in the array of recipes.
+ * @param recipes The array of recipes to search in.
+ * @param recipeCount The number of recipes in the array.
+ * @param target The name of the recipe to search for.
+ * @return The index of the found recipe, or -1 if not found.
+ */
 int searchRecipe(Recipe *recipes, int recipeCount, char *target) {
     //convert input char array to lower case
     strcpy(target, stringToLower(target));

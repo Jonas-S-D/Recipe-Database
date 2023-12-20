@@ -69,6 +69,7 @@ void userInputSearch(Recipe *recipes, int recipeCount);
 int unitCompare(Recipe* filteredRecipe, Ingredient *ingredients, int recipe, int userInput);
 void unitConvert(char *unit, double *amount);
 void clearInputBuffer();
+int recipeHasCategory(const Recipe *recipe, const char *category);
 
 //search
 int binarySearchRecipes(nameIndex *nameIndexArr, int high, char *target);
