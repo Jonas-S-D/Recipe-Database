@@ -21,7 +21,8 @@ int main() {
     printProgramExplanation();
 
     // Step 2: Get user input
-    userInput(&ingredients, &ingredientCount, &categories, &categoryCount, recipes, recipeCount, uniqueCategories, uniqueCategoriesCount);
+    userInput(&ingredients, &ingredientCount, &categories, &categoryCount, recipes, recipeCount, uniqueCategories,
+              uniqueCategoriesCount);
 
 
     // Step 3: Display dishes based on user input
@@ -45,7 +46,7 @@ int main() {
     freeMemory(&categories, categoryCount);
     for (int i = 0; i < recipeCount; i++) {
         free(recipes[i].ingredients);
-     }
+    }
     free(recipes);
 
     return 0;
