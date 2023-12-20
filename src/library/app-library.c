@@ -19,7 +19,7 @@ void userInput(Ingredient **ingredients, int *ingredientCount, char ***categorie
     printf("Hvad vil du gerne goere?\n");
 
     while (1) {
-        printf("Indtast 'i' for ingredienser, 'k' for kategorier, 'f' naar du er faerdig, 's' for at soege efter specifikke opskrifter, og 'q' hvis du helt vil afslutte programmet>");
+        printf("Indtast 'i' for ingredienser, 'k' for kategorier, 's' for at soege efter specifikke opskrifter, 'f' naar du er faerdig og 'q' hvis du helt vil afslutte programmet>");
         scanf("%s", option);
 
         if (strcmp(option, "q") == 0) {
@@ -55,7 +55,7 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
     *ingredients = NULL;
 
     while (1) {
-        printf("Ingrediens %d > ", *ingredientCount + 1);
+        printf("Ingrediens %d >", *ingredientCount + 1);
 
         clearInputBuffer();
         fscanf(stdin, "%99[^\n]", ingredient.name);
@@ -69,7 +69,7 @@ void userInputIngredients(Ingredient **ingredients, int *ingredientCount) {
 
         // Loop to handle user input being valid.
         do {
-            printf("Ingrediens %d > Maengde & maaleenhed: ", *ingredientCount + 1);
+            printf("Ingrediens %d > Maengde & maaleenhed:", *ingredientCount + 1);
             // Checks if the user inputs 2 inputs that are valid a double and a char.
 
             if (scanf("%lf %s", ingredient.amount, ingredient.unit) != 2) {
@@ -196,12 +196,13 @@ void freeMemory(char ***array, int count) {
 //prints the initial program explanation
 void printProgramExplanation() {
     printf("\nProgramforklaring:\n"
-           "Formaalet med dette program er at reducere maengden af madspild i brugerens husstand.\n"
-           "Dette goeres ved at sammenligne brugernes lager af foedevarer of anbefale de mest relevante madretter.\n"
-           "Retter, hvor der mangler mindst maengder af ingredienser, vil blive prioriteret hoejere.\n"
-           "Programmet fungerer ved at anmode om, ingredienserne 'i' og kategorierne 'k' af mad.\n"
-           "Når brugerne har bedt om den oenskede information, udskrives en liste over madretter.\n"
-           "Nu kan brugeren vaelge en madret som de gerne vil have udskrives sammen med opskriften.\n\n");
+           "I dette program kan du indtaste alle dine ingredienser,\n"
+           "og vil ud fra dem blive forslaaet opskrifter du er taet paa at kunne lave.\n"
+           "Du vil ogsaa have mulighed for at indtaste en raekke kategorier, dette vil indsnaevre dit udvalg af opskrifter.\n"
+           "Hvis du leder efter en specifik ret, kan du soege efter alle retter fra programmet.\n"
+           "Naar alt det oenskede er indtastet, kan du fortsaette for at vaelge mellem tre retter.\n"
+           "Efter dit valg af ret, vil hele opskriften blive udskrevet.\n"
+           "Til den valgte opskrift vil blive en liste af dine manglede ingredienser, samt hvor de kan koebes billigst.\n\n");
 }
 
 /**
