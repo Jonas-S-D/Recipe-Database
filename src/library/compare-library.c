@@ -159,8 +159,8 @@ int unitCompare(Recipe *filteredRecipe, Ingredient *ingredients, int recipe, int
     strcpy(recipeUnit, filteredRecipe->ingredients[recipe].unit);
     strcpy(userUnit, ingredients[userInput].unit);
 
-    unitConvert(recipeUnit, &recipeAmount);;
-    unitConvert(userUnit, &userAmount);;
+    unitConvert(recipeUnit, &recipeAmount);
+    unitConvert(userUnit, &userAmount);
 
     if (strcmp(recipeUnit, userUnit) != 0) {
         return 0;
@@ -302,8 +302,10 @@ char **ingredientsNeeded(Recipe userChosenRecipe, int userIngredients, Ingredien
     /* runs through each ingredient from the recipe */
     for (int i = 0; i < recipeIngredients; i++) {
         commonIngredients = 0;
+        unitConvert(userChosenRecipe.ingredients[i].unit, &userChosenRecipe.ingredients[i].amount[0]);
         /* runs through each ingredient entered by the user */
         for (int j = 0; j < userIngredients; j++) {
+            unitConvert(ingredients[j].unit, ingredients[j].amount);
             /* checks for common ingredients */
             if (strcmp(userChosenRecipe.ingredients[i].name, ingredients[j].name) == 0 &&
                 ingredients[j].amount[0] >= userChosenRecipe.ingredients[i].amount[0]) {
