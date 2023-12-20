@@ -1,7 +1,10 @@
 # Recipe-Database
 
-### Sådan køre du programmet
-For at køre programmet skal du køre filen [app.c](src/app.c)
+### Sådan kører du programmet i Clion (For Mac & Windows brugere)
+For at køre programmet skal du downloade Clion og køre filen [app.c](src/app.c)
+
+### Sådan kører du programmet i en terminal (For Windows brugere)
+Kør filen app.exe under Recipe-Database mappen
 
 ### Kompiler
 Nyeste version af GCC (Gnu Compiler Collection)
