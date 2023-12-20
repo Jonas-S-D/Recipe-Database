@@ -40,7 +40,14 @@ int main() {
     char **missingIngredients = ingredientsNeeded(filteredRecipes[choice - 1], ingredientCount, ingredients);
     int length = filteredRecipes[choice - 1].missingIngredients;
     findLowestPrice(missingIngredients, length);
-
+    char runLoop = '\0';
+    while (runLoop != 'q'){
+        printf("\nIndtast 'q' for afslutte programmet\n");
+        scanf(" %c", &runLoop);
+        if (runLoop != 'q'){
+            printf("\nikke et 'q', proev igen hvis programmet skal afsluttes\n");
+        }
+    }
     // Free allocated memory for ingredients and categories
     free(ingredients);
     freeMemory(&categories, categoryCount);
