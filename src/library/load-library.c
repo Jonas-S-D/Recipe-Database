@@ -2,8 +2,9 @@
  * loads recipes from a txt file into an array of recipe structs.
  * The function returns the number of recipes loaded and directly loads recipes into **recipes
  * @param file the file that recipes are to be loaded from.
- * @param uniqueCategories the array the unique categories are loaded into
- * @param UniqueCategoriesCount the variable holding the number of unique categories.
+ * @param recipes The pointer to the array of recipe structs.
+ * @param uniqueCategories The array where unique categories are loaded into.
+ * @param uniqueCategoriesCount The variable holding the number of unique categories.
  * @return The amount of recipes loaded from the file.
  */
 int loadRecipeStruct(FILE *file, Recipe **recipes, char uniqueCategories[MAX_CAT][MAX_NAME], int *uniqueCategoriesCount) {
@@ -53,7 +54,7 @@ void checkLoad(FILE *file) {
  * function to print a recipe
  * @param recipe is the recipe to be printed
  */
-void printRecipe(const Recipe recipe) {
+void printRecipe(Recipe recipe) {
     printf("**************************************************\n");
     printf("Opskriftens navn: %s\n\n", recipe.name);
     printf("Opskriftens kategorier: ");
@@ -70,7 +71,7 @@ void printRecipe(const Recipe recipe) {
 }
 
 /**
- * function to parse categories
+ * Parses categories from a file and adds them to a recipe.
  * @param file the file that recpies are to be loaded from.
  * @param recipe the recipe to add categories to
  * @param uniqueCategories are the array the unique categories are loaded into
@@ -107,9 +108,9 @@ void parseCategories(FILE *file, Recipe *recipe, char uniqueCategories[MAX_CAT][
 }
 
 /**
- * function to parse explanation
+ * Parses explanation from a file and adds it to a recipe.
  * @param file the file that recpies are to be loaded from.
- * @param recipe the recipe to add categories to
+ * @param recipe The recipe to add an explanation to.
  */
 void parseExplanation(FILE *file, Recipe *recipe) {
     char line[MAX_LINE];
@@ -125,6 +126,7 @@ void parseExplanation(FILE *file, Recipe *recipe) {
  * @param file the file that recpies are to be loaded from.
  * @param recipe the recipe to add categories to
  */
+
 void parseIngredients(FILE *file, Recipe *recipe) {
     char line[MAX_LINE];
     int ingredientCount = 0;

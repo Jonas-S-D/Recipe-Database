@@ -2,9 +2,10 @@
  * Binary search function
  * @param nameIndexArr the array of structs to be searched.
  * @param high variable containing last index of array.
-* @param target the string to search for.
+ * @param target the string to search for.
+ * @return The index of the target recipe if found, otherwise -1.
  */
-int binarySearchRecipes(nameIndex *nameIndexArr, int high, const char *target) {
+int binarySearchRecipes(nameIndex *nameIndexArr, int high, char *target) {
     int low = 0;
     while (low <= high) {
         int mid = (low + high) / 2;
@@ -33,6 +34,7 @@ int binarySearchRecipes(nameIndex *nameIndexArr, int high, const char *target) {
 /**
  * function that converts a string to lower case
  * @param str the string to be converted to lower case.
+ * @return The pointer to the modified string.
  */
 char *stringToLower(char *str) {
     char *str1 = str;
@@ -42,12 +44,14 @@ char *stringToLower(char *str) {
     return str1;
 }
 
-//
+
 /**
- * function to create an array of structs containing recipe names and their index
+ * Creates an array of structs containing recipe names and their index.
  * @param recipes The array of recipes to generate a nameIndex array based on.
+ * @param recipeCount The number of recipes in the 'recipes' array.
+ * @return The pointer to the created nameIndex array.
  */
-nameIndex *nameIndexArr(const Recipe *recipes, const int recipeCount) {
+nameIndex *nameIndexArr(Recipe *recipes, int recipeCount) {
     nameIndex *nameIndexStructArray;
 
     //allocate memory for the array
@@ -60,4 +64,12 @@ nameIndex *nameIndexArr(const Recipe *recipes, const int recipeCount) {
     }
 
     return nameIndexStructArray;
+}
+
+/**
+ * Frees the memory allocated for the nameIndex array.
+ * @param nameIndexStructArray The pointer to the nameIndex array to be freed.
+ */
+void freeNameIndexArr(nameIndex *nameIndexStructArray) {
+    free(nameIndexStructArray);
 }

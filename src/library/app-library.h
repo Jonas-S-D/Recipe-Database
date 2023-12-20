@@ -48,14 +48,14 @@ void printCategories(char uniqueCategories[MAX_CAT][MAX_NAME], int uniqueCategor
 void freeMemory(char ***array, int count);
 void printProgramExplanation();
 int chooseRecipe(const Recipe* chosenRecipe);
-void printRecipeNames(const Recipe *recipes, const int recipeCount);
+void printRecipeNames(Recipe *recipes, int recipeCount);
 
 // Load
 int loadRecipeStruct(FILE *file, Recipe **recipes, char uniqueCategories[MAX_CAT][MAX_NAME], int *uniqueCategoriesCount);
 void checkLoad(FILE *file);
 void parseCategories(FILE *file, Recipe *recipe, char uniqueCategories[MAX_CAT][MAX_NAME], int *uniqueCategoriesCount);
 void parseExplanation(FILE *file, Recipe *recipe);
-void printRecipe(const Recipe recipe);
+void printRecipe(Recipe recipe);
 void parseIngredients(FILE *file, Recipe *recipe);
 
 // Compare
@@ -65,16 +65,18 @@ Recipe* filterRecipes(const Recipe* recipes, char** categories, int categoryCoun
 void missingIngredientsAllRecipes(Recipe *filteredRecipes, Ingredient *ingredients, int ingredientCount);
 void countMissingIngredients(Recipe* filteredRecipe, Ingredient* ingredients, int ingredientCount);
 int qsortCompare(const void *a, const void *b);
-void userInputSearch(const Recipe *recipes, int recipeCount);
+void userInputSearch(Recipe *recipes, int recipeCount);
 int unitCompare(Recipe* filteredRecipe, Ingredient *ingredients, int recipe, int userInput);
 void unitConvert(char *unit, double *amount);
 void clearInputBuffer();
+int recipeHasCategory(const Recipe *recipe, const char *category);
 
 //search
-int binarySearchRecipes(nameIndex *nameIndexArr, int high, const char *target);
-char* stringToLower(char* str);
-nameIndex *nameIndexArr(const Recipe *recipes, const int recipeCount);
-int searchRecipe(const Recipe *recipes, const int recipeCount, const char *target);
+int binarySearchRecipes(nameIndex *nameIndexArr, int high, char *target);
+char* stringToLower(char *str);
+nameIndex *nameIndexArr(Recipe *recipes, int recipeCount);
+int searchRecipe(Recipe *recipes, int recipeCount, char *target);
+void freeNameIndexArr(nameIndex *nameIndexStructArray);
 
 
 // Price Compare
