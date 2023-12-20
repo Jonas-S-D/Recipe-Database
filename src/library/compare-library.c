@@ -322,6 +322,7 @@ char **ingredientsNeeded(Recipe userChosenRecipe, int userIngredients, Ingredien
     return missingIngredients;
 }
 
+/* converts units from kg to grams and l or dl to ml */
 void convertToGramsOrMl(char *unit, double *amount) {
     if (strcmp(unit, "kg") == 0) {
         strcpy(unit, "g");
